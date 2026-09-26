@@ -1,0 +1,1402 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>令和6年度 解説付き解答</title>
+<style>
+  :root {
+    --bg: #e6e4dc; --card: #efede6; --text: #2a2b26; --muted: #66685f;
+    --border: #d3d0c5; --accent: #2c4a63; --good: #2f6f49; --good-soft: #dce7dc;
+    --bad: #a8382d; --note: #e4dece;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #161816; --card: #1f221e; --text: #dfe1da; --muted: #9da397;
+      --border: #333830; --accent: #9ec0dc; --good: #7fcf9d; --good-soft: #1d3025;
+      --bad: #f08a7e; --note: #28281f;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161816; --card: #1f221e; --text: #dfe1da; --muted: #9da397;
+    --border: #333830; --accent: #9ec0dc; --good: #7fcf9d; --good-soft: #1d3025;
+    --bad: #f08a7e; --note: #28281f;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: 64px; }
+  body {
+    margin: 0; -webkit-tap-highlight-color: transparent; background: var(--bg); color: var(--text);
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    line-height: 1.75; font-size: 15px;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+  header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  header h1 { font-size: 22px; line-height: 1.4; margin: 0 0 4px; text-wrap: balance; }
+  .nw { display: inline-block; }
+  header p { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
+  header p a { color: var(--accent); }
+  .theme-btn {
+    flex-shrink: 0; min-width: 44px; min-height: 44px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--card); color: var(--text);
+    font: inherit; font-size: 13px; padding: 0 14px; cursor: pointer;
+  }
+  nav.subj {
+    position: sticky; top: 0; z-index: 5; background: var(--bg);
+    display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; margin-bottom: 12px;
+    scrollbar-width: none;
+  }
+  nav.subj::-webkit-scrollbar { display: none; }
+  nav.subj a {
+    flex-shrink: 0; text-decoration: none; color: var(--text); font-size: 13px;
+    border: 1px solid var(--border); background: var(--card); border-radius: 999px; padding: 6px 12px;
+  }
+  h2.subj-title { font-size: 17px; margin: 28px 0 12px; color: var(--accent); }
+  h2.subj-title small { color: var(--muted); font-weight: 400; font-size: 13px; margin-left: 6px; }
+  .q { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+  .q-head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+  .q-no { font-weight: 800; font-size: 18px; color: var(--accent); }
+  .tag { font-size: 12px; border: 1px solid var(--border); border-radius: 999px; padding: 1px 10px; color: var(--muted); }
+  .stem { font-weight: 700; margin: 0 0 12px; }
+  .passage { background: var(--note); border-radius: 10px; padding: 10px 12px; margin: 0 0 12px; }
+  .blank { display: inline-block; min-width: 2.5em; text-align: center; border-bottom: 2px solid var(--accent); font-weight: 700; color: var(--accent); }
+  .opt-header { color: var(--muted); font-size: 13px; margin: 0 0 4px; }
+  ol.choices { list-style: none; padding: 0; margin: 0; }
+  ol.choices li { display: flex; gap: 10px; padding: 8px 4px; border-bottom: 1px solid var(--border); }
+  ol.choices li:last-child { border-bottom: 0; }
+  .c-num { font-weight: 800; flex-shrink: 0; }
+  details.kaisetsu { margin-top: 16px; border-top: 1px solid var(--border); }
+  details.kaisetsu summary {
+    cursor: pointer; list-style: none; padding: 12px 0; font-weight: 700; color: var(--accent);
+    min-height: 44px; display: flex; align-items: center; justify-content: space-between;
+  }
+  details.kaisetsu summary::-webkit-details-marker { display: none; }
+  details.kaisetsu summary::after { content: "＋"; color: var(--muted); font-weight: 400; }
+  details.kaisetsu[open] summary::after { content: "－"; }
+  .k-body { padding: 0 0 4px; }
+  .answer { font-weight: 800; font-size: 17px; margin: 0 0 12px; }
+  .answer span { color: var(--good); }
+  .invalid-note { font-size: 14px; margin: -4px 0 12px; color: var(--muted); }
+  .note-item { border-left: 3px solid var(--border); padding: 6px 0 6px 12px; margin-bottom: 12px; }
+  .note-item.correct { border-left-color: var(--good); background: var(--good-soft); border-radius: 0 8px 8px 0; padding: 10px 12px; }
+  .note-head { display: flex; gap: 8px; align-items: center; font-weight: 700; }
+  .verdict { font-size: 12px; border-radius: 6px; padding: 0 8px; }
+  .verdict.ok { color: var(--good); border: 1px solid var(--good); }
+  .verdict.ng { color: var(--bad); border: 1px solid var(--bad); }
+  .note-item p { margin: 4px 0 0; font-size: 14px; }
+  .box { background: var(--note); border-radius: 10px; padding: 12px 14px; font-size: 14px; margin-top: 12px; }
+  .box h3 { font-size: 14px; margin: 0 0 4px; }
+  .box p, .box ul { margin: 0; }
+  .box ul { padding-left: 1.2em; }
+  @media (max-width: 480px) {
+    body { font-size: 15.5px; }
+    main { padding: 16px 12px 48px; }
+    header h1 { font-size: 19px; }
+    .q { padding: 16px 14px; border-radius: 12px; }
+    .q-no { font-size: 17px; }
+    .note-item p, .box { font-size: 14.5px; }
+  }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div>
+    <h1><span class="nw">令和6年度</span> <span class="nw">静岡県調理師試験</span> <span class="nw">解説付き解答</span></h1>
+    <p><a class="nw" href="../">‹ 学習サイトに戻る</a></p>
+    <p>全60問 ／ ほかの年度：<a class="nw" href="R5.html">令和5年度</a> ／ <a class="nw" href="R7.html">令和7年度</a></p>
+  </div>
+  <button class="theme-btn" id="theme-btn" type="button">ダーク</button>
+</header>
+<nav class="subj"><a href="#s0">食文化概論</a><a href="#s1">公衆衛生学</a><a href="#s2">栄養学</a><a href="#s3">食品学</a><a href="#s4">食品衛生学</a><a href="#s5">調理理論</a></nav>
+<h2 class="subj-title" id="s0">食文化概論<small>問1〜問5</small></h2>
+<section class="q" id="q1">
+<div class="q-head"><span class="q-no">問1</span><span class="tag">主要食材の特性</span></div>
+<p class="stem">次の食文化に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>米は、狭い土地からの収量は多いが、連作は困難である。</span></li>
+<li><span class="c-num">2</span><span>小麦は、外皮がもろく内部の胚乳が堅いので、粒をこすり合わせるだけで外皮を除き、粒にできる。</span></li>
+<li><span class="c-num">3</span><span>魚は、死後硬直が緩やかで、硬直、熟成、軟化を経て食べ頃になるまでに数日はかかる。</span></li>
+<li><span class="c-num">4</span><span>素材の種類が比較的少ない肉の料理に個性を持たせるためには、加熱法、味付け、ソースの工夫等が必要である。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>米（水稲）は狭い土地からの収量が多いうえ、水田では連作障害が起こりにくく、<strong>連作が可能</strong>です。「連作は困難」が誤りです。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>外皮がもろく胚乳が堅いため、こすり合わせるだけで外皮が除けて粒のまま食べられる（粒食）のは<strong>米</strong>です。小麦は外皮が堅く胚乳がもろいため、粉にして食べる（<strong>粉食</strong>）のが基本です。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>魚は死後硬直が<strong>早く</strong>始まり、比較的短時間で解硬・軟化が進みます。硬直・熟成・軟化を経て食べ頃まで数日かかるのは、牛肉などの獣肉の特徴です。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ok">正しい（これが正解）</span></div><p>肉は野菜や魚に比べて素材の種類が比較的少ないため、加熱法・味付け・ソースなどを工夫して料理に個性を持たせます。記述のとおりで、これが正答です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>米 ＝ 外皮がもろく胚乳が堅い → <strong>粒食</strong>、連作可能</li>
+<li>小麦 ＝ 外皮が堅く胚乳がもろい → <strong>粉食</strong>、連作障害あり</li>
+<li>魚は死後硬直が早い／獣肉は熟成に数日かかる</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q2">
+<div class="q-head"><span class="q-no">問2</span><span class="tag">日本料理の歴史</span></div>
+<p class="stem">次の日本の食文化と料理に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>飛鳥時代から続く貴族式の大饗料理は、日本料理の原型となった。</span></li>
+<li><span class="c-num">2</span><span>明治期には、文明開化とともに肉食が開放され、牛なべあるいはすき焼きという調理形態が現れた。</span></li>
+<li><span class="c-num">3</span><span>安土桃山時代に南蛮料理として日本に入ってきた天ぷらやカステラは、日本の食べ物として変容し、定着した。</span></li>
+<li><span class="c-num">4</span><span>江戸時代の末期には、寿司やそば等の屋台が現れ、庶民に軽食を提供していた。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ng">誤り（これが正解）</span></div><p>貴族式の<strong>大饗料理</strong>が成立したのは<strong>平安時代</strong>で、飛鳥時代からではありません。また、現代まで続く日本料理の原型とされるのは室町時代の本膳料理です。これが正答です。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>明治期には文明開化とともに肉食が解禁され、牛なべ（のちのすき焼き）が流行しました。記述は正しいです。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>安土桃山時代に南蛮料理・南蛮菓子として伝わった天ぷらやカステラは、日本風に変化して定着しました。記述は正しいです。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>江戸時代の後期〜末期には、寿司・そば・天ぷらなどの屋台が現れ、庶民に手軽な軽食を提供していました。記述は正しいです。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>大饗料理 ＝ <strong>平安時代</strong>の貴族の饗宴料理</li>
+<li>日本料理の原型 ＝ 室町時代の<strong>本膳料理</strong></li>
+<li>南蛮料理（天ぷら・カステラ）＝ 安土桃山時代／牛なべ ＝ 明治</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q3">
+<div class="q-head"><span class="q-no">問3</span><span class="tag">エスニック料理</span></div>
+<p class="stem">次の日本におけるエスニック料理の国と料理名の組合せのうち、正しいものはどれか。</p>
+<p class="opt-header">（国 ―― 料理名）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>メキシコ ―― トルティーヤ</span></li>
+<li><span class="c-num">2</span><span>ブラジル ―― ドネルケバブ</span></li>
+<li><span class="c-num">3</span><span>タイ ―― ナシゴレン</span></li>
+<li><span class="c-num">4</span><span>ベトナム ―― ナン</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ok">正しい（これが正解）</span></div><p><strong>トルティーヤ</strong>はとうもろこし粉（または小麦粉）で作る薄焼きパンで、タコスなどに使うメキシコの主食です。組合せは正しく、これが正答です。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>ドネルケバブは、味付けした肉を重ねて回転させながら焼き、削ぎ切りにする<strong>トルコ</strong>の料理です。ブラジルではありません（ブラジルの代表的料理はシュラスコやフェイジョアーダです）。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>ナシゴレンは<strong>インドネシア</strong>（マレーシアでも食べられる）の焼き飯です。タイの焼き飯はカオパットです。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>ナンは<strong>インド</strong>などで食べられる小麦粉の平焼きパンです。ベトナムの代表的料理はフォーや生春巻きなどです。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>トルティーヤ ＝ メキシコ／ドネルケバブ ＝ <strong>トルコ</strong></li>
+<li>ナシゴレン ＝ <strong>インドネシア</strong>／ナン ＝ インド</li>
+<li>ベトナム ＝ フォー・生春巻き／タイ ＝ トムヤムクン・カオパット</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q4">
+<div class="q-head"><span class="q-no">問4</span><span class="tag">伝統料理と郷土料理</span></div>
+<p class="stem">次の伝統料理と郷土料理に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>日本では、普段の日と特別な日をそれぞれケの日とハレの日といい、正月に食べる料理はケの日の食事である。</span></li>
+<li><span class="c-num">2</span><span>２０１３年、「和食；日本人の伝統的な食文化」が、ユネスコ無形文化遺産に登録された。</span></li>
+<li><span class="c-num">3</span><span>いぶりがっこは、聖護院かぶの薄切りと昆布でつくる、甘みのある漬物である。</span></li>
+<li><span class="c-num">4</span><span>食習慣における東日本と西日本の差は、伝統的な年中行事の料理に現れることはほとんどない。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>普段の日を<strong>ケ</strong>、特別な日を<strong>ハレ</strong>という点は正しいですが、正月の料理はハレの日の食事です。「ケの日の食事」が誤りです。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ok">正しい（これが正解）</span></div><p>2013年（平成25年）12月、「和食；日本人の伝統的な食文化」がユネスコ無形文化遺産に登録されました。記述は正しく、これが正答です。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p><strong>いぶりがっこ</strong>は、大根をいぶして（燻製にして）から米ぬかなどで漬けた秋田県の漬物です。聖護院かぶの薄切りと昆布で作る甘みのある漬物は、京都の<strong>千枚漬け</strong>です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>雑煮の餅の形（東の角餅・西の丸餅）や汁の仕立てなど、東日本と西日本の食習慣の差は年中行事の料理にはっきり現れます。「ほとんどない」が誤りです。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>ハレ ＝ 特別な日（正月・祭り）／ケ ＝ 普段の日</li>
+<li>「和食」ユネスコ無形文化遺産登録 ＝ <strong>2013年</strong></li>
+<li>いぶりがっこ ＝ 秋田（いぶした大根）／千枚漬け ＝ 京都（聖護院かぶ）</li>
+</ul></div>
+<div class="box"><h3>最新の制度（補足）</h3><p>2024年12月には「日本の伝統的な酒造り」もユネスコ無形文化遺産に登録されました。「和食」の登録が2013年であることに変わりはなく、答えは変わりません。</p></div>
+</div></details></section>
+<section class="q" id="q5">
+<div class="q-head"><span class="q-no">問5</span><span class="tag">食料需給と食品ロス</span></div>
+<p class="stem">次の食料生産と消費に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>日本の食料自給率のうち、鶏卵の自給率は１００％に近いが、飼料の大部分は輸入に頼っている。</span></li>
+<li><span class="c-num">2</span><span>一世帯当たりの年間食料費支出のうち、弁当を中心とする主食的調理食品の伸びが著しい。</span></li>
+<li><span class="c-num">3</span><span>食べられるのに捨てることとなった食品は、令和３年には約８０％が家庭から排出されたものであった。</span></li>
+<li><span class="c-num">4</span><span>食事の総摂取エネルギー中に占める脂肪の比率が上昇しており、生活習慣病の要因となりやすいことが問題視されている。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>鶏卵の品目別自給率は90％台後半（2024年度97％）と100％に近いですが、飼料の大部分は輸入に頼っており、飼料自給率を考慮すると1割強程度にとどまります。記述は正しいです。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>中食の広がりにより、弁当類などの主食的調理食品への支出が大きく伸びています。記述は正しいです。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ng">誤り（これが正解）</span></div><p>令和3年度の食品ロスは約523万トンで、うち家庭系は約244万トン（<strong>約47％</strong>）、事業系は約279万トンでした。家庭系と事業系はほぼ半々で、「約80％が家庭から」が誤りです。これが正答です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>総摂取エネルギーに占める脂肪エネルギー比率は上昇しており、生活習慣病の要因として問題視されています。記述は正しいです。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>食品ロス（令和3年度）＝ 約523万トン、家庭系と事業系は<strong>ほぼ半々</strong></li>
+<li>鶏卵の自給率は高いが、<strong>飼料</strong>を考慮すると低い</li>
+</ul></div>
+<div class="box"><h3>最新の制度（補足）</h3><p>最新の推計（2024年度）では食品ロスは約461万トンで、家庭系約224万トン（約49％）、事業系約237万トンと、依然ほぼ半々です。答えは変わりません。</p></div>
+</div></details></section>
+<h2 class="subj-title" id="s1">公衆衛生学<small>問6〜問13</small></h2>
+<section class="q" id="q6">
+<div class="q-head"><span class="q-no">問6</span><span class="tag">公衆衛生に関わる国際機関</span></div>
+<p class="stem">次の世界の公衆衛生問題に関わる国際機関に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>世界保健機関（ＷＨＯ）は、国際的な公衆衛生の中心機関である。</span></li>
+<li><span class="c-num">2</span><span>国連食糧農業機関（ＦＡＯ）は、食料、農産物及び栄養水準等に関する問題を担当する機関である。</span></li>
+<li><span class="c-num">3</span><span>国際労働機関（ＩＬＯ）は、労働者の労働条件と生活水準の改善を担当する機関である。</span></li>
+<li><span class="c-num">4</span><span>国連世界食糧計画（ＷＦＰ）は、過不足なく食料を計画生産する機関である。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>世界保健機関（WHO）は1948年に設立された国連の専門機関で、国際的な保健・公衆衛生の中心的な役割を担っています。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>国連食糧農業機関（FAO）は、食料・農業・栄養水準の向上や飢餓の解消などの問題を扱う国連の専門機関です。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>国際労働機関（ILO）は、労働条件や生活水準の改善、社会保障などを扱う国際機関です。労働衛生の分野でも基準を示しています。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ng">誤り（これが正解）</span></div><p>国連世界食糧計画（WFP）は、食料を計画生産する機関ではなく、飢餓や災害・紛争に苦しむ人々へ<strong>食料支援</strong>を行う国連の機関です。「計画」という名前からの連想がひっかけです。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>WHO ＝ 保健・公衆衛生 ／ FAO ＝ 食料・農業・栄養</li>
+<li>ILO ＝ 労働条件 ／ WFP ＝ <strong>食料支援</strong>（生産ではない）</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q7">
+<div class="q-head"><span class="q-no">問7</span><span class="tag">健康の概念（WHO憲章・PHC・ヘルスプロモーション）</span></div>
+<p class="stem">次の健康の概念に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>健康に対する考え方は、消極的健康から積極的健康を目指す方向へ向かっている。</span></li>
+<li><span class="c-num">2</span><span>ＷＨＯ憲章では、健康の定義を「肉体的・精神的並びに経済的に完全に良好な状態である」こととしている。</span></li>
+<li><span class="c-num">3</span><span>プライマリー・ヘルス・ケアとは、「すべての人に健康を」を基本理念とした保健医療活動であり、アルマ・アタ宣言と呼ばれる。</span></li>
+<li><span class="c-num">4</span><span>ヘルスプロモーションの概念は、日本の健康づくり運動である「健康日本２１」に反映されている。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>健康の考え方は、「病気でないこと」という消極的健康から、心身の健康をより高めていく積極的健康へと移ってきています。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ng">誤り（これが正解）</span></div><p>WHO憲章の健康の定義は「肉体的、精神的及び<strong>社会的</strong>に完全に良好な状態であり、単に疾病又は病弱の存在しないことではない」です。「経済的」が誤りです。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>プライマリー・ヘルス・ケアは、1978年のアルマ・アタ宣言で示された考え方で、「すべての人に健康を」を目標に、住民参加を重視した基本的な保健医療活動です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>1986年のオタワ憲章で示されたヘルスプロモーションの考え方は、わが国の健康づくり運動「健康日本21」の基本理念に取り入れられています。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>WHO憲章の健康 ＝ 肉体的・精神的・<strong>社会的</strong>に完全に良好</li>
+<li>PHC ＝ アルマ・アタ宣言（1978）／ ヘルスプロモーション ＝ オタワ憲章（1986）</li>
+</ul></div>
+<div class="box"><h3>最新の制度（補足）</h3><p>2024年度から「健康日本21（第三次）」（2035年度まで）が始まっており、ヘルスプロモーションの考え方は引き続き反映されています。正答は変わりません。</p></div>
+</div></details></section>
+<section class="q" id="q8">
+<div class="q-head"><span class="q-no">問8</span><span class="tag">保健統計（人口静態・動態、出生率）</span></div>
+<p class="stem">次の健康と疾病の統計に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>５年ごとに実施される国勢調査は、人口静態統計である。</span></li>
+<li><span class="c-num">2</span><span>令和４年の全人口に対する６５歳以上の老年人口の割合（高齢化率）は２９．０％である。</span></li>
+<li><span class="c-num">3</span><span>人口動態統計は、出生届、死亡届、婚姻届、離婚届及び死産届を基にして作られる。</span></li>
+<li><span class="c-num">4</span><span>出生率とは、１人の女性が一生の間に生む平均的な子どもの数である。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>国勢調査は5年ごとに、10月1日時点の人口の状態（年齢・性別・就業状況など）を調べる調査で、代表的な人口静態統計です。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>令和4年10月1日現在の高齢化率（総人口に占める65歳以上人口の割合）は29.0％でした。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>人口動態統計は、市区町村に出される出生届・死亡届・婚姻届・離婚届・死産届をもとに、1年間の人口の動きをまとめた統計です。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ng">誤り（これが正解）</span></div><p>1人の女性が一生の間に生む平均の子どもの数を表すのは<strong>合計特殊出生率</strong>です。出生率は、人口1,000人あたりの1年間の出生数のことです。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>人口<strong>静態</strong> ＝ ある時点の状態（国勢調査）／ 人口<strong>動態</strong> ＝ 1年間の動き（各種届出）</li>
+<li>出生率 ＝ 人口千対の出生数 ／ 合計特殊出生率 ＝ 女性1人が一生に生む子の数</li>
+</ul></div>
+<div class="box"><h3>最新の制度（補足）</h3><p>高齢化率は令和6年10月1日現在29.3％、令和7年10月1日現在29.4％と上がり続けています。令和7年（概数）の出生率（人口千対）は5.6、合計特殊出生率は1.14です。選択肢2は「令和4年の値」として正しいままで、正答は変わりません。</p></div>
+</div></details></section>
+<section class="q" id="q9">
+<div class="q-head"><span class="q-no">問9</span><span class="tag">四大公害病</span></div>
+<p class="stem">次の四大公害病に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>新潟水俣病は、ヒ素が原因であり、神経系障害や言語障害等を生じる。</span></li>
+<li><span class="c-num">2</span><span>イタイイタイ病は、カドミウムが原因であり、腎障害や骨軟化症を生じる。</span></li>
+<li><span class="c-num">3</span><span>四日市ぜんそくは、光化学オキシダントが原因であり、慢性気管支炎を生じる。</span></li>
+<li><span class="c-num">4</span><span>水俣病は、銅が原因であり、神経系障害や言語障害等を生じる。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>新潟水俣病（第二水俣病）の原因はヒ素ではなく、工場排水に含まれた<strong>メチル水銀</strong>（有機水銀）です。水俣病と同じく、魚介類を通じて神経障害などを起こしました。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ok">正しい（これが正解）</span></div><p>富山県神通川流域で起きたイタイイタイ病は、<strong>カドミウム</strong>が原因です。腎臓の障害から骨軟化症が起こり、激しい痛みを伴いました。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>四日市ぜんそくの原因は光化学オキシダントではなく、石油化学コンビナートから出た<strong>硫黄酸化物</strong>（亜硫酸ガス）による大気汚染です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>熊本県の水俣病の原因は銅ではなく、<strong>メチル水銀</strong>（有機水銀）です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>水俣病・新潟水俣病 ＝ <strong>メチル水銀</strong></li>
+<li>イタイイタイ病 ＝ <strong>カドミウム</strong>（腎障害・骨軟化症）</li>
+<li>四日市ぜんそく ＝ <strong>硫黄酸化物</strong>（亜硫酸ガス）</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q10">
+<div class="q-head"><span class="q-no">問10</span><span class="tag">病原体の種類と感染症</span></div>
+<p class="stem">次の病原体と感染症の組合せのうち、正しいものはどれか。</p>
+<p class="opt-header">（病原体 ―― 感染症）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>ウイルス ―― ペスト</span></li>
+<li><span class="c-num">2</span><span>寄生虫 ―― 日本脳炎</span></li>
+<li><span class="c-num">3</span><span>細菌 ―― コレラ</span></li>
+<li><span class="c-num">4</span><span>原虫 ―― アニサキス症</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>ペストの病原体はウイルスではなく、ペスト菌という<strong>細菌</strong>です。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>日本脳炎の病原体は寄生虫ではなく、日本脳炎<strong>ウイルス</strong>です。蚊（コガタアカイエカ）が媒介します。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ok">正しい（これが正解）</span></div><p>コレラはコレラ菌という<strong>細菌</strong>による感染症で、汚染された水や食べ物から感染し、激しい下痢を起こします。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>アニサキスは原虫（単細胞の生物）ではなく、線虫の仲間の<strong>寄生虫</strong>です。原虫の例には、マラリア原虫や赤痢アメーバ、クリプトスポリジウムなどがあります。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>細菌 ＝ ペスト・コレラ・結核 ／ ウイルス ＝ 日本脳炎・インフルエンザ</li>
+<li>原虫 ＝ マラリア・赤痢アメーバ ／ 寄生虫（線虫） ＝ アニサキス</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q11">
+<div class="q-head"><span class="q-no">問11</span><span class="tag">死因順位と生活習慣病</span></div>
+<p class="stem">次の疾病に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>令和４年における死亡数を死因順位別に比較すると、多い順に、脳血管疾患、悪性新生物（がん）、心疾患である。</span></li>
+<li><span class="c-num">2</span><span>心疾患（心臓病）の３大危険因子として、高ＬＤＬコレステロール血症、高血圧及び喫煙があげられる。</span></li>
+<li><span class="c-num">3</span><span>高血圧症の予防対策は、減塩、節酒及び肥満の防止等の一次予防を中心に実施されている。</span></li>
+<li><span class="c-num">4</span><span>糖尿病は、血糖値の高い状態が続く代謝異常疾患であり、血糖値やヘモグロビンＡ１ｃ値等を基に総合的に判断される。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ng">誤り（これが正解）</span></div><p>令和4年の死因順位は、第1位 悪性新生物（がん）、第2位 心疾患、第3位 <strong>老衰</strong>、第4位 脳血管疾患です。脳血管疾患が1位というのは昭和55年ごろまでの古い順位です。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>心疾患（特に虚血性心疾患）の3大危険因子は、高LDLコレステロール血症、高血圧、喫煙とされています。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>高血圧症の予防は、減塩・節酒・肥満の防止・運動など、病気になる前に生活習慣を改める<strong>一次予防</strong>が中心です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>糖尿病は血糖値が高い状態が続く代謝の病気で、血糖値やヘモグロビンA1c（HbA1c）の値などをもとに総合的に診断されます。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>死因順位（令和4年〜） ＝ ①がん ②心疾患 ③<strong>老衰</strong> ④脳血管疾患</li>
+<li>心疾患の3大危険因子 ＝ 高LDLコレステロール・高血圧・喫煙</li>
+</ul></div>
+<div class="box"><h3>最新の制度（補足）</h3><p>令和7年（2025年）の人口動態統計（概数）でも、死因順位は第1位 悪性新生物、第2位 心疾患、第3位 老衰、第4位 脳血管疾患で、令和4年と同じ順です。正答は変わりません。</p></div>
+</div></details></section>
+<section class="q" id="q12">
+<div class="q-head"><span class="q-no">問12</span><span class="tag">就業調理師の届出</span></div>
+<p class="stem">次の就業調理師の届出に関する記述のうち、【　】の中に入る語句の組合せとして、正しいものはどれか。</p>
+<p class="passage">「飲食店等で調理の業務に従事する調理師は、<span class="blank">Ａ</span>ごとに１２月３１日現在における氏名、住所等を翌年の１月１５日までに<span class="blank">Ｂ</span>の都道府県知事に届け出なければならない。」</p>
+<p class="opt-header">（Ａ ―― Ｂ）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>１年 ―― 住所地</span></li>
+<li><span class="c-num">2</span><span>２年 ―― 住所地</span></li>
+<li><span class="c-num">3</span><span>１年 ―― 就業地</span></li>
+<li><span class="c-num">4</span><span>２年 ―― 就業地</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>届出は1年ごとではなく2年ごとで、届け先も住所地ではなく就業地の都道府県知事です。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>「2年ごと」は正しいですが、届け先は住所地ではなく<strong>就業地</strong>の都道府県知事です。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>届け先の「就業地」は正しいですが、届出は1年ごとではなく<strong>2年ごと</strong>です。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ok">正しい（これが正解）</span></div><p>調理師法第5条の2により、飲食店などで調理の業務に従事する調理師は、<strong>2年ごと</strong>の年の12月31日現在の氏名・住所などを、翌年1月15日までに<strong>就業地</strong>の都道府県知事に届け出なければなりません。届出の年は偶数年（平成6年を初年とする2年ごと）です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>就業調理師の届出 ＝ <strong>2年ごと</strong>・12月31日現在・翌年1月15日まで・<strong>就業地</strong>の知事</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q13">
+<div class="q-head"><span class="q-no">問13</span><span class="tag">法律と規定の組合せ</span></div>
+<p class="stem">次の法律とその規定についての組合せのうち、正しいものはどれか。</p>
+<p class="opt-header">（法律 ―― 規定）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>食育基本法 ―― 食文化継承のための活動支援</span></li>
+<li><span class="c-num">2</span><span>健康増進法 ―― 飲食に起因する危害発生の防止</span></li>
+<li><span class="c-num">3</span><span>学校給食法 ―― 調理技術の審査</span></li>
+<li><span class="c-num">4</span><span>食品衛生法 ―― 受動喫煙の防止</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ok">正しい（これが正解）</span></div><p>食育基本法第24条（食文化の継承のための活動への支援等）で、国と地方公共団体は伝統的な食文化の継承を進めるための施策を講じると定めています。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>「飲食に起因する衛生上の危害の発生の防止」は<strong>食品衛生法</strong>の目的です。健康増進法には、国民健康・栄養調査や受動喫煙の防止、特別用途表示などが定められています。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>学校給食法は学校給食の目標や実施について定める法律で、調理技術の審査は定めていません。調理技術の審査は<strong>調理師法</strong>第8条の3に定められています。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>受動喫煙の防止は食品衛生法ではなく<strong>健康増進法</strong>に定められています。選択肢2と4は、法律と規定が入れ替えられています。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>受動喫煙の防止 ＝ <strong>健康増進法</strong></li>
+<li>飲食に起因する衛生上の危害の防止 ＝ <strong>食品衛生法</strong></li>
+<li>調理技術の審査 ＝ 調理師法 ／ 食文化の継承支援 ＝ 食育基本法</li>
+</ul></div>
+<div class="box"><h3>最新の制度（補足）</h3><p>2026年5月27日に食育基本法の一部を改正する法律が公布・施行され、食料安全保障の確保などの考え方が加わりました。第24条の食文化の継承のための活動への支援等の規定は残っており、正答は変わりません。</p></div>
+</div></details></section>
+<h2 class="subj-title" id="s2">栄養学<small>問14〜問21</small></h2>
+<section class="q" id="q14">
+<div class="q-head"><span class="q-no">問14</span><span class="tag">栄養と健康</span></div>
+<p class="stem">次の栄養と健康に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>生体は摂取した栄養素を材料として、生命維持のために必要な生体成分の合成と分解を絶えず繰り返しており、これを代謝という。</span></li>
+<li><span class="c-num">2</span><span>人体を構成する成分である脂質には、窒素は含まれていない。</span></li>
+<li><span class="c-num">3</span><span>健康の維持や増進は、栄養、運動及び休養のバランスの上に成り立っている。</span></li>
+<li><span class="c-num">4</span><span>食事バランスガイドは、主食、副菜、主菜、牛乳・乳製品及び菓子の５つに区分される。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>生体が、取り込んだ栄養素を材料にして体の成分を合成したり分解したりすることを絶えずくり返すことを<strong>代謝</strong>といいます。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>脂質（中性脂肪など）は炭素・水素・酸素からできていて、窒素は含みません。窒素を含むのが特徴なのは、たんぱく質です。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>健康の維持・増進には、<strong>栄養・運動・休養</strong>の3つをバランスよくとることが大切です。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ng">誤り（これが正解）</span></div><p>食事バランスガイドの5つの料理区分は、主食・副菜・主菜・牛乳・乳製品・<strong>果物</strong>です。菓子・嗜好飲料は5区分には入らず、コマのひもとして「楽しく適度に」と表されています。「菓子」と「果物」の入れ替えがひっかけです。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>食事バランスガイドの5区分 ＝ 主食・副菜・主菜・牛乳・乳製品・<strong>果物</strong></li>
+<li>菓子・嗜好飲料 ＝ コマの<strong>ひも</strong></li>
+<li>窒素を含む ＝ たんぱく質（脂質・炭水化物は含まない）</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q15">
+<div class="q-head"><span class="q-no">問15</span><span class="tag">食物繊維</span></div>
+<p class="stem">次の食物繊維に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>食物繊維は、炭水化物の多糖類に分類され、エネルギー源として重要である。</span></li>
+<li><span class="c-num">2</span><span>エビやカニの殻の成分であるキチンは、不溶性の食物繊維である。</span></li>
+<li><span class="c-num">3</span><span>水溶性食物繊維の作用には、コレステロール低下、急激な血糖や血圧の上昇抑制等がある。</span></li>
+<li><span class="c-num">4</span><span>難消化性デキストリンは、水溶性食物繊維であり、消化酵素で分解できない。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ng">誤り（これが正解）</span></div><p>食物繊維は、人の消化酵素では分解されない食品成分で、エネルギー源としてはほとんど役立ちません。腸内細菌による発酵で少しエネルギーになりますが（食品成分表では1gあたり2kcalで計算）、「エネルギー源として重要」は誤りです。主な働きは、整腸作用や血糖・コレステロール上昇の抑制などです。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>キチンはエビやカニの殻に含まれる多糖類で、水に溶けない<strong>不溶性</strong>食物繊維です。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>ペクチンやグルコマンナンなどの<strong>水溶性</strong>食物繊維には、コレステロールを下げたり、食後の急な血糖や血圧の上昇をおさえたりする働きがあります。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>難消化性デキストリンは、でん粉からつくられる水溶性食物繊維で、消化酵素で分解されません。特定保健用食品の関与成分としてもよく使われています。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>食物繊維 ＝ 消化酵素で分解されない。エネルギー源としては重要でない</li>
+<li>不溶性 ＝ キチン・セルロース、水溶性 ＝ ペクチン・グルコマンナン・難消化性デキストリン</li>
+<li>コレステロール低下・血糖上昇抑制 ＝ <strong>水溶性</strong></li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q16">
+<div class="q-head"><span class="q-no">問16</span><span class="tag">脂質</span></div>
+<p class="stem">次の脂質に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>日本人の食事摂取基準（２０２０年版）では、１歳以上の全ての年齢での脂質の目標量は、総エネルギーの５０％とされている。</span></li>
+<li><span class="c-num">2</span><span>食事摂取基準では、脂質はｎ－６系脂肪酸とｎ－３系脂肪酸という分類で示されており、全て非必須脂肪酸である。</span></li>
+<li><span class="c-num">3</span><span>脂質は、体内でエネルギー源となるときに必要なビタミンＢ１が糖質より少量である。</span></li>
+<li><span class="c-num">4</span><span>コレステロールは、食事から摂取するよりも膵臓で合成される方が多い。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>食事摂取基準（2020年版）では、1歳以上の脂質の目標量は総エネルギーの<strong>20〜30%</strong>です。50%は多すぎます（炭水化物の目標量が50〜65%です）。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>n-6系脂肪酸（リノール酸など）とn-3系脂肪酸（α-リノレン酸など）は、体内で合成できないので食事からとる必要がある<strong>必須脂肪酸</strong>です。「全て非必須脂肪酸」は誤りです。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ok">正しい（これが正解）</span></div><p>ビタミンB1は糖質がエネルギーに変わるときに多く必要になります。脂質はエネルギー源になるときにB1が少なくてすむので、これを脂質の<strong>ビタミンB1節約作用</strong>といいます。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>コレステロールは主に<strong>肝臓</strong>で合成されます。体内でつくられる量は食事からとる量より多いという点は合っていますが、「膵臓」の部分が誤りです。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>脂質の目標量 ＝ 総エネルギーの<strong>20〜30%</strong>、炭水化物 ＝ 50〜65%</li>
+<li>n-6系・n-3系 ＝ <strong>必須</strong>脂肪酸</li>
+<li>コレステロール ＝ 主に肝臓で合成</li>
+</ul></div>
+<div class="box"><h3>最新の制度（補足）</h3><p>日本人の食事摂取基準2025年版（2025年度〜）でも、脂質の目標量は20〜30%のままで、答えは変わりません。</p></div>
+</div></details></section>
+<section class="q" id="q17">
+<div class="q-head"><span class="q-no">問17</span><span class="tag">ビタミンと欠乏症</span></div>
+<p class="stem">次のビタミンと欠乏症に関する組合せのうち、正しいものはどれか。</p>
+<p class="opt-header">（ビタミン ―― 欠乏症）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>ビタミンＫ ―― 夜盲症</span></li>
+<li><span class="c-num">2</span><span>ビタミンＢ１ ―― 脚気</span></li>
+<li><span class="c-num">3</span><span>ビタミンＤ ―― 壊血病</span></li>
+<li><span class="c-num">4</span><span>ビタミンＡ ―― 血液凝固不良</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>ビタミンKが不足すると<strong>血液凝固不良</strong>（出血しやすくなる）になります。夜盲症はビタミンAの欠乏症です。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ok">正しい（これが正解）</span></div><p>ビタミンB1が不足すると<strong>脚気</strong>になり、倦怠感・手足のしびれ・むくみなどが起こります。ウェルニッケ脳症の原因にもなります。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>ビタミンDの欠乏症は、小児の<strong>くる病</strong>や成人の骨軟化症です。壊血病はビタミンCの欠乏症です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>ビタミンAの欠乏症は<strong>夜盲症</strong>や皮膚・粘膜の乾燥です。血液凝固不良はビタミンKの欠乏症で、選択肢1と入れ替わっています。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>B1 ＝ <strong>脚気</strong>、C ＝ 壊血病、D ＝ くる病・骨軟化症</li>
+<li>A ＝ 夜盲症、K ＝ 血液凝固不良</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q18">
+<div class="q-head"><span class="q-no">問18</span><span class="tag">無機質（ミネラル）</span></div>
+<p class="stem">次の無機質に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>無機質は、人体を構成する主要元素である酸素、炭素、水素及び窒素以外の全ての元素をいう。</span></li>
+<li><span class="c-num">2</span><span>無機質は、体内で合成することができるため、食品から摂取する必要はない。</span></li>
+<li><span class="c-num">3</span><span>亜鉛は主に、肝臓や腎臓等に含まれ、多くの酵素の構成成分であり、代表的な欠乏症に味覚障害がある。</span></li>
+<li><span class="c-num">4</span><span>カリウムは、細胞内液の主要な陽イオンで、神経伝達や筋収縮、体液の浸透圧の維持等に重要な役割を担っている。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>無機質（ミネラル）とは、人体を構成する主な4元素（酸素・炭素・水素・窒素）以外の元素をまとめた呼び方です。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ng">誤り（これが正解）</span></div><p>無機質は元素なので、体内で<strong>合成できません</strong>。そのため食品から必ずとる必要があります。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>亜鉛は多くの酵素の構成成分で、たんぱく質の合成などに関わります。代表的な欠乏症は<strong>味覚障害</strong>です。なお、体内の亜鉛は骨格筋や骨に最も多く、肝臓・腎臓・皮膚などにも含まれます。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>カリウムは細胞内液の主な陽イオンで、細胞外液のナトリウムとともに浸透圧を保ち、神経の伝達や筋肉の収縮に関わります。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>ミネラル ＝ 体内で合成<strong>できない</strong>ので食品からとる</li>
+<li>細胞<strong>内</strong>液 ＝ カリウム、細胞<strong>外</strong>液 ＝ ナトリウム</li>
+<li>亜鉛欠乏 ＝ 味覚障害</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q19">
+<div class="q-head"><span class="q-no">問19</span><span class="tag">消化管ホルモン・血糖調節ホルモン</span></div>
+<p class="stem">次のホルモンと主な作用に関する組合せのうち、正しいものはどれか。</p>
+<p class="opt-header">（ホルモン ―― 主な作用）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>ガストリン ―― 膵液分泌促進</span></li>
+<li><span class="c-num">2</span><span>インスリン ―― 血糖上昇作用</span></li>
+<li><span class="c-num">3</span><span>コレシストキニン ―― 胆のうの収縮</span></li>
+<li><span class="c-num">4</span><span>グルカゴン ―― 血糖低下作用</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>ガストリンは胃から分泌され、主に<strong>胃酸</strong>の分泌を促します。膵液（重炭酸イオン）の分泌を促す代表的なホルモンはセクレチンです。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>インスリンは膵臓ランゲルハンス島のβ細胞から分泌され、血糖を<strong>下げる</strong>ホルモンです。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ok">正しい（これが正解）</span></div><p>コレシストキニンは十二指腸から分泌され、<strong>胆のうを収縮</strong>させて胆汁を出させるほか、膵液の消化酵素の分泌も促します。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>グルカゴンは膵臓ランゲルハンス島のα細胞から分泌され、血糖を<strong>上げる</strong>ホルモンです。選択肢2とは作用が入れ替わっています。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>ガストリン ＝ 胃酸分泌、セクレチン ＝ 膵液（重炭酸）分泌、コレシストキニン ＝ <strong>胆のう収縮</strong></li>
+<li>インスリン ＝ 血糖を下げる、グルカゴン ＝ 血糖を上げる</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q20">
+<div class="q-head"><span class="q-no">問20</span><span class="tag">ライフステージと栄養</span></div>
+<p class="stem">次のライフステージと栄養に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>妊娠期に妊娠高血圧症候群(妊娠中毒症)、肥満、糖尿病等を予防するためには、食塩を控え、エネルギーの過剰摂取を避ける。</span></li>
+<li><span class="c-num">2</span><span>幼児期には活動量が増加するが、３度の食事で十分な栄養を摂取することができる。</span></li>
+<li><span class="c-num">3</span><span>思春期に体重をコントロールする際は、高度な肥満等でない場合は、摂取エネルギーを制限するよりも、活動量を増やすことが望ましい。</span></li>
+<li><span class="c-num">4</span><span>高齢期には、食事摂取量が低下するため、体重低下に注意し、低栄養に気をつける。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>妊娠期は、妊娠高血圧症候群・肥満・妊娠糖尿病を防ぐため、塩分をひかえ、エネルギーのとりすぎに気をつけます。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ng">誤り（これが正解）</span></div><p>幼児は体の大きさの割に多くの栄養が必要ですが、胃が小さく消化機能も未熟なので、3回の食事だけでは十分な量をとれません。そのため<strong>間食（補食）</strong>を1日1〜2回とり、食事の一部として栄養を補います。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>成長期の思春期は、極端なエネルギー制限をすると発育に悪影響があります。高度な肥満でなければ、食事を減らすよりも活動量を増やして体重をコントロールします。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>高齢期は食事量が減りやすく、低栄養やフレイルにつながりやすいので、体重の減少に注意します。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>幼児期 ＝ 3回の食事だけでは足りないので<strong>間食</strong>で補う</li>
+<li>高齢期 ＝ <strong>低栄養</strong>・体重減少に注意</li>
+<li>思春期の減量 ＝ 食事制限より活動量を増やす</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q21">
+<div class="q-head"><span class="q-no">問21</span><span class="tag">食事摂取基準の根拠法</span></div>
+<p class="stem">次の日本人の食事摂取基準策定の目的に関する記述のうち、【　】の中に入る語句の組合せとして、正しいものはどれか。</p>
+<p class="passage">日本人の食事摂取基準は、<span class="blank">Ａ</span>に基づき<span class="blank">Ｂ</span>が定めるものとされ、国民の健康の保持・増進を図る上で摂取することが望ましいエネルギーおよび栄養素の量の基準を示すものである。</p>
+<p class="opt-header">（Ａ ―― Ｂ）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>食品衛生法 ―― 消費者庁長官</span></li>
+<li><span class="c-num">2</span><span>健康増進法 ―― 消費者庁長官</span></li>
+<li><span class="c-num">3</span><span>食品衛生法 ―― 厚生労働大臣</span></li>
+<li><span class="c-num">4</span><span>健康増進法 ―― 厚生労働大臣</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>根拠法も策定者も誤りです。食事摂取基準は<strong>健康増進法</strong>にもとづき、<strong>厚生労働大臣</strong>が定めます。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>根拠法の健康増進法は合っていますが、策定するのは消費者庁長官ではなく厚生労働大臣です。消費者庁は食品表示などを担当しています。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>策定者の厚生労働大臣は合っていますが、根拠法は食品衛生法ではなく健康増進法です。食品衛生法は、飲食による衛生上の危害を防ぐための法律です。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ok">正しい（これが正解）</span></div><p>健康増進法第16条の2により、厚生労働大臣が食事摂取基準を定めることとされています。5年ごとに改定されます。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>食事摂取基準 ＝ <strong>健康増進法</strong>にもとづき<strong>厚生労働大臣</strong>が定める（5年ごとに改定）</li>
+</ul></div>
+<div class="box"><h3>最新の制度（補足）</h3><p>2024年10月に「日本人の食事摂取基準（2025年版）」が厚生労働省から公表され、2025年度から使われています。健康増進法にもとづき厚生労働大臣が定める仕組みは変わっておらず、答えも変わりません。</p></div>
+</div></details></section>
+<h2 class="subj-title" id="s3">食品学<small>問22〜問27</small></h2>
+<section class="q" id="q22">
+<div class="q-head"><span class="q-no">問22</span><span class="tag">食品の栄養価</span></div>
+<p class="stem">次の食品の栄養価に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>アミノ酸価（アミノ酸スコア）は、食品に含まれる全てのアミノ酸量を理想的な量と比較して評価するものである。</span></li>
+<li><span class="c-num">2</span><span>緑黄色野菜は、油と一緒に調理した方がカロテンの吸収率が良くなり、ビタミンＡとしての効力が高まる。</span></li>
+<li><span class="c-num">3</span><span>食品成分表の各成分は、食品の可食部１００ｇ中に含まれる値を表している。</span></li>
+<li><span class="c-num">4</span><span>食品のエネルギー量やたんぱく質、脂質等の成分含量は、水分含量により大きく異なる。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ng">誤り（これが正解）</span></div><p>アミノ酸価は、すべてのアミノ酸ではなく<strong>必須アミノ酸</strong>の量を、理想的な量（アミノ酸評点パターン）と比べて評価するものです。最も不足している必須アミノ酸（第一制限アミノ酸）の割合がアミノ酸価になります。「全てのアミノ酸」が誤りです。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>カロテンは脂溶性なので、油と一緒に調理すると吸収率が上がります。そのぶん体内でビタミンAとして働く効力も高まります。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>日本食品標準成分表の数値は、食品の<strong>可食部100g当たり</strong>の値です。皮や骨などの捨てる部分（廃棄部）は含みません。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>水分の多い食品ほど他の成分は薄まり、乾物のように水分の少ない食品ほど100g当たりのエネルギーや成分含量は多くなります。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>アミノ酸価 ＝ <strong>必須</strong>アミノ酸で評価（第一制限アミノ酸で決まる）</li>
+<li>成分表 ＝ 可食部100g当たり</li>
+<li>カロテン（脂溶性）＋油 → 吸収アップ</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q23">
+<div class="q-head"><span class="q-no">問23</span><span class="tag">穀類</span></div>
+<p class="stem">次の穀類に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>もち米に含まれるでんぷんは、アミロペクチンのみである。</span></li>
+<li><span class="c-num">2</span><span>米は、長期間貯蔵するとビタミンＢ１が減少し、脂質が酸化して味が落ちる。</span></li>
+<li><span class="c-num">3</span><span>大麦のたんぱく質は、加水して練ると粘り気の強いグルテンを形成する。</span></li>
+<li><span class="c-num">4</span><span>大麦は、精白米よりビタミンＢ１を多く含む。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>もち米のでん粉は、ほぼ<strong>アミロペクチン</strong>だけでできています。うるち米はアミロース約2割・アミロペクチン約8割です。アミロペクチンが多いほど粘りが強くなります。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>米を長く貯蔵すると、ビタミンB1が減ったり、脂質が酸化して古米臭が出たりして食味が落ちます。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ng">誤り（これが正解）</span></div><p>水を加えて練ると粘りと弾力のある<strong>グルテン</strong>ができるのは<strong>小麦</strong>のたんぱく質（グリアジンとグルテニン）です。大麦のたんぱく質はグルテンを作らないので、大麦粉だけではパンのようにふくらみません。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>日本食品標準成分表では、ビタミンB1は押麦（乾）が100g当たり0.11mg、精白米（うるち米）が0.08mgです。大麦のほうが多く含みます。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>グルテンを作る ＝ <strong>小麦</strong>だけ</li>
+<li>もち米 ＝ アミロペクチンのみ／うるち米 ＝ アミロース約2割</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q24">
+<div class="q-head"><span class="q-no">問24</span><span class="tag">魚介類</span></div>
+<p class="stem">次の魚介類に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>魚介類には旬があり、魚類では脂肪の多い時期、貝類は脂肪とグリコーゲンの多い時期をいう。</span></li>
+<li><span class="c-num">2</span><span>回遊魚は、高速で泳ぎ続けるため筋肉が多く、ミオグロビンを多く含むことから白身の魚であることが多い。</span></li>
+<li><span class="c-num">3</span><span>エビやカニ等の甲殻類を茹でたときに紅色になる現象は、たんぱく質と結合したアスタキサンチンが変化するためである。</span></li>
+<li><span class="c-num">4</span><span>塩辛は、イカやカツオ等の肉や内臓に食塩を加えて貯蔵したもので、貯蔵中に発酵及び熟成が進み、香りやうま味が増す。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>魚介類の旬は、一般に魚類では脂肪がのる時期、貝類では脂肪やグリコーゲン（うま味・甘味のもと）が多い時期をいいます。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ng">誤り（これが正解）</span></div><p>回遊魚（かつお・まぐろ・さばなど）は泳ぎ続けるため、筋肉に色素たんぱく質の<strong>ミオグロビン</strong>が多く、身が赤い<strong>赤身魚</strong>です。白身魚は、たい・ひらめ・かれいなど、あまり動き回らない魚に多いです。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>えびやかにの殻では、色素アスタキサンチンがたんぱく質と結びつき、青っぽい色に見えています。加熱するとたんぱく質が変性してアスタキサンチンが離れ、さらに酸化してアスタシンになり、赤く見えます。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>塩辛は、いかやかつおの肉や内臓に食塩を加えて漬け込んだものです。貯蔵中に内臓などの酵素による自己消化や微生物の働きで熟成が進み、うま味や香りが増します。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>回遊魚 ＝ ミオグロビンが多い ＝ <strong>赤身</strong></li>
+<li>甲殻類の赤色 ＝ アスタキサンチン（加熱でたんぱく質から離れる）</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q25">
+<div class="q-head"><span class="q-no">問25</span><span class="tag">穀類の加工品</span></div>
+<p class="stem">次の穀類の加工品に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>オートミールは、えん麦をひき割りにしたものをいう。</span></li>
+<li><span class="c-num">2</span><span>小麦粉は、たんぱく質の少ない順に、強力粉、準強力粉、中力粉、薄力粉に分類される。</span></li>
+<li><span class="c-num">3</span><span>中華麺は、準強力粉に酸性のかん水を加えて製麺したものをいう。</span></li>
+<li><span class="c-num">4</span><span>無洗米は、蒸した又は炊いた米を熱風急速乾燥させたものをいう。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ok">正しい（これが正解）</span></div><p>オートミールは、<strong>えん麦</strong>（オーツ麦）を脱穀して、ひき割りにしたり押しつぶしたりした食品です。米を加工したものと混同しないようにします。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>たんぱく質（グルテン）の量が多いのは強力粉で、<strong>多い順</strong>に強力粉・準強力粉・中力粉・薄力粉となります。「少ない順」では逆です。強力粉はパン、中力粉はうどん、薄力粉は天ぷらや菓子に向きます。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>中華麺に加えるかん水は、炭酸ナトリウムや炭酸カリウムなどを含む<strong>アルカリ性</strong>の水です。かん水の働きで独特の黄色、香り、コシが出ます。「酸性」が誤りです。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>蒸した米や炊いた米を熱風で急速乾燥させたものは<strong>アルファ化米</strong>です。無洗米は、精米後に表面に残るぬか（肌ぬか）をあらかじめ取り除き、研がずに炊けるようにした米です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>たんぱく質：強力粉 ＞ 準強力粉 ＞ 中力粉 ＞ 薄力粉</li>
+<li>かん水 ＝ <strong>アルカリ性</strong></li>
+<li>アルファ化米 ＝ 炊いて急速乾燥／無洗米 ＝ 肌ぬかを除去</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q26">
+<div class="q-head"><span class="q-no">問26</span><span class="tag">食品の貯蔵法</span></div>
+<p class="stem">次の食品の貯蔵の方法に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>真空凍結乾燥法は、急速に水分を凍結させて乾燥するため、風味や色調、ビタミン、たんぱく質等の変化が大きい。</span></li>
+<li><span class="c-num">2</span><span>放射線照射法は、日本では、香辛料、野菜、冷凍魚介類の殺菌法として認められている。</span></li>
+<li><span class="c-num">3</span><span>砂糖漬け法は、砂糖の濃厚液の脱水作用により、微生物の繁殖を防いでいる。</span></li>
+<li><span class="c-num">4</span><span>燻煙法は、一度塩蔵した後に炭酸ガスで密閉し貯蔵する方法である。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>真空凍結乾燥法（フリーズドライ）は、凍らせた食品の水分を真空の中で氷から直接蒸発（昇華）させる方法です。低温で乾燥するため、風味・色・ビタミン・たんぱく質などの変化が<strong>小さい</strong>のが特徴です。「変化が大きい」が誤りです。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>日本で食品への放射線照射が認められているのは、<strong>じゃがいもの発芽防止</strong>だけです。香辛料・野菜・冷凍魚介類の殺菌には認められていません。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ok">正しい（これが正解）</span></div><p>砂糖漬けは、濃い砂糖液の脱水作用（浸透圧）で食品の中の自由水を減らし、微生物が使える水を少なくして繁殖を防ぐ方法です。ジャムや甘納豆などが例です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>燻煙法は、塩漬けにした食品を、木材（さくら・ブナなど）を不完全燃焼させて出る煙でいぶす方法です。乾燥と煙の成分の殺菌・抗酸化作用で保存性を高めます。炭酸ガスで密閉して貯蔵する方法ではありません。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>放射線照射（日本）＝ じゃがいもの<strong>発芽防止</strong>のみ</li>
+<li>フリーズドライ ＝ 品質の変化が小さい</li>
+<li>砂糖漬け・塩漬け ＝ 脱水（浸透圧）で微生物を抑える</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q27">
+<div class="q-head"><span class="q-no">問27</span><span class="tag">食品表示</span></div>
+<p class="stem">次の食品の表示に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>生鮮食品には、食品の表示基準が定められていない。</span></li>
+<li><span class="c-num">2</span><span>消費期限及び賞味期限は、保存方法に関係なく設けられている。</span></li>
+<li><span class="c-num">3</span><span>遺伝子組換え食品と非遺伝子組換え食品が分別されていない場合、その旨の表示は不要である。</span></li>
+<li><span class="c-num">4</span><span>アレルギー物質の表示が義務付けられている特定原材料は、えび、かに、くるみ、小麦、そば、卵、乳、落花生の８品目である。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>食品表示基準では、生鮮食品についても名称と<strong>原産地</strong>などの表示が定められています。「定められていない」が誤りです。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>消費期限・賞味期限は、表示された<strong>保存方法</strong>を守って保存したときに品質が保たれる期限です。そのため、期限は保存方法とセットで表示します。「保存方法に関係なく」が誤りです。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>遺伝子組換え農産物と非遺伝子組換え農産物を分けずに扱っている場合は、「大豆（<strong>遺伝子組換え不分別</strong>）」のように表示することが義務です。「表示は不要」が誤りです。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ok">正しい（これが正解）</span></div><p>令和6年度の試験時点で、表示が義務の特定原材料は、えび・かに・くるみ・小麦・そば・卵・乳・落花生の8品目でした。くるみは2023年3月に追加され、2025年3月末に経過措置が終わりました。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>消費期限・賞味期限は表示された保存方法が前提</li>
+<li>分別していない場合は「遺伝子組換え不分別」の表示が義務</li>
+<li>特定原材料 ＝ えび・かに・くるみ・小麦・そば・卵・乳・落花生（2026年4月に<strong>カシューナッツ</strong>を追加して9品目）</li>
+</ul></div>
+<div class="box"><h3>最新の制度（補足）</h3><p>2026年4月1日の食品表示基準改正で特定原材料にカシューナッツが加わり、現在は9品目（えび・カシューナッツ・かに・くるみ・小麦・そば・卵・乳・落花生）です。経過措置は2028年3月31日までです。あわせて推奨表示（特定原材料に準ずるもの）にピスタチオが加わり、20品目になりました。試験時点では選択肢4が正しかったので公式正答は変わりませんが、今の制度では「8品目」は古い情報です。</p></div>
+</div></details></section>
+<h2 class="subj-title" id="s4">食品衛生学<small>問28〜問43</small></h2>
+<section class="q" id="q28">
+<div class="q-head"><span class="q-no">問28</span><span class="tag">食品安全行政</span></div>
+<p class="stem">次の食品安全行政に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>牛の肝臓は、生食用として販売、提供することが禁止されている。</span></li>
+<li><span class="c-num">2</span><span>日本の食中毒統計において、寄生虫の項目ではアニサキス、クドア、サルコシスティス及びその他の寄生虫という４種を集計している。</span></li>
+<li><span class="c-num">3</span><span>豚肉を生食用として販売する際は、成分規格、加工基準及び保存基準を守る必要がある。</span></li>
+<li><span class="c-num">4</span><span>腸管出血性大腸菌Ｏ１５７等食中毒は、大規模な食中毒につながることがあるため、衛生管理の指導を強化している。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>牛の肝臓（レバー）は、腸管出血性大腸菌による危険を防ぐため、2012年7月から生食用としての販売・提供が禁止されています。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>食中毒統計では2013年から、寄生虫を「アニサキス」「クドア」「サルコシスティス」「その他の寄生虫」の4つに分けて集計しています。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ng">誤り（これが正解）</span></div><p>豚肉（内臓を含む）は、2015年6月から<strong>生食用としての販売・提供そのものが禁止</strong>されています。成分規格・加工基準・保存基準を守れば提供できるのは<strong>生食用牛肉</strong>（ユッケなど）で、牛肉のルールと入れ替えたのがひっかけです。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>腸管出血性大腸菌O157などは少ない菌数でも感染し、学校給食など大規模な食中毒や重い合併症（溶血性尿毒症症候群）につながることがあるため、国や自治体が衛生管理の指導を強化しています。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>生食用の販売・提供禁止 ＝ 牛レバー（2012年）・豚肉（2015年）</li>
+<li>生食用牛肉 ＝ 規格基準を守れば提供可</li>
+<li>寄生虫の統計区分 ＝ アニサキス・クドア・サルコシスティス・その他</li>
+</ul></div>
+<div class="box"><h3>最新の制度（補足）</h3><p>2024年4月から、生食用食肉の規格基準など食品の規格基準づくりは厚生労働省から消費者庁へ移りました。禁止・基準の内容は変わっておらず、正答は変わりません。</p></div>
+</div></details></section>
+<section class="q" id="q29">
+<div class="q-head"><span class="q-no">問29</span><span class="tag">食品の保存法</span></div>
+<p class="stem">次の食品の保存法に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>ＬＬ牛乳は、低温保持殺菌法により加熱殺菌されたものである。</span></li>
+<li><span class="c-num">2</span><span>保存料は、腐敗細菌に対する殺菌力が弱い。</span></li>
+<li><span class="c-num">3</span><span>紫外線照射法は、じゃがいもの発芽防止の目的で使用される。</span></li>
+<li><span class="c-num">4</span><span>低温貯蔵法は、細菌の活動力を弱め、死滅させることができる。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>LL牛乳（ロングライフ牛乳）は、130～150℃で数秒間加熱する<strong>超高温滅菌</strong>を行い、無菌的に容器に詰めたもので、常温で保存できます。低温保持殺菌法は63～65℃で30分間加熱する方法です。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ok">正しい（これが正解）</span></div><p>保存料は微生物の増殖を抑える（静菌）ためのもので、腐敗細菌に対する殺菌力は弱いのが特徴です。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>じゃがいもの発芽防止に使われるのは、コバルト60の<strong>ガンマ線照射</strong>（放射線照射）です。紫外線は食品の表面や空気・水の殺菌に使われます。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>低温貯蔵は細菌の活動を弱めて増殖を抑えるだけで、細菌を<strong>死滅させることはできません</strong>。温度が上がれば再び増えるため、冷蔵・冷凍食品でも温度管理が大切です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>LL牛乳 ＝ 超高温滅菌＋無菌充填 → 常温保存可</li>
+<li>じゃがいもの発芽防止 ＝ ガンマ線照射（日本で唯一許可された食品照射）</li>
+<li>低温貯蔵 ＝ 増殖を抑えるだけで殺菌はできない</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q30">
+<div class="q-head"><span class="q-no">問30</span><span class="tag">カンピロバクター</span></div>
+<p class="stem">次のカンピロバクター食中毒に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>カンピロバクター食中毒は、日本では毎年発生し、事件数も上位を占めている。</span></li>
+<li><span class="c-num">2</span><span>カンピロバクター食中毒は、菌数が少量であれば発症することはない。</span></li>
+<li><span class="c-num">3</span><span>カンピロバクターは、腸管内で増殖した菌がベロ毒素を産生し、激しい腹痛と出血性大腸炎を起こす。</span></li>
+<li><span class="c-num">4</span><span>カンピロバクターによる食中毒の主な原因は、汚染されたカキ等の二枚貝を生あるいは加熱不十分で喫食することである。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ok">正しい（これが正解）</span></div><p>カンピロバクター食中毒は毎年発生しており、細菌性食中毒の中では事件数が最も多く、全体でもノロウイルスやアニサキスと並んで上位を占めています。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>カンピロバクターは数百個程度の<strong>少ない菌数でも発症</strong>します。菌が食品中で増えていなくても食中毒が起こるのが特徴です。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>ベロ毒素を産生して激しい腹痛や出血性大腸炎を起こすのは<strong>腸管出血性大腸菌</strong>（O157など）です。カンピロバクターは下痢・腹痛・発熱などを起こし、まれにギラン・バレー症候群を引き起こすことがあります。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>カキなどの二枚貝の生食や加熱不十分が主な原因となるのは<strong>ノロウイルス</strong>です。カンピロバクターの主な原因は、鶏肉の生食・加熱不十分や、生の肉からの2次汚染です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>カンピロバクター ＝ 鶏肉が主な原因、少量で発症、潜伏期間2～5日</li>
+<li>ベロ毒素 ＝ 腸管出血性大腸菌 ／ 二枚貝 ＝ ノロウイルス</li>
+</ul></div>
+<div class="box"><h3>最新の制度（補足）</h3><p>令和7年（2025年）の全国の食中毒統計では、事件数はノロウイルス、アニサキスに次いでカンピロバクターが3位で、細菌の中では引き続き最多です。「事件数も上位を占める」という内容は今も正しく、正答は変わりません。</p></div>
+</div></details></section>
+<section class="q" id="q31">
+<div class="q-head"><span class="q-no">問31</span><span class="tag">ウエルシュ菌</span></div>
+<p class="stem">次のウエルシュ菌食中毒に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>ウエルシュ菌は、普通の調理では死滅しない耐熱性の芽胞を形成するものもある。</span></li>
+<li><span class="c-num">2</span><span>ウエルシュ菌食中毒の予防方法は、食品をかき混ぜて酸素を送り込むこと、加熱調理後に急速に冷却することである。</span></li>
+<li><span class="c-num">3</span><span>ウエルシュ菌による食中毒の原因食品は、カレーやシチュー等が多い。</span></li>
+<li><span class="c-num">4</span><span>ウエルシュ菌は、下痢、腹痛及び発熱等を引き起こし、潜伏期間は２～５日である。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>ウエルシュ菌の中には、100℃で数時間加熱しても死なない耐熱性の芽胞をつくるものがあります。そのため、カレーなどを煮込んでも芽胞が生き残ります。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>ウエルシュ菌は酸素を嫌う偏性嫌気性菌です。大鍋の中心部のような酸素が少ない所で増えるため、かき混ぜて酸素を送り込み、加熱後は小分けにするなどして急速に冷却することが予防になります。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>カレー、シチュー、煮物など、大量に加熱調理して室温で放置した食品が原因になりやすく、給食施設や仕出し弁当などで大規模な食中毒になることがあります。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ng">誤り（これが正解）</span></div><p>ウエルシュ菌の潜伏期間は<strong>6～18時間</strong>（平均10時間程度）で、主な症状は腹痛と下痢です。発熱や嘔吐はあまり見られません。潜伏期間2～5日はカンピロバクターの特徴です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>ウエルシュ菌 ＝ 偏性嫌気性・耐熱性芽胞・カレーやシチュー</li>
+<li>予防 ＝ かき混ぜて酸素を入れる、急速に冷やす、再加熱は十分に</li>
+<li>潜伏期間 ＝ 6～18時間、腹痛・下痢が中心で発熱は少ない</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q32">
+<div class="q-head"><span class="q-no">問32</span><span class="tag">ノロウイルス</span></div>
+<p class="stem">次のノロウイルスに関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>消毒用アルコールは、ノロウイルスの不活化に最も有効である。</span></li>
+<li><span class="c-num">2</span><span>ノロウイルスは、８５～９０℃で９０秒間以上の加熱により不活化する。</span></li>
+<li><span class="c-num">3</span><span>ノロウイルス食中毒発症後、症状が消失すれば、糞便からノロウイルスが検出されることはない。</span></li>
+<li><span class="c-num">4</span><span>ノロウイルス食中毒は、６～９月頃にかけての夏期に多く見られる傾向がある。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>ノロウイルスには消毒用アルコールが<strong>効きにくく</strong>、最も有効なのは<strong>次亜塩素酸ナトリウム</strong>（塩素系消毒剤）や加熱です。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ok">正しい（これが正解）</span></div><p>ノロウイルスを不活化するには、食品の中心温度85～90℃で90秒間以上の加熱が必要とされています。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>症状がなくなった後も、1週間から長いときは1か月程度、糞便中にウイルスが出続けることがあります。回復後も手洗いの徹底が必要です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>ノロウイルス食中毒は1年を通して発生しますが、特に<strong>冬期（11～3月頃）</strong>に多く発生します。夏に多いのは細菌性食中毒です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>ノロウイルス ＝ 冬に多い、85～90℃で90秒間以上の加熱</li>
+<li>消毒 ＝ 次亜塩素酸ナトリウム（アルコールは効きにくい）</li>
+<li>回復後も1週間～1か月ほどウイルスを排出することがある</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q33">
+<div class="q-head"><span class="q-no">問33</span><span class="tag">自然毒食中毒</span></div>
+<p class="stem">次の自然毒による食中毒に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>アブラボウズによる食中毒では、筋肉に含まれる多量のトリグリセリドにより、腹痛や下痢等が起こる。</span></li>
+<li><span class="c-num">2</span><span>下痢性貝毒や麻痺性貝毒は、通常の加熱調理で無毒となる。</span></li>
+<li><span class="c-num">3</span><span>イヌサフランによる食中毒では、種子をごま、根をごぼうと間違えて食べる例がある。</span></li>
+<li><span class="c-num">4</span><span>五色豆の毒成分は、ソラニンやチャコニンである。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ok">正しい（これが正解）</span></div><p>アブラボウズは筋肉に多量の脂質（トリグリセリド）を含むため、食べ過ぎると腹痛や下痢を起こします。なお、アブラソコムツやバラムツは消化されないワックスを含み、販売が禁止されています。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>下痢性貝毒や麻痺性貝毒は<strong>熱に強く</strong>、通常の加熱調理では無毒になりません。そのため、毒化した貝は出荷が規制されます。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>種子をごま、根をごぼうと間違えて食べる例があるのは<strong>チョウセンアサガオ</strong>です。イヌサフランは、葉をギョウジャニンニクやギボウシ、球根をジャガイモやタマネギと間違える例が多い植物です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>五色豆（インゲン豆の仲間）に含まれる毒成分は、<strong>シアン配糖体</strong>（リナマリン）です。ソラニンやチャコニンは、じゃがいもの芽や緑色の皮に含まれる毒成分です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>チョウセンアサガオ ＝ 種子をごま・根をごぼうと誤認</li>
+<li>イヌサフラン ＝ 葉をギョウジャニンニク・球根をジャガイモと誤認（コルヒチン）</li>
+<li>ソラニン・チャコニン ＝ じゃがいも ／ 貝毒 ＝ 加熱しても無毒にならない</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q34">
+<div class="q-head"><span class="q-no">問34</span><span class="tag">食中毒発生時の対応</span></div>
+<p class="stem">食中毒が起きたときの対応に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>医師は、食中毒患者を診察した際には、２４時間以内に保健所長に届け出る義務がある。</span></li>
+<li><span class="c-num">2</span><span>食中毒の原因と思われる食品等は保存し、速やかに保健所に提供する等の協力が大切である。</span></li>
+<li><span class="c-num">3</span><span>食品営業許可施設の営業者は、食中毒が起きた場合、軽症であれば保健所に知らせる必要がない。</span></li>
+<li><span class="c-num">4</span><span>食中毒を起こした営業者及び従業者は、保健所の食品衛生監視員の調査に積極的に協力しなくてはならない。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>食品衛生法により、食中毒患者（疑いを含む）を診断した医師は、直ちに最寄りの保健所長へ届け出なければなりません。施行規則で、この届出は<strong>24時間以内</strong>に文書・電話・口頭で行うと定められています。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>原因と思われる食品や残品、検食などを保存し、保健所に速やかに提供することは、原因究明と被害拡大の防止に欠かせません。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ng">誤り（これが正解）</span></div><p>症状が軽くても、食中毒（疑いを含む）が起きた場合には、営業者は<strong>速やかに保健所へ報告</strong>しなければなりません。軽症でも大勢の患者が出ていることがあり、自分で判断して報告しないことは被害を広げます。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>食中毒が起きたときは、保健所の食品衛生監視員が原因調査を行います。営業者や従業者は聞き取りや検便、施設の調査などに積極的に協力する必要があります。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>医師 → 保健所長へ届出（<strong>24時間以内</strong>）</li>
+<li>営業者 ＝ 軽症でも保健所へ速やかに報告、原因食品は保存して提供</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q35">
+<div class="q-head"><span class="q-no">問35</span><span class="tag">寄生虫と原因食品</span></div>
+<p class="stem">次の原因食品と寄生虫の組合せのうち、正しいものはどれか。</p>
+<p class="opt-header">（原因食品 ―― 寄生虫）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>アユ ―― アニサキス</span></li>
+<li><span class="c-num">2</span><span>馬肉 ―― クリプトスポリジウム</span></li>
+<li><span class="c-num">3</span><span>ホタルイカ ―― 旋尾線虫</span></li>
+<li><span class="c-num">4</span><span>飲料水 ―― サルコシスティス・フェアリー</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>アユ（淡水魚）の生食で問題になるのは<strong>横川吸虫</strong>です。アニサキスはサバ、サケ、イカ、サンマなどの海産魚介類に寄生します。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>馬肉の生食（馬刺し）で問題になるのは<strong>サルコシスティス・フェアリー</strong>です。クリプトスポリジウムは主に汚染された水道水などの飲料水から感染する原虫です。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ok">正しい（これが正解）</span></div><p>ホタルイカの内臓には旋尾線虫の幼虫が寄生していることがあり、生食すると腸閉塞や皮膚の症状が起こります。生で食べる場合は内臓を除去するか、−30℃で4日間以上などの冷凍処理が必要です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>飲料水が原因になるのは<strong>クリプトスポリジウム</strong>です。塩素消毒に強く、下痢を起こします。サルコシスティス・フェアリーの原因食品は馬肉で、選択肢2と入れ替えたひっかけです。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>ホタルイカ ＝ 旋尾線虫 ／ アユ ＝ 横川吸虫</li>
+<li>馬肉 ＝ サルコシスティス・フェアリー ／ ヒラメ ＝ クドア</li>
+<li>飲料水 ＝ クリプトスポリジウム（塩素に強い）</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q36">
+<div class="q-head"><span class="q-no">問36</span><span class="tag">食品中の汚染物質</span></div>
+<p class="stem">食品中の汚染物質に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>アフラトキシンは、アレルギー様食中毒を発生させる。</span></li>
+<li><span class="c-num">2</span><span>ＰＣＢは、カネミ油症の原因物質である。</span></li>
+<li><span class="c-num">3</span><span>スズは、野菜類の硝酸塩の影響で溶出するため、缶詰内側のメッキ材としての使用が禁止された。</span></li>
+<li><span class="c-num">4</span><span>メチル水銀は、深海性魚介類のみに暫定規制値が設定されている。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>アフラトキシンはカビ毒の一種で、急性の肝障害や強い<strong>発がん性</strong>（肝臓がん）が問題になります。アレルギー様食中毒の原因は、赤身魚などでヒスチジンから生成される<strong>ヒスタミン</strong>です。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ok">正しい（これが正解）</span></div><p><strong>カネミ油症</strong>は1968年に西日本で発生した事件で、米ぬか油の製造工程で熱媒体として使われていたPCB（ポリ塩化ビフェニル）が混入したことが原因です。皮膚の色素沈着や吹き出物などの症状がみられました。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>缶詰内面のスズメッキは禁止されておらず、現在も使われています。果実・野菜に含まれる硝酸イオンなどでスズが溶け出すことがあるため、金属缶入り清涼飲料水ではスズの含有量が150ppm以下という規格が定められています。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>魚介類の水銀の暫定的規制値（総水銀0.4ppm、メチル水銀0.3ppm）は一般の魚介類に適用され、<strong>深海性魚介類</strong>（キンメダイ、ギンダラ、ベニズワイガニなど）やマグロ類、河川産の魚介類はむしろ適用<strong>除外</strong>です。「のみに設定」が誤りです。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>カネミ油症 ＝ <strong>PCB</strong>／イタイイタイ病 ＝ カドミウム／水俣病 ＝ メチル水銀</li>
+<li>アフラトキシン ＝ カビ毒、肝臓がん</li>
+<li>アレルギー様食中毒 ＝ ヒスタミン</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q37">
+<div class="q-head"><span class="q-no">問37</span><span class="tag">食品添加物の用途</span></div>
+<p class="stem">次の食品添加物の種類と使用目的の組合せのうち、誤っているものはどれか。</p>
+<p class="opt-header">（種類 ―― 使用目的）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>乳化剤 ―― 互いに混和しない物を均一に乳化する</span></li>
+<li><span class="c-num">2</span><span>酸化防止剤 ―― 油脂等の酸化を防ぐ</span></li>
+<li><span class="c-num">3</span><span>増粘剤 ―― 食品の栄養素を強化する</span></li>
+<li><span class="c-num">4</span><span>調味料 ―― 食品にうま味を与える</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>乳化剤は、水と油のように本来混ざり合わないものを均一に混ぜ合わせる（乳化させる）目的で使われます。グリセリン脂肪酸エステルなどが代表例です。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>酸化防止剤は、油脂などの酸化を防いで品質の低下を防ぐ目的で使われます。L-アスコルビン酸やトコフェロールなどが代表例です。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ng">誤り（これが正解）</span></div><p>増粘剤（増粘安定剤）は、食品に<strong>粘り</strong>やとろみを与えたり、形を安定させたりする目的で使われます。栄養素を強化する目的で使うのは<strong>栄養強化剤</strong>（ビタミン類・ミネラル類など）です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>調味料は、食品にうま味などの味を与える目的で使われます。L-グルタミン酸ナトリウムなどのアミノ酸類や核酸類が代表例です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>増粘剤 ＝ 粘りを与える／<strong>栄養強化剤</strong> ＝ 栄養素を強化する</li>
+<li>乳化剤 ＝ 混ざらない物を均一に／酸化防止剤 ＝ 油脂の酸化を防ぐ</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q38">
+<div class="q-head"><span class="q-no">問38</span><span class="tag">鮮度の簡易鑑別法</span></div>
+<p class="stem">次の食品の鮮度の簡易鑑別法に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>食肉は、腐敗が進行すると揮発性塩基窒素量が低下する。</span></li>
+<li><span class="c-num">2</span><span>Ｋ値は、魚肉の鮮度の指標であり、値が低いものほど鮮度が不良である。</span></li>
+<li><span class="c-num">3</span><span>卵は、割ったときに卵黄と卵白が広がるものは鮮度が良好である。</span></li>
+<li><span class="c-num">4</span><span>野菜類は、つやとはりがあり、みずみずしいものは鮮度が良好である。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>揮発性塩基窒素（アンモニアなど）は、腐敗によりタンパク質が分解されると<strong>増加</strong>します。そのため、値が高いほど鮮度が悪いことを示します。「低下する」が誤りです。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>K値は魚肉の鮮度の指標で、値が<strong>低い</strong>ほど鮮度が良好です。死後の時間経過とともにATPの分解が進み、K値は高くなります。「低いほど不良」という逆の記述がひっかけです。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>割ったときに卵黄と卵白が平たく広がる卵は<strong>古い</strong>卵です。新鮮な卵は卵黄が盛り上がり、濃厚卵白が多く広がりにくいです。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ok">正しい（これが正解）</span></div><p>野菜類は、つやとはりがあり、みずみずしく、色が鮮やかなものが新鮮です。しおれたり変色したりしているものは鮮度が落ちています。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>揮発性塩基窒素：腐敗で<strong>増える</strong></li>
+<li>K値：<strong>低い</strong>ほど新鮮</li>
+<li>卵：割って盛り上がる ＝ 新鮮／広がる ＝ 古い</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q39">
+<div class="q-head"><span class="q-no">問39</span><span class="tag">洗浄と消毒</span></div>
+<p class="stem">次の洗浄と消毒に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>逆性石けんは、殺菌力が弱いが、洗浄力が強く、臭いや刺激性がある。</span></li>
+<li><span class="c-num">2</span><span>紫外線消毒は、光線が照射された表面だけに効果があり、陰の部分及び内部には効果がない。</span></li>
+<li><span class="c-num">3</span><span>次亜塩素酸ナトリウムは、調理器具のほか、飲料水、生野菜等の食品の消毒殺菌に使用される。</span></li>
+<li><span class="c-num">4</span><span>オゾン水には、殺菌作用、脱臭作用及び酸化作用等がある。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ng">誤り（これが正解）</span></div><p>逆性石けんは<strong>殺菌力が強く</strong>、洗浄力は<strong>弱い</strong>のが特徴です。また、においや刺激性がほとんどなく、毒性も低いです。殺菌力と洗浄力の説明が逆になっています。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>紫外線殺菌は光が当たった表面だけに効果があり、陰の部分や内部には効果がありません。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>次亜塩素酸ナトリウムは、調理器具やふきんの消毒のほか、飲料水の消毒、生野菜などの食品の殺菌にも使われます（食品添加物の殺菌料として指定されています）。ノロウイルス対策にも有効です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>オゾン水は強い酸化作用を持ち、殺菌作用や脱臭作用があります。オゾンは分解すると酸素に戻り、残留しません。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>逆性石けん：殺菌力<strong>強</strong>・洗浄力<strong>弱</strong>・無臭で低刺激</li>
+<li>次亜塩素酸ナトリウム：器具・飲料水・生野菜の殺菌、ノロウイルスにも有効</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q40">
+<div class="q-head"><span class="q-no">問40</span><span class="tag">器具・容器包装の材質</span></div>
+<p class="stem">次の器具、容器包装とその原材料に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>ほうろう製品や陶磁器等は、鉛及びカドミウムの規格試験に合格しないものは使用できない。</span></li>
+<li><span class="c-num">2</span><span>アルミニウムは、他の金属に比べて毒性が低く、さびにくく軽い。</span></li>
+<li><span class="c-num">3</span><span>容器等に幅広く使用されているシリコーンは、低毒性であり、弾力性及び耐久性に優れている。</span></li>
+<li><span class="c-num">4</span><span>メラミン樹脂製の食器は、日本では食品衛生法に基づく規格基準が定められていない。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>ほうろう製品や陶磁器、ガラス製品には、うわぐすりや顔料から溶け出す<strong>鉛・カドミウム</strong>の溶出規格が定められており、規格に合わないものは販売・使用できません。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>アルミニウムは他の金属に比べて毒性が低く、軽くてさびにくいため、鍋やアルミはくなどに広く使われています。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>シリコーン（シリコーンゴム）は低毒性で、弾力性・耐久性に優れ、耐熱性・耐寒性も高いため、調理器具や容器、パッキンなどに幅広く使われています。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ng">誤り（これが正解）</span></div><p>メラミン樹脂製の器具・容器包装には、食品衛生法に基づく「食品、添加物等の規格基準」で、ホルムアルデヒドやフェノールの溶出試験などの<strong>個別の規格</strong>が定められています。「規格基準が定められていない」が誤りです。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>陶磁器・ほうろう ＝ <strong>鉛・カドミウム</strong>の溶出規格</li>
+<li>メラミン樹脂 ＝ ホルムアルデヒドなどの溶出規格あり</li>
+</ul></div>
+<div class="box"><h3>最新の制度（補足）</h3><p>食品用器具・容器包装の合成樹脂には、2020年6月からポジティブリスト制度（リストに載った物質だけを使える制度）が導入され、経過措置が2025年5月31日で終わり、2025年6月から本格運用されています。メラミン樹脂も対象で、規格基準が定められていることに変わりはなく、答えは変わりません。</p></div>
+</div></details></section>
+<section class="q" id="q41">
+<div class="q-head"><span class="q-no">問41</span><span class="tag">HACCP</span></div>
+<p class="stem">次のＨＡＣＣＰ（ハサップ）に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>ＨＡＣＣＰシステムにおける自主的衛生管理を行うためには、７つの原則を含めた１２の手順が必要である。</span></li>
+<li><span class="c-num">2</span><span>ＨＡＣＣＰの実施には、一般衛生管理プログラムが整備され、実行されていることが必要である。</span></li>
+<li><span class="c-num">3</span><span>平成 30 年の食品衛生法の一部改正では、大規模な食品事業者のみがＨＡＣＣＰに沿った衛生管理に取り組むことが定められた。</span></li>
+<li><span class="c-num">4</span><span>ＨＡＣＣＰは、食品の安全衛生に関する危害発生を事前に防止することを目的とした自主的な衛生管理システムである。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>HACCPシステムの導入には、危害要因分析や重要管理点の決定などの<strong>7原則</strong>を含む<strong>12手順</strong>が必要です。手順1〜5は準備段階（HACCPチームの編成、製品説明書の作成など）、手順6〜12が7原則にあたります。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>HACCPを効果的に実施するには、施設の清掃・消毒、従事者の衛生管理、そ族・昆虫対策などの一般衛生管理プログラム（前提条件プログラム）が整備され、実行されていることが前提となります。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ng">誤り（これが正解）</span></div><p>平成30年（2018年）の食品衛生法改正では、大規模事業者だけでなく<strong>原則としてすべての食品等事業者</strong>に、HACCPに沿った衛生管理が求められることになりました。大規模事業者は「HACCPに基づく衛生管理」、小規模事業者などは「HACCPの考え方を取り入れた衛生管理」を行います。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>HACCPは、原材料の受け入れから製品出荷までの各工程で危害要因を分析し、重要な工程を重点的に管理することで、危害の発生を事前に防止する自主的な衛生管理の手法です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>HACCP ＝ <strong>7原則12手順</strong></li>
+<li>2018年改正 → <strong>原則すべての食品等事業者</strong>が対象（2021年6月から完全施行）</li>
+<li>大規模 ＝ HACCPに基づく／小規模 ＝ HACCPの考え方を取り入れた</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q42">
+<div class="q-head"><span class="q-no">問42</span><span class="tag">大量調理施設衛生管理マニュアル</span></div>
+<p class="stem">次の大量調理施設衛生管理マニュアルに関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>調理後の食品は、調理終了後から４時間以内に喫食することが望ましい。</span></li>
+<li><span class="c-num">2</span><span>調理従事者は、下痢や嘔吐、発熱等の症状があった時は、調理作業に従事しないこと。</span></li>
+<li><span class="c-num">3</span><span>フードカッターや野菜切り機等の調理機械は、最低１日１回以上、分解して洗浄及び殺菌した後、乾燥させること。</span></li>
+<li><span class="c-num">4</span><span>原材料の納入では、生鮮食品については１回で使い切る量を調理当日に仕入れるようにすること。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ng">誤り（これが正解）</span></div><p>マニュアルでは、調理後の食品は調理終了後から<strong>2時間以内</strong>に喫食することが望ましいとされています。「4時間以内」が誤りです。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>下痢・嘔吐・発熱などの症状がある調理従事者は、食品を汚染するおそれがあるため、調理作業に従事させず、医療機関を受診させます。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>マニュアルでは、フードカッター・野菜切り機などの調理機械は、最低1日1回以上、分解して洗浄・殺菌した後、乾燥させることとしています。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>缶詰・乾物・調味料など常温保存できるものを除き、食肉類・魚介類・野菜類などの生鮮食品は、<strong>1回で使い切る量を調理当日に</strong>仕入れるようにします。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>調理後の食品は<strong>2時間以内</strong>に喫食</li>
+<li>生鮮食品は1回で使い切る量を<strong>当日</strong>仕入れ</li>
+<li>調理機械は1日1回以上分解して洗浄・殺菌・乾燥</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q43">
+<div class="q-head"><span class="q-no">問43</span><span class="tag">食品衛生法</span></div>
+<p class="stem">次の食品衛生法に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>販売又は営業に使用する食品や添加物等を輸入する場合には、輸入届出書を農林水産大臣に提出しなければならない。</span></li>
+<li><span class="c-num">2</span><span>食品衛生責任者は、都道府県知事が行う講習会等を定期的に受講し、食品衛生に関する新たな知識の習得に努めなければならない。</span></li>
+<li><span class="c-num">3</span><span>食品衛生法の対象は、食品の他に添加物、医薬品、容器包装等が含まれる。</span></li>
+<li><span class="c-num">4</span><span>食品衛生法に規定する飲食店営業等３２業種を営もうとする者は、内閣総理大臣の許可を受けなければならない。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>販売用・営業用の食品、添加物、器具、容器包装を輸入するときは、その都度<strong>厚生労働大臣</strong>に届け出なければなりません（第27条）。実際の届出先は全国の検疫所です。農林水産大臣ではありません。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ok">正しい（これが正解）</span></div><p>食品衛生法施行規則では、食品衛生責任者は都道府県知事等が行う（または認める）講習会を<strong>定期的に受講</strong>し、食品衛生に関する新たな知見の習得に努めることとされています。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>食品衛生法の対象は、食品・添加物・器具・容器包装のほか、乳幼児用のおもちゃや野菜・食器用の洗浄剤です。<strong>医薬品</strong>は医薬品医療機器等法の対象であり、食品衛生法の「食品」からは除かれています。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>飲食店営業など<strong>32業種</strong>の営業許可を与えるのは<strong>都道府県知事</strong>（保健所を設置する市の市長、特別区の区長を含む）です。内閣総理大臣ではありません。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>輸入届出 ＝ <strong>厚生労働大臣</strong>（窓口は検疫所）</li>
+<li>営業許可 ＝ <strong>都道府県知事</strong>等（32業種）</li>
+<li>医薬品・医薬部外品は食品衛生法の対象外</li>
+</ul></div>
+</div></details></section>
+<h2 class="subj-title" id="s5">調理理論<small>問44〜問60</small></h2>
+<section class="q" id="q44">
+<div class="q-head"><span class="q-no">問44</span><span class="tag">調理の種類と特徴</span></div>
+<p class="stem">調理の種類と特徴に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>和式調理は、肉を主材料とし季節性が乏しい。</span></li>
+<li><span class="c-num">2</span><span>洋式調理は、多種類の料理を大皿で食卓に並べ、自由に取り分ける。</span></li>
+<li><span class="c-num">3</span><span>病院食は、食事であると同時に治療の一部であり、嗜好を犠牲にすることもある。</span></li>
+<li><span class="c-num">4</span><span>乳幼児、妊産婦、高齢者等に対する食事についても、調理法は、一般的な成人と同じと考えれば良い。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>和式調理（日本料理）は魚介類と野菜が中心で、旬の食材を使うため<strong>季節性</strong>が豊かです。肉を主材料とするのは洋式調理です。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>多種類の料理を大皿に盛り、自由に取り分けるのは<strong>中国式調理</strong>の特徴です。洋式調理は一人分ずつの皿で順番に供するのが基本です。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ok">正しい（これが正解）</span></div><p>病院食は食事であると同時に治療の一部です。病状に応じて塩分・エネルギー・たんぱく質などを制限するため、嗜好（味の好み）を犠牲にすることもあります。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>乳幼児・妊産婦・高齢者などは、咀嚼・えん下の力や消化機能、必要な栄養量が一般の成人と違います。そのため、軟らかさ・形・大きさ・味付けなど、対象に合わせた<strong>調理法</strong>の工夫が必要です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>病院食 ＝ <strong>治療の一部</strong>、嗜好を犠牲にすることもある</li>
+<li>和式 ＝ 魚・野菜、季節性／洋式 ＝ 肉、一皿ずつ／中国式 ＝ 大皿取り分け</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q45">
+<div class="q-head"><span class="q-no">問45</span><span class="tag">食品の洗浄</span></div>
+<p class="stem">次の食品の洗浄に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>洗浄は、食品表面に付着した汚れを水で除去する操作であり、調理の出発点となる。</span></li>
+<li><span class="c-num">2</span><span>根菜類のように表面が堅く、汚れの多いものは、ブラシを使用して洗浄する。</span></li>
+<li><span class="c-num">3</span><span>洗浄する際は、水量が多いほど、また、水温が高いほど洗浄効果は大きい。</span></li>
+<li><span class="c-num">4</span><span>フキやタケノコのようにあくの強い食品は、加熱前に洗浄するだけで良い。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>洗浄は食品表面の汚れを水で落とす操作で、調理の最初に行う出発点の操作です。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>ごぼうやにんじんなど、表面が堅く土などの汚れが多い根菜類は、ブラシやたわしでこすって洗います。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>一般に、水量が多いほど、水温が高いほど汚れは落ちやすく、洗浄効果は大きくなります。ただし実際には、生鮮食品の鮮度を保つため冷水やため水・流水を使い分けます。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ng">誤り（これが正解）</span></div><p>ふきやたけのこのようにあくの強い食品は、洗うだけではあくが抜けません。ゆでる、ゆでこぼす、水にさらすなどの<strong>あく抜き</strong>が必要です（たけのこは米ぬかを加えてゆでる、ふきは塩で板ずりしてからゆでて水にさらすなど）。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>あくの強い食品（ふき・たけのこ）＝ 洗浄だけでなく<strong>あく抜き</strong>が必要</li>
+<li>洗浄効果 ＝ 水量が多い・水温が高いほど大きい</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q46">
+<div class="q-head"><span class="q-no">問46</span><span class="tag">浸漬の目的</span></div>
+<p class="stem">次の浸漬の目的と具体例に関する組合せのうち、誤っているものはどれか。</p>
+<p class="opt-header">（目的 ―― 具体例）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>味付け・防腐 ―― 酢漬け、しょうゆ漬け</span></li>
+<li><span class="c-num">2</span><span>食品中の成分の抽出 ―― 大豆の重曹水への浸漬</span></li>
+<li><span class="c-num">3</span><span>褐変防止 ―― 野菜・果物の水浸</span></li>
+<li><span class="c-num">4</span><span>吸水・膨潤・軟化 ―― 乾物の水戻し</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>酢漬けやしょうゆ漬けは、調味液に浸して味をつけると同時に、酸や塩分で微生物の増殖を抑える（防腐）効果もあります。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ng">誤り（これが正解）</span></div><p>大豆を重曹水に浸すのは、アルカリの働きで吸水と<strong>軟化</strong>を早め、煮る時間を短くするためです。目的は「吸水・膨潤・軟化」です。「成分の抽出」の例には、昆布を水に浸して<strong>うま味</strong>を引き出すことなどがあります。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>りんごやじゃがいも、なすなどを切ってすぐ水に浸すと、空気との接触が断たれ、酵素による褐変を防ぐことができます。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>干ししいたけ・切り干し大根・ひじきなどの乾物を水で戻すのは、吸水させて膨潤・軟化させるための浸漬です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>大豆＋重曹水 ＝ <strong>軟化</strong>を早める（吸水・膨潤・軟化）</li>
+<li>成分の抽出 ＝ 昆布の水だし など／褐変防止 ＝ 切った野菜・果物の水浸</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q47">
+<div class="q-head"><span class="q-no">問47</span><span class="tag">ゼラチンと寒天</span></div>
+<p class="stem">次のゼラチン、寒天の凝固に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>寒天は０.５～１％以上、ゼラチンは２～３％以上の濃度になると、冷やせば凝固してゼリー状になる。</span></li>
+<li><span class="c-num">2</span><span>ゼラチンで２色ゼリーをつくるとき、下層を完全に冷やし固めてから上層を入れると、うまく２層が接着する。</span></li>
+<li><span class="c-num">3</span><span>ゼラチンは、キウイフルーツの果汁のようにたんぱく質分解酵素を含むものを加えると固まりやすくなる。</span></li>
+<li><span class="c-num">4</span><span>寒天ゼリーは、時間が経つと、ゼリーから水が出てくる離漿という現象が生じる。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>寒天は約0.5〜1%以上、ゼラチンは約2〜3%以上の濃度にすると、冷やしたときにゲル化してゼリー状に固まります。寒天のほうが少ない量で固まります。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>ゼラチンは20〜30℃程度の低い温度で溶けるため、下層を完全に冷やし固めてから上層の液を流しても、上層の液の熱で下層の表面が少し溶け、2層がよく<strong>接着</strong>します。寒天は固まる温度も溶ける温度も高いため、完全に固まった下層には接着しにくく、下層が固まりきる前に上層を流す必要があります。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ng">誤り（これが正解）</span></div><p>キウイフルーツ・パインアップル・パパイヤなどの生の果汁には、<strong>たんぱく質分解酵素</strong>が含まれています。たんぱく質であるゼラチンが分解されてしまうため、かえって固まりにくくなります。加熱して酵素を働かなくした果汁や缶詰を使えば固まります。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>寒天ゼリーは時間が経つと、ゲルの網目構造が縮んで水がしみ出てきます。これを<strong>離漿</strong>といいます。砂糖の濃度を高くすると離漿は少なくなります。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>ゼラチン（たんぱく質）＋生のキウイ・パインアップル ＝ <strong>固まりにくい</strong></li>
+<li>2層ゼリー ＝ ゼラチンは下層が固まってからでも接着する（寒天は接着しにくい）</li>
+<li>離漿 ＝ ゼリーから水がしみ出る現象</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q48">
+<div class="q-head"><span class="q-no">問48</span><span class="tag">包丁の使い方</span></div>
+<p class="stem">次の包丁の使い方に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>イカの切り身の片面だけに、あらかじめ包丁を入れておくと、後で焼いたときの反り返りを防げる。</span></li>
+<li><span class="c-num">2</span><span>もちやのり巻きなどを切るときには、刃を湿らせて摩擦を少なくするとよく切れる。</span></li>
+<li><span class="c-num">3</span><span>やわらかく粘着力のあるチーズやようかんを切るときは、摩擦の小さな細い糸よりも鋭利な包丁の方がよく切れる。</span></li>
+<li><span class="c-num">4</span><span>野菜を切るときは「引き切り」、魚の切り身を切るときは「押し切り」にするとよい。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>いかは加熱すると身が縮んで丸まるため、身の表側に格子状などの細かい切り目を入れて繊維を断ち、縮みや丸まりを抑えます。正答が2のため、この記述は誤りとされています。「片面だけに入れれば防げる」と言い切った点が誤りと判断されたとみられます。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ok">正しい（これが正解）</span></div><p>もちやのり巻きのように粘りのある食品は、刃に付着して切りにくくなります。刃をぬれぶきんなどで<strong>湿らせる</strong>と摩擦が小さくなり、きれいに切れます。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>やわらかく粘着力のあるチーズやようかんは、包丁の刃の面にくっついて形が崩れやすくなります。刃と食品が触れる面積の小さい<strong>細い糸</strong>のほうが摩擦が小さく、きれいに切れます。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>説明が逆です。野菜は刃を前に押し出すように切る<strong>押し切り</strong>、刺身など魚の切り身は刃渡りを長く使って手前に引く<strong>引き切り</strong>が基本です。引き切りは身の組織をつぶさず、切り口がきれいに仕上がります。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>野菜 ＝ <strong>押し切り</strong>／刺身 ＝ <strong>引き切り</strong></li>
+<li>粘る食品（もち・のり巻き）＝ 刃を湿らせる／チーズ・ようかん ＝ 糸で切る</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q49">
+<div class="q-head"><span class="q-no">問49</span><span class="tag">味の種類と呈味物質</span></div>
+<p class="stem">次の味の種類と主な呈味物質についての組合せのうち、正しいものはどれか。</p>
+<p class="opt-header">（味の種類 ―― 主な呈味物質）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>甘味 ―― クエン酸</span></li>
+<li><span class="c-num">2</span><span>塩味 ―― タンニン</span></li>
+<li><span class="c-num">3</span><span>苦味 ―― ソルビトール</span></li>
+<li><span class="c-num">4</span><span>うま味 ―― グルタミン酸</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>クエン酸はかんきつ類や梅干しなどに含まれる<strong>酸味</strong>の物質です。甘味の主な呈味物質は、ショ糖（砂糖）やブドウ糖などの糖類です。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>タンニンは茶や渋柿に含まれる<strong>渋味</strong>の物質です。塩味の主な呈味物質は塩化ナトリウムです。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>ソルビトールは糖アルコールの一種で、<strong>甘味</strong>をもつ物質です。苦味の主な呈味物質には、カフェイン（茶・コーヒー）やテオブロミン（ココア）などがあります。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ok">正しい（これが正解）</span></div><p>グルタミン酸は昆布などに含まれる代表的な<strong>うま味</strong>物質です。うま味調味料にはそのナトリウム塩が使われます。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>酸味 ＝ クエン酸・酢酸／渋味 ＝ <strong>タンニン</strong>／苦味 ＝ カフェイン</li>
+<li>甘味 ＝ 糖類・<strong>ソルビトール</strong>（糖アルコール）／うま味 ＝ グルタミン酸</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q50">
+<div class="q-head"><span class="q-no">問50</span><span class="tag">天然色素</span></div>
+<p class="stem">次の天然色素と色合い、それを豊富に含む食品についての組合せのうち、正しいものはどれか。</p>
+<p class="opt-header">（天然色素 ―― 色合い ―― 豊富に含む食品）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>クロロフィル系 ―― 赤 ―― トマト</span></li>
+<li><span class="c-num">2</span><span>カロテノイド系 ―― 橙 ―― かんきつ類</span></li>
+<li><span class="c-num">3</span><span>アントシアン系 ―― 緑 ―― しそ</span></li>
+<li><span class="c-num">4</span><span>フラボノイド系 ―― 赤 ―― 赤身の魚</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>クロロフィル系の色素は<strong>緑</strong>色で、ほうれんそうなどの緑黄色野菜に多く含まれます。トマトの赤色は、カロテノイド系色素のリコペンによるものです。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ok">正しい（これが正解）</span></div><p>カロテノイド系色素は黄〜橙〜赤色の脂溶性色素です。みかんなどのかんきつ類には、橙色のβ-クリプトキサンチンなどのカロテノイドが豊富に含まれています。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>アントシアン系色素は<strong>赤〜紫〜青</strong>色の水溶性色素で、赤じそ（シソニン）、なす、ぶどう、黒豆などに含まれます。緑色ではありません。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>フラボノイド系色素は<strong>無色〜淡黄色</strong>の色素で、たまねぎやカリフラワー、小麦粉などに含まれます。赤身の魚の赤色は、筋肉色素のミオグロビンによるものです。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>クロロフィル ＝ 緑／カロテノイド ＝ 黄〜橙〜赤（にんじん・かんきつ・トマト）</li>
+<li>アントシアン ＝ 赤〜紫（赤じそ・なす）、<strong>酸性で赤</strong>く・アルカリ性で青く変わる</li>
+<li>フラボノイド ＝ 無色〜淡黄、アルカリ性で<strong>黄色</strong>くなる</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q51">
+<div class="q-head"><span class="q-no">問51</span><span class="tag">加熱調理操作</span></div>
+<p class="stem">次の加熱調理操作に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>加熱調理は、乾式加熱と湿式加熱に大別され、マイクロ波やＩＨ方式による加熱は、両者の中間的な特徴をもつ。</span></li>
+<li><span class="c-num">2</span><span>焼く調理操作における間接加熱の代表例として、石焼き、鉄板焼き及び包み焼きが挙げられる。</span></li>
+<li><span class="c-num">3</span><span>揚げ物は、１２０～１５０℃、特に１４０℃前後が適温とされる。</span></li>
+<li><span class="c-num">4</span><span>蒸し物は、材料の特徴を失わずに中心部まで加熱するためには、最適な方法である。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>加熱調理は、水を熱媒体とする<strong>湿式加熱</strong>（煮る・ゆでる・蒸す）と、水を使わない<strong>乾式加熱</strong>（焼く・炒める・揚げる）に大別されます。電子レンジ（マイクロ波）やIHによる加熱は、どちらにも当てはまらない中間的な特徴をもちます。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>焼く操作には、火であぶる直火焼きと、鍋や鉄板・石・オーブンなどを介して焼く間接焼きがあります。石焼き・鉄板焼き・包み焼き（ホイル焼きなど）は間接焼きの代表例です。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ng">誤り（これが正解）</span></div><p>揚げ物の適温は一般に<strong>160〜190℃</strong>程度で、180℃前後が目安です（天ぷら・フライ・から揚げなど）。120〜150℃では温度が低すぎて、衣がからりと揚がらず油っぽくなります。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>蒸し物は水蒸気で食品を包み込むように加熱するため、形が崩れにくく、うま味や栄養成分の流出も少ないです。材料の特徴を損なわずに中心部まで加熱するのに適した方法です。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>揚げ物の適温 ＝ <strong>160〜190℃</strong>（180℃前後が目安）</li>
+<li>湿式 ＝ 煮る・ゆでる・蒸す／乾式 ＝ 焼く・炒める・揚げる／中間 ＝ 電子レンジ・IH</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q52">
+<div class="q-head"><span class="q-no">問52</span><span class="tag">油脂の酸化</span></div>
+<p class="stem">次の油脂の酸化に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>油脂は、空気中に放置するか、長時間加熱すると空気中の酸素によって酸化される。</span></li>
+<li><span class="c-num">2</span><span>油脂の劣化や変敗は、光による影響は受けない。</span></li>
+<li><span class="c-num">3</span><span>酸化による油脂の分解や重合を油脂の劣化という。</span></li>
+<li><span class="c-num">4</span><span>油脂の変敗とは、劣化が進んで食用に適さなくなる現象をいう。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>油脂は空気中に放置したり、長時間加熱したりすると、空気中の<strong>酸素</strong>と結びついて酸化されます。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ng">誤り（これが正解）</span></div><p>油脂の劣化は、酸素・熱のほか、<strong>光</strong>（とくに紫外線）や金属によっても促進されます。そのため油は、光を通さない容器に入れ、冷暗所で密閉して保存します。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>酸化によって油脂が分解されたり、分子どうしが結合（重合）したりして品質が落ちることを、油脂の劣化といいます。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>劣化が進んで、においや味が悪くなり食用に適さなくなる現象を<strong>変敗</strong>（酸敗）といいます。変敗した油は食中毒の原因にもなります。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>油脂の劣化を進めるもの ＝ 酸素・熱・<strong>光</strong>（紫外線）・金属</li>
+<li>保存 ＝ 遮光・密閉・冷暗所</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q53">
+<div class="q-head"><span class="q-no">問53</span><span class="tag">調味料を加える時期</span></div>
+<p class="stem">次の調味料の使用時期に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>酢やしょうゆは、揮発性香気成分を含むため、加熱の最初に加える。</span></li>
+<li><span class="c-num">2</span><span>調味料が浸透しにくいイモ等は、早くから調味液を加えて含め煮にする。</span></li>
+<li><span class="c-num">3</span><span>複数の調味料を別々に加える場合、分子量が大きく浸透の遅い砂糖は、食塩より先に加える。</span></li>
+<li><span class="c-num">4</span><span>食品内外の味の分布を均一にしたい煮物は、加熱後、十分に軟化してから調味料を加える。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ng">誤り（これが正解）</span></div><p>酢・しょうゆ・みそは<strong>揮発性の香気成分</strong>を含み、長く加熱すると香りが飛んでしまうため、加熱の<strong>最後（仕上げ）</strong>に加えるのが基本です。「最初に加える」が誤りです。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>いもなど調味料が浸透しにくい食品は、早い段階から薄めの調味液で煮て、時間をかけて味を含ませる<strong>含め煮</strong>にします。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>砂糖は食塩より分子量が大きく、食品に浸透しにくいため、先に加えます。食塩を先に加えると食品の組織が締まり、砂糖がしみ込みにくくなります。「さしすせそ」（砂糖→塩→酢→しょうゆ→みそ）の順番の理由です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>加熱して組織が十分やわらかくなると調味料が内部まで浸透しやすくなるため、食品の内外で味を均一にしたい煮物は、軟化してから調味料を加えます。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>調味の順番「さしすせそ」：砂糖 → 塩 → 酢 → しょうゆ → みそ</li>
+<li>酢・しょうゆ・みそ：香りを生かすため仕上げに加える</li>
+<li>砂糖（分子が大きい）は塩より先に</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q54">
+<div class="q-head"><span class="q-no">問54</span><span class="tag">大量調理の特徴</span></div>
+<p class="stem">次の大量調理の特徴に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>大量調理で炒め物を調理する際は、１回に炒める量を多くするほど仕上がりが良くなる。</span></li>
+<li><span class="c-num">2</span><span>大量調理は、予熱が大きいため、加熱時間の短縮ができる。</span></li>
+<li><span class="c-num">3</span><span>加熱条件が、色、かたさ、テクスチャー、味および栄養成分の変化に影響を与えることはほとんどない。</span></li>
+<li><span class="c-num">4</span><span>大量調理は、加熱中の蒸発率が高いため、加える水の量が多い。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>全員正解（採点対象外）</span></p>
+<p class="invalid-note">選択肢2は「余熱（加熱後に残る熱）」の意味で作られたと考えられますが、問題文では「予熱」と書かれており、正しいといえる選択肢がなくなったため、全員正解として扱われたと考えられます。</p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>炒め物は1回に炒める量を多くすると鍋の温度が下がり、加熱にむらができたり、材料から水が出て水っぽく仕上がったりします。1回の量は少なめにして、手早く炒めるのが基本です。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>大量調理では加熱を止めた後も<strong>余熱</strong>（残っている熱）が大きいため、余熱を考えて早めに加熱を終えます。しかし選択肢は加熱前に温めておく「<strong>予熱</strong>」と書かれており、そのままでは正しい文とはいえません。また、大量調理は量が多いため全体の加熱時間は長くなりがちです。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>加熱の温度や時間の条件は、料理の色、かたさ、テクスチャー、味、栄養成分の変化に大きく影響します。大量調理ほど条件の管理が重要で、「影響はほとんどない」は誤りです。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>大量調理は、量に比べて鍋の表面積が小さいため、加熱中の<strong>蒸発率は低く</strong>なります。そのため、少量調理と同じ割合で水を加えると多すぎるので、加える水の量は少なめにします。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>大量調理：蒸発率が低い → 加える水は少なめ</li>
+<li>大量調理：余熱が大きい → 早めに加熱を止める（「余熱」と「予熱」の違いに注意）</li>
+<li>炒め物は1回の量を少なめにして手早く</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q55">
+<div class="q-head"><span class="q-no">問55</span><span class="tag">食品の香気成分</span></div>
+<p class="stem">次の食品と食品中の主な香気成分の組合せのうち、誤っているものはどれか。</p>
+<p class="opt-header">（食品 ―― 香気成分）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>にんにく ―― ジアリルジスルフィド</span></li>
+<li><span class="c-num">2</span><span>バナナ ―― 酢酸イソアミル</span></li>
+<li><span class="c-num">3</span><span>大根 ―― メチルメルカプタン</span></li>
+<li><span class="c-num">4</span><span>たまねぎ ―― β－ヘキサナール</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>にんにくは切ったりつぶしたりするとアリインがアリシンに変わり、さらに<strong>ジアリルジスルフィド</strong>などの含硫化合物ができて、特有の強いにおいになります。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>バナナの果実らしい甘い香りの主成分は、エステルの一種の<strong>酢酸イソアミル</strong>です。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>大根の辛味成分はイソチオシアネート（4-メチルチオ-3-ブテニルイソチオシアネート）で、これが分解すると<strong>メチルメルカプタン</strong>などの含硫化合物ができ、大根特有のにおい（煮たときやたくあんのにおい）のもとになります。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ng">誤り（これが正解）</span></div><p>たまねぎの香り・刺激臭の主成分は、<strong>硫化プロピル</strong>（ジプロピルジスルフィド）やプロピルメルカプタンなどの含硫化合物です。ヘキサナールは大豆や青葉の青臭いにおいの成分で、たまねぎの主な香気成分ではありません。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>ねぎ類・にんにく・大根のにおい ＝ 含硫化合物</li>
+<li>にんにく：ジアリルジスルフィド／たまねぎ：硫化プロピル</li>
+<li>バナナ：酢酸イソアミル（エステル）</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q56">
+<div class="q-head"><span class="q-no">問56</span><span class="tag">砂糖の調理性</span></div>
+<p class="stem">次の砂糖に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>氷砂糖、上白糖、ざらめ、グラニュー糖の順に溶解速度が速い。</span></li>
+<li><span class="c-num">2</span><span>砂糖は、１２０℃前後で褐色のカラメルになる。</span></li>
+<li><span class="c-num">3</span><span>砂糖は、温度が低いほど溶解度が大きく、溶解速度も速い。</span></li>
+<li><span class="c-num">4</span><span>砂糖液を煮詰め、砂糖の濃度が５０％を超えると沸点が急に上がる。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>砂糖は結晶が<strong>小さいほど速く溶けます</strong>。溶解速度はおおむね上白糖 → グラニュー糖 → ざらめ → 氷砂糖の順に遅くなり、選択肢の並びは正しくありません（結晶の大きい氷砂糖は最も溶けにくい）。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>砂糖液を加熱すると、シロップ、フォンダン、あめと温度とともに変化し、褐色で香ばしい<strong>カラメル</strong>になるのはおよそ170～190℃です。120℃前後ではまだ色はつきません。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>砂糖は<strong>温度が高いほど</strong>溶解度が大きく、溶けるのも速くなります。20℃の水100gに約200g、100℃では約480g溶けます。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ok">正しい（これが正解）</span></div><p>砂糖液は濃度が上がるほど沸点が上がり、濃度が高くなると急に上昇します（10％で約100.4℃、80％で約112℃）。この性質を利用して、煮詰め温度でシロップやフォンダンなどの濃度を調節します。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>結晶が小さいほど速く溶ける（氷砂糖は最も遅い）</li>
+<li>溶解度：温度が高いほど大きい（20℃で約200g、100℃で約480g／水100g）</li>
+<li>カラメル化はおよそ170～190℃</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q57">
+<div class="q-head"><span class="q-no">問57</span><span class="tag">穀類の調理</span></div>
+<p class="stem">次の穀類の調理に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>米の炊飯には、「洗米と浸漬」、「加熱」、「蒸らし」の３つの段階がある。</span></li>
+<li><span class="c-num">2</span><span>もち米は、加水量が少ないので蒸した方がよい。</span></li>
+<li><span class="c-num">3</span><span>小麦粉に水を加えてこねた生地のうち、バッターより流動性のある生地をドウという。</span></li>
+<li><span class="c-num">4</span><span>小麦粉は、とろみをつける働きがあるため、ルウやスープに使用される。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>3</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ok">正しい</span></div><p>炊飯は、米に水を吸わせる「<strong>洗米と浸漬</strong>」、でん粉を糊化させる「加熱」、余熱で中心まで火を通し水分を落ち着かせる「蒸らし」の3段階に分けられます。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>もち米は浸漬中に多く吸水するため、炊くのに必要な加水量が少なく、炊飯では水が少なすぎて均一に仕上げにくくなります。そのため<strong>蒸して</strong>、途中でふり水をして水分を補う「おこわ」の方法がとられます。</p></div>
+<div class="note-item correct"><div class="note-head">3 <span class="verdict ng">誤り（これが正解）</span></div><p>小麦粉に水を加えた生地のうち、流動性があるもの（天ぷらの衣、ホットケーキ生地など）が<strong>バッター</strong>で、手でこねられるかたさのもの（パン、めん、ぎょうざの皮など）が<strong>ドウ</strong>です。「バッターより流動性がある生地がドウ」は逆です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>小麦粉はでん粉を多く含み、加熱すると糊化して粘りが出るため、ルウやスープなどのとろみづけに使われます。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>バッター ＝ 流動性あり（天ぷら衣）／ドウ ＝ こねられるかたさ（パン・めん）</li>
+<li>もち米は加水量が少ない → 蒸す（ふり水で水分を補う）</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q58">
+<div class="q-head"><span class="q-no">問58</span><span class="tag">食酢の調理性</span></div>
+<p class="stem">次の食酢に関する記述のうち、誤っているものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>食酢の成分は酢酸のみであり、食塩や砂糖と同様に、純粋物質である。</span></li>
+<li><span class="c-num">2</span><span>食酢の作用には、防腐及び殺菌作用や食品中の酵素作用の抑制がある。</span></li>
+<li><span class="c-num">3</span><span>ゆで卵や落とし卵の熱水中に酢を入れるのは、たんぱく質の熱凝固を促進するためである。</span></li>
+<li><span class="c-num">4</span><span>食酢を調味料として使用する場合、適度と感じる酢酸濃度は、０．３～０．５％である。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>1</span></p>
+<div class="note-item correct"><div class="note-head">1 <span class="verdict ng">誤り（これが正解）</span></div><p>食酢の主成分は<strong>酢酸</strong>（一般の食酢で4～5％程度）ですが、そのほかに水分、乳酸・クエン酸などの有機酸、アミノ酸、糖類なども含む混合物です。「酢酸のみで純粋物質」は誤りです。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ok">正しい</span></div><p>食酢には<strong>防腐・殺菌作用</strong>があり、酢じめや酢漬けに利用されます。また、酸化酵素の働きを抑えて、れんこんなどの褐変を防ぐ作用もあります。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ok">正しい</span></div><p>酢には<strong>たんぱく質の熱凝固を促進</strong>する働きがあります。ゆで卵を作るときに殻にひびが入っても白身が流れ出しにくくなり、落とし卵（ポーチドエッグ）では白身が早く固まってまとまりやすくなります。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ok">正しい</span></div><p>酢の物など調味料として使う場合、おいしいと感じる酸味は料理全体に対して酢酸濃度でおよそ0.3～0.5％程度とされています。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>食酢は酢酸が主成分の混合物（純粋物質ではない）</li>
+<li>酢の働き：防腐・殺菌、褐変防止、たんぱく質の凝固促進</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q59">
+<div class="q-head"><span class="q-no">問59</span><span class="tag">治療食で制限するもの</span></div>
+<p class="stem">次の疾病と治療食において制限するものの組合せのうち、正しいものはどれか。</p>
+<p class="opt-header">（疾病 ―― 制限するもの）</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>動脈硬化症 ―― 水分</span></li>
+<li><span class="c-num">2</span><span>腎臓病 ―― 食塩</span></li>
+<li><span class="c-num">3</span><span>糖尿病 ―― ビタミン</span></li>
+<li><span class="c-num">4</span><span>肝臓病 ―― 炭水化物</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>2</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>動脈硬化症では、<strong>脂質</strong>（飽和脂肪酸やコレステロール）やエネルギー、食塩のとりすぎを制限します。水分は主な制限の対象ではありません。</p></div>
+<div class="note-item correct"><div class="note-head">2 <span class="verdict ok">正しい（これが正解）</span></div><p>腎臓病では、むくみや高血圧を防ぎ腎臓の負担を減らすため、<strong>食塩</strong>を制限します。病状によってたんぱく質やカリウムも制限します。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>糖尿病では、血糖値を適正に保つため<strong>エネルギー</strong>の摂取量を調整します。ビタミンは制限するものではなく、不足しないようにとることが大切です。</p></div>
+<div class="note-item"><div class="note-head">4 <span class="verdict ng">誤り</span></div><p>肝臓病（肝炎の回復期など）では、肝細胞の修復のためにたんぱく質や適正なエネルギーを確保するのが基本で、炭水化物は制限の対象ではありません。脂肪肝ではエネルギー、肝硬変の非代償期ではたんぱく質などを病状に応じて制限します。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>腎臓病：食塩・たんぱく質（・カリウム）を制限</li>
+<li>動脈硬化症：脂質（コレステロール・飽和脂肪酸）・エネルギーを制限</li>
+<li>糖尿病：エネルギーを調整</li>
+</ul></div>
+</div></details></section>
+<section class="q" id="q60">
+<div class="q-head"><span class="q-no">問60</span><span class="tag">調理施設設備の洗浄</span></div>
+<p class="stem">次の調理施設設備の洗浄等に関する記述のうち、正しいものはどれか。</p>
+<ol class="choices">
+<li><span class="c-num">1</span><span>直接食品と接触しない施設や設備については、洗浄の対象とならない。</span></li>
+<li><span class="c-num">2</span><span>施設の清掃は、食品が調理場内に残った状態で開始してよい。</span></li>
+<li><span class="c-num">3</span><span>調理台は、洗浄した後、乾燥させずに７０％アルコールを噴霧し、水拭きを行う。</span></li>
+<li><span class="c-num">4</span><span>施設設備の清掃や洗浄は、日間、週間、月間の計画を立てて行い、実行されているかの点検が必要である。</span></li>
+</ol>
+<details class="kaisetsu"><summary>解答・解説を見る</summary><div class="k-body">
+<p class="answer">正解：<span>4</span></p>
+<div class="note-item"><div class="note-head">1 <span class="verdict ng">誤り</span></div><p>床面や内壁、天井など食品に直接触れない施設・設備も、汚れや微生物が食品に移る原因になるため、洗浄・清掃の対象です。大量調理施設衛生管理マニュアルでも、床面・内壁（床から1mまで）は1日1回以上、天井・内壁（床から1m以上）は1か月に1回以上の清掃が求められています。</p></div>
+<div class="note-item"><div class="note-head">2 <span class="verdict ng">誤り</span></div><p>施設の清掃は、<strong>全ての食品が調理場内から完全に搬出された後</strong>に行います。清掃中の水はねや汚れで食品が汚染されるのを防ぐためです。</p></div>
+<div class="note-item"><div class="note-head">3 <span class="verdict ng">誤り</span></div><p>調理台は洗浄した後、<strong>よく乾燥させてから</strong>70％アルコールを噴霧して殺菌します。濡れたままではアルコールが薄まって効果が落ちます。また、アルコール噴霧の後に水拭きはしません。</p></div>
+<div class="note-item correct"><div class="note-head">4 <span class="verdict ok">正しい（これが正解）</span></div><p>清掃・洗浄は、毎日・毎週・毎月など<strong>計画を立てて</strong>行い、実際に行われているかを点検・記録することが大切です。マニュアルの点検表にも、毎日・1か月ごと・3か月ごとの点検項目があります。</p></div>
+<div class="box"><h3>覚えるポイント</h3><ul>
+<li>清掃は全ての食品を搬出した後に</li>
+<li>調理台：洗浄 → 乾燥 → 70％アルコール噴霧（水拭きはしない）</li>
+<li>床・内壁（床から1mまで）は1日1回以上、天井・内壁（1m以上）は月1回以上</li>
+</ul></div>
+</div></details></section>
+</main>
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById("theme-btn");
+  function current() {
+    var t = root.getAttribute("data-theme");
+    if (t) return t;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  function label() { btn.textContent = current() === "dark" ? "ライト" : "ダーク"; }
+  try { var saved = localStorage.getItem("kaisetsu-theme"); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
+  label();
+  btn.onclick = function () {
+    var next = current() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("kaisetsu-theme", next); } catch (e) {}
+    label();
+  };
+})();
+</script>
+</body>
+</html>

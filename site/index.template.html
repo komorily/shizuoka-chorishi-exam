@@ -156,6 +156,9 @@
   .btn-ghost { background: transparent; border: 1px solid var(--border); }
   .btn-row { display: flex; gap: 8px; }
   .btn-row .btn { width: auto; flex: 1; }
+  a.btn { text-decoration: none; box-sizing: border-box; }
+  .kaisetsu-link { margin-bottom: 8px; }
+  .btn-row a.btn { padding: 10px 6px; font-size: 14px; white-space: nowrap; }
   .pill {
     display: inline-block; padding: 3px 10px; border-radius: 999px;
     font-size: 12px; font-weight: 600; background: var(--bg-sunken); color: var(--text-muted);
@@ -194,14 +197,14 @@
     background: var(--accent-soft);
   }
   .hero-img {
-    position: absolute; right: -30px; bottom: -14px; height: 122px; width: auto;
+    position: absolute; right: -18px; bottom: -10px; width: min(52%, 300px); height: auto;
     filter: drop-shadow(0 8px 12px rgba(20,18,12,.16));
   }
-  .hero-figure { position: relative; max-width: 64%; }
+  .hero-figure { position: relative; z-index: 1; max-width: 64%; }
   .hero-num { font-family: var(--font-display); font-size: 54px; font-weight: 700; line-height: 1; color: var(--accent); text-wrap: balance; }
   .hero-pct { font-size: 28px; font-weight: 500; opacity: .75; }
   .hero-label { font-size: 13px; color: var(--text-muted); margin-top: 9px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .hero-baseline { font-size: 11px; padding: 3px 9px; border: 1px solid var(--border); border-radius: 999px; color: var(--text); }
+  .hero-baseline { font-size: 11px; padding: 3px 9px; border: 1px solid var(--border); border-radius: 999px; color: var(--text); background: var(--bg-elevated); }
 
   .stat-row { display: flex; gap: 8px; margin-bottom: 12px; }
   .stat-chip { flex: 1; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 14px; padding: 11px 8px; text-align: center; }
@@ -559,6 +562,11 @@
     }
     html += `</div>`;
 
+    html += `<div class="section-title">過去問 解説付き解答</div><div class="card">
+      <p class="muted" style="margin:0 0 10px;">年度ごとに全60問。自分で解いてから、1問ずつ解答・解説を開いて答え合わせできます。</p>
+      <div class="btn-row">${YEARS.map(y => `<a class="btn btn-ghost" href="kaisetsu/${y}.html">${YEAR_LABEL[y]}</a>`).join("")}</div>
+    </div>`;
+
     html += `<div class="section-title">科目別 正答率</div><div class="card">`;
     SUBJECTS.forEach(s => {
       const d = st[s];
@@ -791,6 +799,7 @@
     if (locked) {
       if (q.invalidated) html += `<p class="muted">※この問題は静岡県の発表により「全員正解」として扱われています。</p>`;
       if (q.explanation) html += `<div class="explain-box"><div class="lbl">解説</div>${esc(q.explanation)}</div>`;
+      html += `<a class="btn btn-ghost kaisetsu-link" href="kaisetsu/${q.year}.html#q${q.no}">詳しい解説ページで見る ›</a>`;
       html += `<button class="btn btn-primary" id="pr-next">次の問題へ</button>`;
     }
     html += `</div>`;

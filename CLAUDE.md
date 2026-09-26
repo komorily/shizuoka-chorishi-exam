@@ -6,7 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Prep materials for the 静岡県 (Shizuoka Prefecture) 調理師試験 (cooking-license exam): a 虎の巻 (cheat sheet, `toranomaki/`) and a self-contained study web app (`site/index.html`). Full background — exam rules, why Shizuoka's own past exams are the only reliable source material, scoring thresholds, study plan — is in [静岡県調理師試験_対策プロジェクト_引き継ぎ資料.md](静岡県調理師試験_対策プロジェクト_引き継ぎ資料.md); read it before making content decisions.
 
-**Not a git repository** — there is no version-control safety net here. Be careful with destructive edits (no easy revert), and prefer additive/reversible changes.
+Git repo pushed to GitHub (`komorily/shizuoka-chorishi-exam`, public). Cloudflare Pages deploys the `site/` directory from `main` on push.
+
+## 解説付き解答 (`kaisetsu/`)
+
+`python3 kaisetsu/build_kaisetsu.py` generates `site/kaisetsu/R5.html`, `R6.html`, `R7.html` (served on Cloudflare; linked from the study site home and from each practice answer; one self-contained page per year, collapsible answer/explanation per question, light/dark toggle). Question text and official answers come from `data/questions.json`; the researched per-choice explanations live in `kaisetsu/data/part_01.json`〜`part_08.json` (same subject split as `data/explanations_*.json`). Each entry: `choices[].verdict` (truth of that choice, not whether it is the answer — the renderer marks the official answer), `choices[].note`, `points` (覚えるポイント, most questions), `update` (最新の制度, only when rules/stats changed since the exam), plus internal `flag`/`textIssue`. Only `<strong>` is allowed inside note text. Never hand-edit the generated `R*.html`.
 
 ## Data pipeline
 
