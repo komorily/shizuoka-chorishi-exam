@@ -1,0 +1,8 @@
+{
+  // Cloudflare Workers Builds (npx wrangler deploy) で site/ を静的サイトとして公開する
+  "name": "shizuoka-chorishi-exam",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./site"
+  }
+}
