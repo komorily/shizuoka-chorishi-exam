@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-"""data/questions.json と kaisetsu/data/part_*.json から、
-年度ごとの解説付き解答 HTML (site/kaisetsu/R5.html, R6.html, R7.html) を生成する。
+"""年度ごとの解説付き解答 HTML を生成する。
+- 静岡県: data/questions.json + kaisetsu/data/part_*.json → site/kaisetsu/R5.html, R6.html, R7.html
+- 調理技術技能センター（他県の共通問題・参考）: kaisetsu/center/questions.json
+  + kaisetsu/center/data/part_*.json → site/kaisetsu/center-R5.html, center-R6.html, center-R7.html
 
 実行: python3 kaisetsu/build_kaisetsu.py
 """
@@ -11,12 +13,28 @@ import re
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent.parent
-QUESTIONS = BASE / "data" / "questions.json"
-PARTS = BASE / "kaisetsu" / "data"
 OUT_DIR = BASE / "site" / "kaisetsu"
 
-SUBJECTS = ["食文化概論", "公衆衛生学", "栄養学", "食品学", "食品衛生学", "調理理論"]
 YEARS = [("R5", "令和5年度"), ("R6", "令和6年度"), ("R7", "令和7年度")]
+EXAMS = [
+    {
+        "questions": BASE / "data" / "questions.json",
+        "parts": BASE / "kaisetsu" / "data",
+        "file": "{year}.html",
+        "title": "静岡県調理師試験",
+        "subjects": ["食文化概論", "公衆衛生学", "栄養学", "食品学", "食品衛生学", "調理理論"],
+        "note": None,
+    },
+    {
+        "questions": BASE / "kaisetsu" / "center" / "questions.json",
+        "parts": BASE / "kaisetsu" / "center" / "data",
+        "file": "center-{year}.html",
+        "title": "センター調理師試験",
+        "subjects": ["公衆衛生学", "食品学", "栄養学", "食品衛生学", "調理理論", "食文化概論"],
+        "note": "公益社団法人 調理技術技能センターが多くの道府県から受託して出している共通問題です。"
+                "静岡県の試験とは別の問題なので、参考として目を通す用です。",
+    },
+]
 
 
 def esc(s):
@@ -38,9 +56,9 @@ def render_passage(p):
     return esc(p).replace("【", '<span class="blank">').replace("】", "</span>")
 
 
-def load_parts():
+def load_parts(parts_dir):
     by_id = {}
-    for path in sorted(glob.glob(str(PARTS / "part_*.json"))):
+    for path in sorted(glob.glob(str(parts_dir / "part_*.json"))):
         for item in json.loads(Path(path).read_text(encoding="utf-8")):
             assert item["id"] not in by_id, f"duplicate {item['id']} in {path}"
             assert len(item["choices"]) == 4, f"{item['id']}: choices != 4"
@@ -125,6 +143,7 @@ CSS = """
   .nw { display: inline-block; }
   header p { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
   header p a { color: var(--accent); }
+  header p.exam-note { background: var(--note); color: var(--text); border-radius: 10px; padding: 8px 12px; margin-top: 8px; }
   .theme-btn {
     flex-shrink: 0; min-width: 44px; min-height: 44px; border-radius: 999px;
     border: 1px solid var(--border); background: var(--card); color: var(--text);
@@ -208,15 +227,17 @@ JS = """
 """
 
 
-def render_year(year, label, questions, kaisetsu):
+def render_year(exam, year, label, questions, kaisetsu):
     qs = sorted((q for q in questions if q["year"] == year), key=lambda q: q["no"])
-    others = " ／ ".join(f'<a class="nw" href="{y}.html">{l}</a>' for y, l in YEARS if y != year)
+    others = " ／ ".join(f'<a class="nw" href="{exam["file"].format(year=y)}">{l}</a>'
+                        for y, l in YEARS if y != year)
+    note = f'\n    <p class="exam-note">{esc(exam["note"])}</p>' if exam["note"] else ""
     body = []
     body.append(f"""<header>
   <div>
-    <h1><span class="nw">{label}</span> <span class="nw">静岡県調理師試験</span> <span class="nw">解説付き解答</span></h1>
+    <h1><span class="nw">{label}</span> <span class="nw">{esc(exam["title"])}</span> <span class="nw">解説付き解答</span></h1>
     <p><a class="nw" href="../">‹ 学習サイトに戻る</a></p>
-    <p>全{len(qs)}問 ／ ほかの年度：{others}</p>
+    <p>全{len(qs)}問 ／ ほかの年度：{others}</p>{note}
   </div>
   <button class="theme-btn" id="theme-btn" type="button">ダーク</button>
 </header>""")
@@ -224,8 +245,8 @@ def render_year(year, label, questions, kaisetsu):
     for q in qs:
         first_no.setdefault(q["subject"], q["no"])
     body.append('<nav class="subj">' + "".join(
-        f'<a href="#s{i}">{esc(s)}</a>' for i, s in enumerate(SUBJECTS) if s in first_no) + '</nav>')
-    for i, s in enumerate(SUBJECTS):
+        f'<a href="#s{i}">{esc(s)}</a>' for i, s in enumerate(exam["subjects"]) if s in first_no) + '</nav>')
+    for i, s in enumerate(exam["subjects"]):
         sq = [q for q in qs if q["subject"] == s]
         if not sq:
             continue
@@ -237,7 +258,7 @@ def render_year(year, label, questions, kaisetsu):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{label} 解説付き解答</title>
+<title>{label} {esc(exam["title"])} 解説</title>
 <style>{CSS}</style>
 </head>
 <body>
@@ -251,17 +272,18 @@ def render_year(year, label, questions, kaisetsu):
 
 
 def main():
-    questions = json.loads(QUESTIONS.read_text(encoding="utf-8"))
-    kaisetsu = load_parts()
-    for year, label in YEARS:
-        missing = [q["id"] for q in questions if q["year"] == year and q["id"] not in kaisetsu]
-        if missing:
-            print(f"skip {year}: {len(missing)} questions missing ({missing[0]}...)")
-            continue
-        out = OUT_DIR / f"{year}.html"
-        OUT_DIR.mkdir(parents=True, exist_ok=True)
-        out.write_text(render_year(year, label, questions, kaisetsu), encoding="utf-8")
-        print(f"wrote {out}")
+    for exam in EXAMS:
+        questions = json.loads(exam["questions"].read_text(encoding="utf-8"))
+        kaisetsu = load_parts(exam["parts"])
+        for year, label in YEARS:
+            missing = [q["id"] for q in questions if q["year"] == year and q["id"] not in kaisetsu]
+            if missing:
+                print(f"skip {exam['file'].format(year=year)}: {len(missing)} questions missing ({missing[0]}...)")
+                continue
+            out = OUT_DIR / exam["file"].format(year=year)
+            OUT_DIR.mkdir(parents=True, exist_ok=True)
+            out.write_text(render_year(exam, year, label, questions, kaisetsu), encoding="utf-8")
+            print(f"wrote {out}")
 
 
 if __name__ == "__main__":

@@ -567,6 +567,11 @@
       <div class="btn-row">${YEARS.map(y => `<a class="btn btn-ghost" href="kaisetsu/${y}.html">${YEAR_LABEL[y]}</a>`).join("")}</div>
     </div>`;
 
+    html += `<div class="section-title">参考：センターの過去問（他県の共通問題）</div><div class="card">
+      <p class="muted" style="margin:0 0 10px;">調理技術技能センターが多くの道府県向けに出している問題です。静岡県の試験とは別の問題なので、目を通す用の参考です。</p>
+      <div class="btn-row">${YEARS.map(y => `<a class="btn btn-ghost" href="kaisetsu/center-${y}.html">${YEAR_LABEL[y]}</a>`).join("")}</div>
+    </div>`;
+
     html += `<div class="section-title">科目別 正答率</div><div class="card">`;
     SUBJECTS.forEach(s => {
       const d = st[s];
