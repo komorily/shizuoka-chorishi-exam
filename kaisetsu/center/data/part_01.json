@@ -1,0 +1,549 @@
+[
+ {
+  "id": "CR5-1",
+  "tag": "保健所の設置主体",
+  "choices": [
+   {"verdict": "正しい", "note": "地域保健法第5条により、<strong>都道府県</strong>は保健所を設置します。記述は正しいです。"},
+   {"verdict": "正しい", "note": "<strong>指定都市・中核市</strong>のほか、地域保健法施行令で定める市（保健所政令市）も保健所を設置します。記述は正しいです。"},
+   {"verdict": "正しい", "note": "東京の<strong>23特別区</strong>も、区ごとに保健所を設置します。記述は正しいです。"},
+   {"verdict": "誤り", "note": "<strong>町や村は保健所を設置できません</strong>。町村が置けるのは市町村保健センター（地域保健法第18条）です。これが正答です。"}
+  ],
+  "points": [
+   "保健所を置く ＝ 都道府県・指定都市・中核市・政令で定める市・<strong>特別区</strong>",
+   "町村は保健所を置けない。市町村が置けるのは<strong>市町村保健センター</strong>",
+   "根拠法はどちらも<strong>地域保健法</strong>（静岡の試験でも頻出）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-2",
+  "tag": "人口静態調査",
+  "choices": [
+   {"verdict": "誤り", "note": "人口静態の代表である国勢調査は<strong>5年ごと、10月1日</strong>現在で行います。「毎年4月と10月」ではありません。"},
+   {"verdict": "正しい", "note": "ある時点の人口の大きさや構成を調べるのが人口静態調査で、代表が<strong>国勢調査</strong>です。これが正答です。"},
+   {"verdict": "誤り", "note": "出生・死亡・婚姻など人口の<strong>動き</strong>をとらえるのは<strong>人口動態調査</strong>です。静態は「ある時点のすがた」です。"},
+   {"verdict": "誤り", "note": "死亡率（粗死亡率）は死亡届をもとにした<strong>人口動態統計</strong>で分かります。人口静態調査では分かりません。"}
+  ],
+  "points": [
+   "人口静態 ＝ ある時点の人口（<strong>国勢調査</strong>、5年ごと・10月1日）",
+   "人口動態 ＝ 出生・死亡・死産・婚姻・離婚の<strong>動き</strong>（届出をもとに毎年集計）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-3",
+  "tag": "環境汚染物質と健康被害",
+  "choices": [
+   {"verdict": "誤り", "note": "<strong>カドミウム</strong>はイタイイタイ病（富山県神通川流域）の原因物質で、腎臓や骨に障害を起こします。"},
+   {"verdict": "誤り", "note": "<strong>メチル（有機）水銀</strong>は水俣病・新潟水俣病の原因物質で、神経に障害を起こします。"},
+   {"verdict": "誤り", "note": "<strong>二酸化硫黄</strong>は四日市ぜんそくの原因物質で、ぜんそくなどの呼吸器の病気を起こします。"},
+   {"verdict": "正しい", "note": "<strong>アスベスト（石綿）</strong>の繊維を吸い込むと、数十年たってから中皮腫や肺がんを起こします。これが正答です。"}
+  ],
+  "points": [
+   "アスベスト（石綿） → <strong>中皮腫・肺がん</strong>（潜伏期間が長い）",
+   "四大公害病：水俣病・新潟水俣病＝<strong>有機水銀</strong>／イタイイタイ病＝<strong>カドミウム</strong>／四日市ぜんそく＝<strong>二酸化硫黄</strong>"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-4",
+  "tag": "衛生害虫・ネズミと媒介疾病",
+  "choices": [
+   {"verdict": "誤り", "note": "<strong>ワイル病</strong>（レプトスピラ症）は主に<strong>ネズミ</strong>の尿で汚れた水や土から感染します。ハエは赤痢や腸チフスなどの病原体を運びます。"},
+   {"verdict": "正しい", "note": "<strong>日本脳炎</strong>は<strong>コガタアカイエカ</strong>という蚊が媒介します。これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>マラリア</strong>は<strong>ハマダラカ</strong>という蚊が媒介します。ゴキブリは体に付けた食中毒菌などを食品に運びます。"},
+   {"verdict": "誤り", "note": "<strong>デング熱</strong>は<strong>ヒトスジシマカ</strong>やネッタイシマカという蚊が媒介します。ネズミが媒介するのはワイル病やペストなどです。"}
+  ],
+  "points": [
+   "蚊：日本脳炎（コガタアカイエカ）・マラリア（ハマダラカ）・デング熱（ヒトスジシマカ）",
+   "ネズミ：<strong>ワイル病</strong>・ペスト（ノミを介して）・サルモネラ症",
+   "ハエ・ゴキブリ：赤痢・腸チフス・食中毒菌などを体に付けて運ぶ"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-5",
+  "tag": "健康日本21（第二次）",
+  "choices": [
+   {"verdict": "誤り", "note": "正しくは「<strong>健康寿命の延伸と健康格差の縮小</strong>」です。抑制・拡大と逆の言葉に変えたひっかけです。"},
+   {"verdict": "正しい", "note": "「<strong>健康を支え、守るための社会環境の整備</strong>」は第二次の基本的な方向の一つです。これが正答です。"},
+   {"verdict": "誤り", "note": "正しくは「生活習慣病の<strong>発症予防と重症化予防</strong>の徹底」です。拡大・促進は逆の言葉です。"},
+   {"verdict": "誤り", "note": "第二次の方向は「社会生活を営むために必要な<strong>機能の維持および向上</strong>」です。食料の確保や増産ではありません。"}
+  ],
+  "points": [
+   "第二次の基本的な方向（5つ）：健康寿命の延伸と健康格差の縮小／生活習慣病の発症予防と重症化予防／社会生活機能の維持・向上／<strong>社会環境の整備</strong>／生活習慣と社会環境の改善",
+   "反対語にすり替える問題が多い（延伸⇔抑制、縮小⇔拡大、予防⇔促進）"
+  ],
+  "update": "2024年度から<strong>健康日本21（第三次）</strong>（2024〜2035年度）が始まっています。第三次の基本的な方向は「健康寿命の延伸と健康格差の縮小」「個人の行動と健康状態の改善」「社会環境の質の向上」「ライフコースアプローチを踏まえた健康づくり」の4つです。社会環境を良くする考え方は引き継がれているので、この問題の正解は変わりません。",
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-6",
+  "tag": "身体活動・運動",
+  "choices": [
+   {"verdict": "正しい", "note": "健康日本21（第二次）には、歩数の増加や運動習慣者の割合の増加など、<strong>身体活動・運動</strong>の目標が設けられていました。これが正答です。"},
+   {"verdict": "誤り", "note": "身体活動・運動は心肺の機能を<strong>高め</strong>、臓器の働きや代謝を<strong>活発に</strong>します。抑制・低下は逆です。"},
+   {"verdict": "誤り", "note": "<strong>ロコモティブシンドローム</strong>は、骨・関節・筋肉など運動器の衰えで、要介護になるリスクが<strong>高い</strong>状態です。"},
+   {"verdict": "誤り", "note": "運動には高血圧・動脈硬化・糖尿病などの<strong>生活習慣病の発症リスクを下げる</strong>効果があります。"}
+  ],
+  "points": [
+   "ロコモティブシンドローム（運動器症候群） ＝ 要介護リスクが<strong>高い</strong>状態",
+   "身体活動・運動 → 心肺機能を高める、生活習慣病のリスクを<strong>下げる</strong>"
+  ],
+  "update": "2024年度からの健康日本21（第三次）にも身体活動・運動の目標（日常生活の歩数、運動習慣者の割合など）があり、あわせて「<strong>健康づくりのための身体活動・運動ガイド2023</strong>」が出ています。正解は変わりません。",
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-7",
+  "tag": "食塩と生活習慣病",
+  "choices": [
+   {"verdict": "正しい", "note": "塩分の多い食事は胃の粘膜を傷つけ、<strong>胃がん</strong>のリスクを高めるとされています。記述は正しいです。"},
+   {"verdict": "正しい", "note": "食塩のとりすぎは高血圧をまねき、<strong>心疾患</strong>や脳卒中のリスクを高めます。記述は正しいです。"},
+   {"verdict": "正しい", "note": "<strong>高血圧症</strong>は食塩の過剰摂取の影響を最も強く受ける病気です。記述は正しいです。"},
+   {"verdict": "誤り", "note": "<strong>1型糖尿病</strong>は、自己免疫などで膵臓のインスリンを作る細胞が壊れて起こる病気で、生活習慣や食塩とは関係が薄いです。これが正答です。"}
+  ],
+  "points": [
+   "食塩のとりすぎ → <strong>高血圧</strong>・脳卒中・心疾患・<strong>胃がん</strong>",
+   "1型糖尿病 ＝ 自己免疫など（生活習慣病ではない）／2型糖尿病 ＝ 生活習慣病"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-8",
+  "tag": "職業病",
+  "choices": [
+   {"verdict": "誤り", "note": "喫煙は個人の生活習慣で、労働環境や作業が原因の<strong>職業病</strong>にはあたりません。"},
+   {"verdict": "誤り", "note": "上肢（腕）を一定の姿勢に保つ作業の反復で起こるのは<strong>頸肩腕症候群</strong>です。腰痛症ではありません。"},
+   {"verdict": "誤り", "note": "重い物を扱う作業や腰に負担のかかる姿勢で起こるのは<strong>腰痛症</strong>です。選択肢2と原因が入れ替えられています。"},
+   {"verdict": "正しい", "note": "パソコンなどを長時間使う作業では、ドライアイなど目の疲れや障害が起こります（<strong>VDT障害</strong>）。これが正答です。"}
+  ],
+  "points": [
+   "腕・肩の同じ姿勢の反復 → <strong>頸肩腕症候群</strong>／重量物・前かがみ → <strong>腰痛症</strong>",
+   "パソコン作業 → <strong>VDT障害</strong>（ドライアイ、肩こりなど）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-9",
+  "tag": "児童福祉法の児童",
+  "choices": [
+   {"verdict": "誤り", "note": "6歳前後は「幼児」（満1歳から小学校に入るまで）の区切りで、児童の上限ではありません。"},
+   {"verdict": "誤り", "note": "12歳は小学校卒業の年齢で、児童福祉法の区切りではありません。"},
+   {"verdict": "誤り", "note": "15歳未満は労働基準法などで使われる区切りで、児童福祉法の児童の上限ではありません。"},
+   {"verdict": "正しい", "note": "児童福祉法第4条で、児童は<strong>満18歳に満たない者</strong>と決められています。これが正答です。"}
+  ],
+  "points": [
+   "児童福祉法：児童 ＝ <strong>18歳未満</strong>",
+   "乳児 ＝ 1歳未満／幼児 ＝ 1歳〜小学校入学前／少年 ＝ 小学校入学〜18歳未満"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-10",
+  "tag": "調理師法（免許・届出）",
+  "choices": [
+   {"verdict": "誤り", "note": "免許の申請は<strong>住所地の都道府県知事</strong>に行います（調理師法施行令第1条）。市町村長ではありません。"},
+   {"verdict": "誤り", "note": "免許証の再交付は<strong>免許を与えた都道府県知事</strong>に申請します（施行令第14条）。就業地の知事ではありません。"},
+   {"verdict": "正しい", "note": "飲食店などで働く調理師は、<strong>2年ごと</strong>の年の12月31日現在の状況を、翌年1月15日までに<strong>就業地の都道府県知事</strong>に届け出ます（調理師法第5条の2）。これが正答です。"},
+   {"verdict": "誤り", "note": "免許を取り消すのは<strong>都道府県知事</strong>です（調理師法第6条）。厚生労働大臣ではありません。"}
+  ],
+  "points": [
+   "免許の申請 ＝ <strong>住所地</strong>の知事／再交付・書換・返納 ＝ <strong>免許を与えた</strong>知事／就業届 ＝ <strong>就業地</strong>の知事",
+   "就業届：2年ごと、12月31日現在を<strong>翌年1月15日まで</strong>",
+   "免許を与える・取り消すのは<strong>都道府県知事</strong>（静岡の試験でも頻出）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-1",
+  "tag": "公衆衛生活動",
+  "choices": [
+   {"verdict": "正しい", "note": "公衆衛生は、国や地方公共団体と民間団体などが<strong>組織的に取り組む</strong>活動です。これが正答です。"},
+   {"verdict": "誤り", "note": "公衆衛生行政の中心となる国の機関は<strong>厚生労働省</strong>です。文部科学省は学校保健を担当します。"},
+   {"verdict": "誤り", "note": "がん（悪性新生物）は1981年から死因の第1位で、死亡数は今も増えています。心疾患も第2位で、「著しく減少させた」とはいえません。"},
+   {"verdict": "誤り", "note": "戦後は上下水道の整備や予防接種などの公衆衛生活動で、結核などの<strong>感染症が大きく減りました</strong>。効果は大きかったです。"}
+  ],
+  "points": [
+   "公衆衛生行政の中心 ＝ <strong>厚生労働省</strong>（学校保健は文部科学省、労働衛生も厚生労働省）",
+   "死因の第1位 ＝ <strong>悪性新生物（がん）</strong>（1981年から）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-2",
+  "tag": "WHO憲章の健康の定義",
+  "choices": [
+   {"verdict": "誤り", "note": "日本国憲法第25条は「健康で文化的な最低限度の生活」を営む<strong>生存権</strong>を定めたもので、健康の定義ではありません。"},
+   {"verdict": "正しい", "note": "この健康の定義は<strong>WHO（世界保健機関）憲章</strong>の前文にあります（1946年採択、1948年発効）。これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>アルマ・アタ宣言</strong>（1978年）は、<strong>プライマリ・ヘルス・ケア</strong>を打ち出した宣言です。"},
+   {"verdict": "誤り", "note": "<strong>オタワ憲章</strong>（1986年）は、<strong>ヘルスプロモーション</strong>の考え方を示した憲章です。"}
+  ],
+  "points": [
+   "WHO憲章の健康：<strong>肉体的・精神的・社会的</strong>に完全に良好な状態",
+   "アルマ・アタ宣言 ＝ プライマリ・ヘルス・ケア／オタワ憲章 ＝ ヘルスプロモーション",
+   "日本国憲法第25条 ＝ 生存権（静岡の試験でも頻出）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-3",
+  "tag": "国民生活基礎調査",
+  "choices": [
+   {"verdict": "誤り", "note": "<strong>国勢調査</strong>は5年ごとに行う人口静態の調査です。毎年ではありません。"},
+   {"verdict": "誤り", "note": "<strong>国民健康・栄養調査</strong>は健康増進法にもとづき毎年行う、体の状態・栄養摂取量・生活習慣の調査です。健康票の大規模調査はありません。"},
+   {"verdict": "正しい", "note": "<strong>国民生活基礎調査</strong>は毎年行い、<strong>3年ごと</strong>に健康票・介護票なども使う大規模調査を行います。これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>人口動態調査</strong>は出生・死亡などの届出をもとにした調査で、自覚症状や通院の状況は調べません。"}
+  ],
+  "points": [
+   "国民生活基礎調査 ＝ 毎年、<strong>3年ごとに大規模</strong>（健康票で自覚症状・通院など）",
+   "国勢調査 ＝ 5年ごと／国民健康・栄養調査 ＝ 毎年（健康増進法）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-4",
+  "tag": "大気の組成",
+  "choices": [
+   {"verdict": "誤り", "note": "<strong>酸素</strong>は約21％で、2番目に多い成分です。"},
+   {"verdict": "誤り", "note": "<strong>二酸化炭素</strong>は約0.04％とごくわずかです。"},
+   {"verdict": "誤り", "note": "<strong>アルゴン</strong>は約0.9％で、3番目に多い成分です。"},
+   {"verdict": "正しい", "note": "<strong>窒素</strong>は約78％で、大気で最も多い成分です。これが正答です。"}
+  ],
+  "points": [
+   "大気の組成：<strong>窒素 約78％</strong> ＞ 酸素 約21％ ＞ アルゴン 約0.9％ ＞ 二酸化炭素 約0.04％"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-5",
+  "tag": "イタイイタイ病",
+  "choices": [
+   {"verdict": "正しい", "note": "イタイイタイ病は、鉱山から出た<strong>カドミウム</strong>で汚れた水や米が原因で、腎臓障害や骨軟化症を起こしました。これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>有機（メチル）水銀</strong>は水俣病・新潟水俣病の原因物質です。"},
+   {"verdict": "誤り", "note": "<strong>二酸化硫黄</strong>は四日市ぜんそくの原因物質です。"},
+   {"verdict": "誤り", "note": "<strong>ダイオキシン類</strong>は主にごみの焼却などで発生する有害物質で、四大公害病の原因ではありません。"}
+  ],
+  "points": [
+   "イタイイタイ病 ＝ <strong>カドミウム</strong>（富山県神通川流域、骨・腎臓）",
+   "水俣病 ＝ 有機水銀／四日市ぜんそく ＝ 二酸化硫黄"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-6",
+  "tag": "栄養素等摂取量の現状",
+  "choices": [
+   {"verdict": "誤り", "note": "令和5年の国民健康・栄養調査では、エネルギー摂取量は1人1日<strong>約1,900 kcal</strong>（1,877 kcal）です。2,500〜3,000 kcalは多すぎます。"},
+   {"verdict": "正しい", "note": "<strong>脂肪エネルギー比率</strong>は令和5年で28.9％で、25〜30％の範囲にあります。これが正答です。"},
+   {"verdict": "誤り", "note": "食塩摂取量は20歳以上の平均で<strong>約10 g</strong>（令和5年は9.8 g）です。20〜30 gではありません。"},
+   {"verdict": "誤り", "note": "食物繊維の摂取量は1日<strong>約18 g</strong>（令和5年は17.8 g）です。250〜300 gは単位の桁が違います。"}
+  ],
+  "points": [
+   "目安：エネルギー 約1,900 kcal／脂肪エネルギー比率 <strong>約29％</strong>／食塩 約10 g／食物繊維 約18 g",
+   "食塩の目標（健康日本21第三次）は<strong>7 g</strong>。実際はまだ多い"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-7",
+  "tag": "感染経路",
+  "choices": [
+   {"verdict": "誤り", "note": "<strong>接触感染</strong>は、手や物にふれて病原体がうつる経路です（ノロウイルスなど）。"},
+   {"verdict": "誤り", "note": "<strong>垂直感染</strong>は、胎盤・産道・母乳などを通して母親から子どもへうつる経路です。"},
+   {"verdict": "正しい", "note": "せきやくしゃみで飛ぶしぶき（飛沫）を吸い込んでうつるのは<strong>飛沫感染</strong>です（インフルエンザなど）。これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>空気感染</strong>は、しぶきの水分が蒸発した小さな粒（飛沫核）が空気中をただよってうつる経路です（結核・麻しん・水痘）。"}
+  ],
+  "points": [
+   "飛沫感染 ＝ せき・くしゃみのしぶき（インフルエンザなど）",
+   "空気感染（飛沫核感染） ＝ <strong>結核・麻しん・水痘</strong>",
+   "垂直感染 ＝ 母から子へ／水平感染 ＝ 人から人・物から人へ"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-8",
+  "tag": "特定健康診査・特定保健指導",
+  "choices": [
+   {"verdict": "誤り", "note": "<strong>地域保健法</strong>は保健所や市町村保健センターなど、地域保健の体制を定めた法律です。"},
+   {"verdict": "誤り", "note": "<strong>健康増進法</strong>は国民健康・栄養調査、食事摂取基準、受動喫煙対策などを定めた法律です。"},
+   {"verdict": "誤り", "note": "<strong>介護保険法</strong>は40歳以上が加入する介護保険の制度を定めた法律です。"},
+   {"verdict": "正しい", "note": "40〜74歳の特定健診・特定保健指導（メタボ健診）は<strong>高齢者医療確保法</strong>で決められ、2008年度から医療保険者が行っています。これが正答です。"}
+  ],
+  "points": [
+   "特定健診・特定保健指導 ＝ <strong>高齢者医療確保法</strong>、対象40〜74歳、実施は<strong>医療保険者</strong>",
+   "メタボリックシンドロームに着目した健診"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-9",
+  "tag": "食育基本法",
+  "choices": [
+   {"verdict": "誤り", "note": "食育推進会議は<strong>農林水産省</strong>に置かれています（食育基本法第26条）。2016年に内閣府から移りました。"},
+   {"verdict": "正しい", "note": "食育推進会議の会長は<strong>農林水産大臣</strong>です（第28条）。これが正答です。"},
+   {"verdict": "誤り", "note": "食育推進基本計画を作るのは<strong>食育推進会議</strong>です（第16条）。文部科学大臣ではありません。"},
+   {"verdict": "誤り", "note": "都道府県の食育推進計画は「作成するよう<strong>努めなければならない</strong>」という<strong>努力義務</strong>です（第17条）。義務ではありません。"}
+  ],
+  "points": [
+   "食育推進会議 ＝ <strong>農林水産省</strong>に置く、会長は<strong>農林水産大臣</strong>",
+   "食育推進基本計画は食育推進会議が作る。都道府県・市町村の計画は<strong>努力義務</strong>",
+   "食育基本法は2005年制定（静岡の試験でも頻出）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-10",
+  "tag": "調理師免許の取消し",
+  "choices": [
+   {"verdict": "誤り", "note": "麻薬・あへん・大麻・覚せい剤の<strong>中毒者</strong>になったときは、治療中かどうかに関係なく、免許取消しの対象になります（調理師法第6条、第4条の2）。"},
+   {"verdict": "誤り", "note": "法律は「<strong>罰金以上の刑</strong>に処せられた者」としていて、調理の業務と関係があるかは問いません。業務と無関係でも取消しの対象になり得ます。"},
+   {"verdict": "正しい", "note": "調理師の責任で、調理の業務に関して<strong>食中毒その他衛生上重大な事故</strong>を起こしたときは、免許取消しの対象です（第6条第2号）。これが正答です。"},
+   {"verdict": "誤り", "note": "取消処分を受けたら<strong>5日以内</strong>に、<strong>免許を与えた都道府県知事</strong>に免許証を返納します（施行令第15条）。1か月・住所地ではありません。"}
+  ],
+  "points": [
+   "取消しの理由：麻薬等の<strong>中毒者</strong>／<strong>罰金以上の刑</strong>／責任のある<strong>重大な食中毒事故</strong>",
+   "取消し後の免許証返納 ＝ <strong>5日以内</strong>に免許を与えた知事へ",
+   "重大事故で取り消されると、1年間は再び免許を受けられない（絶対的欠格事由）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-1",
+  "tag": "市町村保健センター",
+  "choices": [
+   {"verdict": "誤り", "note": "市町村保健センターを設置するのは<strong>市町村</strong>です（地域保健法第18条）。都道府県が置くのは保健所です。"},
+   {"verdict": "誤り", "note": "市町村保健センターは<strong>約2,400か所</strong>あり、保健所（約470か所）より<strong>多い</strong>です。"},
+   {"verdict": "誤り", "note": "<strong>食品衛生</strong>（営業許可・監視指導など）は<strong>保健所</strong>の仕事です。保健センターは健康相談・保健指導・健康診査など住民に身近なサービスを行います。"},
+   {"verdict": "正しい", "note": "市町村保健センターの根拠法は<strong>地域保健法</strong>です。これが正答です。"}
+  ],
+  "points": [
+   "保健所 ＝ 専門的・広域（食品衛生・感染症など）／市町村保健センター ＝ 身近な対人サービス（健康相談・健診など）",
+   "数：保健センター 約2,400 ＞ 保健所 約470。根拠法はどちらも<strong>地域保健法</strong>"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-2",
+  "tag": "WHO憲章の健康の定義",
+  "choices": [
+   {"verdict": "誤り", "note": "WHO憲章の健康の定義に「個人的」という言葉はありません。"},
+   {"verdict": "誤り", "note": "「国際的」も健康の定義の要件ではありません。"},
+   {"verdict": "正しい", "note": "健康は「<strong>肉体的、精神的および社会的</strong>に完全に良好な状態」と定義されています。これが正答です。"},
+   {"verdict": "誤り", "note": "「経済的」は定義に含まれていません。「社会的」とのすり替えに注意します。"}
+  ],
+  "points": [
+   "WHO憲章の健康の3要素 ＝ <strong>肉体的・精神的・社会的</strong>",
+   "「単に病気や虚弱でないことではない」まで覚える"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-3",
+  "tag": "人口動態統計の指標",
+  "choices": [
+   {"verdict": "正しい", "note": "<strong>出生率</strong>は人口1,000人当たりの出生数です。記述は正しいです。"},
+   {"verdict": "誤り", "note": "<strong>合計特殊出生率</strong>は、15〜49歳の女性の年齢別出生率を合計したもので、1人の女性が一生の間に産む子どもの数に当たります。1,000人当たりではありません。これが正答です。"},
+   {"verdict": "正しい", "note": "<strong>死亡率（粗死亡率）</strong>は人口1,000人当たりの死亡数です。記述は正しいです。"},
+   {"verdict": "正しい", "note": "<strong>乳児死亡率</strong>は<strong>出生1,000</strong>当たりの生後1年未満の死亡数です。記述は正しいです。"}
+  ],
+  "points": [
+   "人口千対：出生率・死亡率／<strong>出生千対</strong>：乳児死亡率・新生児死亡率",
+   "合計特殊出生率 ＝ 女性1人が一生に産む子の数（2024年は<strong>1.15</strong>で過去最低）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-4",
+  "tag": "病原体の種類",
+  "choices": [
+   {"verdict": "誤り", "note": "<strong>ペスト</strong>はペスト菌という<strong>細菌</strong>が原因です。ノミを介してネズミから人にうつります。"},
+   {"verdict": "誤り", "note": "<strong>コレラ</strong>はコレラ菌という<strong>細菌</strong>が原因です。"},
+   {"verdict": "正しい", "note": "A型・B型・C型の<strong>肝炎</strong>は、いずれも<strong>肝炎ウイルス</strong>が原因です。A型は食べ物や水から、B型・C型は血液などからうつります。これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>腸チフス</strong>はチフス菌という<strong>細菌</strong>が原因です。"}
+  ],
+  "points": [
+   "ウイルス：肝炎・インフルエンザ・麻しん・ノロウイルス・日本脳炎など",
+   "細菌：ペスト・コレラ・<strong>腸チフス</strong>・赤痢・結核など",
+   "A型・E型肝炎 ＝ 食べ物・水から（経口）／B型・C型 ＝ 血液など"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-5",
+  "tag": "国民健康づくり対策",
+  "choices": [
+   {"verdict": "正しい", "note": "<strong>第1次国民健康づくり対策</strong>は<strong>昭和53（1978）年</strong>に始まり、健康診査の充実や市町村保健センターの整備などを進めました。これが正答です。"},
+   {"verdict": "誤り", "note": "昭和63（1988）年は<strong>第2次</strong>（アクティブ80ヘルスプラン）が始まった年です。運動習慣を重視しました。"},
+   {"verdict": "誤り", "note": "平成12（2000）年は<strong>第3次</strong>、<strong>健康日本21</strong>が始まった年です。"},
+   {"verdict": "誤り", "note": "平成25（2013）年は<strong>第4次</strong>、<strong>健康日本21（第二次）</strong>が始まった年です。"}
+  ],
+  "points": [
+   "第1次 1978年／第2次 1988年（アクティブ80ヘルスプラン）／第3次 2000年（健康日本21）／第4次 2013年（第二次）",
+   "第5次 ＝ 2024年度からの<strong>健康日本21（第三次）</strong>"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-6",
+  "tag": "栄養素等摂取量の推移",
+  "choices": [
+   {"verdict": "正しい", "note": "エネルギー摂取量は、昭和25年の約2,100 kcalから、令和5年は<strong>1,877 kcal</strong>へと<strong>減っています</strong>。これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>動物性たんぱく質</strong>は、肉・魚・卵・乳製品をよく食べるようになり、昭和25年から大きく<strong>増えました</strong>。"},
+   {"verdict": "誤り", "note": "<strong>脂質</strong>は食生活の洋風化で大きく<strong>増えました</strong>。今は脂肪エネルギー比率が約29％です。"},
+   {"verdict": "誤り", "note": "<strong>カルシウム</strong>は乳製品の普及などで昭和25年より<strong>増えています</strong>（ただし今も不足ぎみです）。"}
+  ],
+  "points": [
+   "戦後から今まで：エネルギー・炭水化物は<strong>減少</strong>／動物性たんぱく質・脂質は<strong>増加</strong>",
+   "カルシウムは増えたが、今も食事摂取基準より不足しがち"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-7",
+  "tag": "生活習慣病",
+  "choices": [
+   {"verdict": "誤り", "note": "<strong>腸管出血性大腸菌感染症</strong>（O157など）は細菌による感染症で、生活習慣病ではありません。"},
+   {"verdict": "誤り", "note": "<strong>重症急性呼吸器症候群（SARS）</strong>はコロナウイルスによる感染症です。"},
+   {"verdict": "正しい", "note": "<strong>脳血管疾患</strong>（脳卒中）は、高血圧・喫煙・食塩のとりすぎなど長年の生活習慣が原因となる生活習慣病です。これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>百日咳</strong>は百日咳菌という細菌による感染症です。"}
+  ],
+  "points": [
+   "生活習慣病：がん・心疾患・<strong>脳血管疾患</strong>・糖尿病（2型）・高血圧症・脂質異常症など",
+   "感染症（O157・SARS・百日咳など）と区別する"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-8",
+  "tag": "四大公害病",
+  "choices": [
+   {"verdict": "正しい", "note": "四日市ぜんそくは、石油化学コンビナートの排煙に含まれる<strong>二酸化硫黄</strong>（硫黄酸化物）が原因の呼吸器の病気です。これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>カドミウム</strong>はイタイイタイ病の原因で、骨や腎臓の病気です。"},
+   {"verdict": "誤り", "note": "<strong>有機水銀</strong>は水俣病・新潟水俣病の原因で、神経の病気です。"},
+   {"verdict": "誤り", "note": "<strong>水酸化ナトリウム</strong>は強いアルカリ性の薬品で、四大公害病の原因物質ではありません。"}
+  ],
+  "points": [
+   "四日市ぜんそく（三重県） ＝ <strong>二酸化硫黄</strong>、呼吸器",
+   "水俣病（熊本県）・新潟水俣病 ＝ 有機水銀／イタイイタイ病（富山県） ＝ カドミウム"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-9",
+  "tag": "健康増進法",
+  "choices": [
+   {"verdict": "正しい", "note": "健康増進法第7条で、<strong>厚生労働大臣</strong>が国民の健康増進の<strong>基本方針</strong>を定めます。記述は正しいです。"},
+   {"verdict": "正しい", "note": "<strong>国民健康・栄養調査</strong>は健康増進法第10条にもとづいて行われます。記述は正しいです。"},
+   {"verdict": "正しい", "note": "<strong>食事摂取基準</strong>は健康増進法第16条の2にもとづき、厚生労働大臣が定めます。記述は正しいです。"},
+   {"verdict": "誤り", "note": "<strong>食育推進基本計画</strong>は<strong>食育基本法</strong>にもとづき、食育推進会議（農林水産省）が作ります。これが正答です。"}
+  ],
+  "points": [
+   "健康増進法：基本方針・<strong>国民健康・栄養調査</strong>・<strong>食事摂取基準</strong>・受動喫煙対策・特別用途表示など",
+   "食育推進基本計画 ＝ <strong>食育基本法</strong>"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-10",
+  "tag": "調理師法の目的",
+  "choices": [
+   {"verdict": "正しい", "note": "調理師法第1条に「調理の業務に従事する者の<strong>資質を向上させる</strong>」とあります。記述は正しいです。"},
+   {"verdict": "正しい", "note": "第1条に「<strong>調理技術の合理的な発達を図り</strong>」とあります。記述は正しいです。"},
+   {"verdict": "正しい", "note": "第1条に「<strong>国民の食生活の向上に資する</strong>」とあります。記述は正しいです。"},
+   {"verdict": "誤り", "note": "調理技術の審査（専門調理師・調理技能士の試験）は、厚生労働大臣が「行うことができる」もので（第8条の3）、受けるかどうかは<strong>任意</strong>です。目的にも含まれません。これが正答です。"}
+  ],
+  "points": [
+   "調理師法の目的（第1条）：<strong>資質の向上</strong> → <strong>調理技術の合理的な発達</strong> → <strong>国民の食生活の向上</strong>",
+   "専門調理師の審査は<strong>任意</strong>。調理師の設置も施設側の<strong>努力義務</strong>（第8条の2）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ }
+]

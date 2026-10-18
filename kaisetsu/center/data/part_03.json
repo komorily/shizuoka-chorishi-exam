@@ -1,0 +1,515 @@
+[
+ {
+  "id": "CR5-17",
+  "tag": "6つの基礎食品",
+  "choices": [
+   {"verdict": "誤り", "note": "緑黄色野菜は<strong>第3群</strong>で、主な栄養素は<strong>カロテン</strong>（体内でビタミンAになる）です。脂肪を供給するのは第6群の油脂類です。"},
+   {"verdict": "正しい", "note": "魚・肉・卵・大豆・大豆製品は<strong>第1群</strong>で、<strong>たんぱく質</strong>の供給源として筋肉や骨、血液などをつくります。組合せがすべて正しく、これが正答です。"},
+   {"verdict": "誤り", "note": "淡色野菜・果実類は<strong>第4群</strong>で、ビタミンCを供給し、<strong>体の調子を整える</strong>働きをします。エネルギー源ではありません。"},
+   {"verdict": "誤り", "note": "穀類・いも類は<strong>第5群</strong>で、<strong>炭水化物（糖質）</strong>がエネルギー源になります。カルシウムで骨・歯をつくるのは第2群（牛乳・乳製品、小魚、海藻）です。"}
+  ],
+  "points": [
+   "1群 魚・肉・卵・大豆＝たんぱく質／2群 牛乳・乳製品・小魚・海藻＝<strong>カルシウム</strong>",
+   "3群 緑黄色野菜＝<strong>カロテン</strong>／4群 淡色野菜・果物＝ビタミンC",
+   "5群 穀類・いも類・砂糖＝炭水化物／6群 油脂＝脂肪"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-18",
+  "tag": "脂溶性ビタミン",
+  "choices": [
+   {"verdict": "誤り", "note": "脂溶性ビタミン（A・D・E・K）は油に溶けるので、<strong>油脂と一緒にとると吸収率が上がります</strong>。逆の記述です。"},
+   {"verdict": "誤り", "note": "脂溶性ビタミンは尿に出にくく<strong>肝臓や脂肪組織に蓄積</strong>しやすいため、とりすぎると過剰症（ビタミンAの頭痛、ビタミンDの高カルシウム血症など）が起こります。"},
+   {"verdict": "正しい", "note": "<strong>ビタミンK</strong>は<strong>腸内細菌</strong>によっても合成されます。記述のとおりで、これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>ビタミンD</strong>は小腸でのカルシウム吸収を<strong>促進</strong>します。抑制するビタミンはありません。"}
+  ],
+  "points": [
+   "脂溶性ビタミン＝<strong>A・D・E・K</strong>。油と一緒で吸収↑、体にたまる→過剰症あり",
+   "腸内細菌がつくる＝<strong>ビタミンK</strong>（B群の一部も）",
+   "カルシウムの吸収を助ける＝<strong>ビタミンD</strong>"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-19",
+  "tag": "ビタミン・ミネラルの供給源",
+  "choices": [
+   {"verdict": "誤り", "note": "きくらげ・乾しいたけに多いのは<strong>ビタミンD</strong>です（紫外線でつくられる）。ビタミンA（カロテン）の植物性の供給源はにんじん・かぼちゃ・ほうれんそうなどの緑黄色野菜です。これが正答です。"},
+   {"verdict": "正しい", "note": "<strong>ヨウ素</strong>はこんぶ・わかめなどの<strong>海藻</strong>に非常に多く含まれます。日本人はとりすぎに注意が必要なほどです。"},
+   {"verdict": "正しい", "note": "鉄釜で作ったほしひじきや小松菜は植物性の<strong>鉄</strong>の供給源です。なお、ステンレス釜のほしひじきは鉄がずっと少なくなります。"},
+   {"verdict": "正しい", "note": "<strong>葉酸</strong>は名前のとおり葉物野菜に多く、ブロッコリー・枝豆・ほうれんそうはよい供給源です。"}
+  ],
+  "points": [
+   "きのこ（きくらげ・干ししいたけ）＝<strong>ビタミンD</strong>",
+   "海藻＝<strong>ヨウ素</strong>／ひじき（鉄釜）・小松菜＝鉄",
+   "葉酸＝ブロッコリー・枝豆・ほうれんそうなど緑の野菜"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-20",
+  "tag": "たんぱく質とアミノ酸",
+  "choices": [
+   {"verdict": "誤り", "note": "食品のたんぱく質も体のたんぱく質も、同じ<strong>約20種類のアミノ酸</strong>でできています。種類の数が違うという点が誤りです。"},
+   {"verdict": "誤り", "note": "体たんぱく質の合成には、必須・非必須を問わず<strong>材料のアミノ酸がすべてそろう</strong>必要があります。非必須アミノ酸は体内でつくれますが、「欠けても影響しない」わけではありません。"},
+   {"verdict": "誤り", "note": "食品たんぱく質は消化で<strong>アミノ酸</strong>（一部はペプチド）に分解されてから吸収され、体内で体たんぱく質に組み立て直されます。そのままの形で吸収されるわけではありません。"},
+   {"verdict": "正しい", "note": "必須アミノ酸の量と<strong>バランス</strong>がよい食品ほど、体たんぱく質を効率よくつくれます（<strong>アミノ酸価</strong>の考え方）。これが正答です。"}
+  ],
+  "points": [
+   "たんぱく質は約<strong>20種類</strong>のアミノ酸からなる。そのうち必須（不可欠）アミノ酸は<strong>9種類</strong>",
+   "消化でアミノ酸に分解→吸収→体内で組み立て直す",
+   "栄養価は<strong>必須アミノ酸</strong>の量とバランスで決まる（アミノ酸価）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-21",
+  "tag": "脂肪酸",
+  "choices": [
+   {"verdict": "誤り", "note": "不飽和脂肪酸の多い油脂（植物油・魚油）は常温で<strong>液体</strong>です。常温で固体になるのは、飽和脂肪酸の多いバター・ラードなどです。"},
+   {"verdict": "誤り", "note": "酸化されやすいのは<strong>不飽和脂肪酸</strong>のほうです。二重結合が多いほど酸化しやすくなります。"},
+   {"verdict": "誤り", "note": "必須脂肪酸（<strong>リノール酸、α-リノレン酸</strong>など）はすべて<strong>不飽和脂肪酸</strong>です。飽和脂肪酸には含まれません。"},
+   {"verdict": "正しい", "note": "<strong>飽和脂肪酸</strong>はとりすぎると血中の<strong>LDLコレステロール</strong>を上げ、動脈硬化の原因になります。これが正答です。"}
+  ],
+  "points": [
+   "飽和脂肪酸＝肉・バター、常温で固体、とりすぎでコレステロール↑",
+   "不飽和脂肪酸＝植物油・魚油、常温で液体、<strong>酸化しやすい</strong>",
+   "必須脂肪酸＝<strong>リノール酸・α-リノレン酸</strong>（どちらも不飽和）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-22",
+  "tag": "肥満",
+  "choices": [
+   {"verdict": "誤り", "note": "肥満は体重が重いことではなく、<strong>体脂肪が過剰にたまった状態</strong>をいいます。筋肉が多くて体重が重い人は肥満ではありません。"},
+   {"verdict": "正しい", "note": "おなかの内臓のまわりに脂肪がたまる<strong>内臓脂肪型肥満</strong>（りんご型）は<strong>中高年の男性</strong>に多くみられます。これが正答です。"},
+   {"verdict": "誤り", "note": "生活習慣病（糖尿病・高血圧・脂質異常症など）のリスクを特に高めるのは<strong>内臓脂肪型肥満</strong>です。皮下脂肪型（洋なし型）は女性に多く、リスクは比較的低いとされます。"},
+   {"verdict": "誤り", "note": "成人後の肥満は主に脂肪細胞が<strong>大きくなる（肥大）</strong>タイプで、食事療法の<strong>効果が出やすい</strong>とされます。効果が出にくいのは、脂肪細胞の数が増える小児期からの肥満です。"}
+  ],
+  "points": [
+   "肥満＝<strong>体脂肪</strong>の過剰な蓄積（体重だけでは決まらない）",
+   "内臓脂肪型（りんご型）＝中高年男性に多い、<strong>生活習慣病のリスク大</strong>",
+   "皮下脂肪型（洋なし型）＝女性に多い"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-23",
+  "tag": "消化液",
+  "choices": [
+   {"verdict": "誤り", "note": "唾液に含まれる酵素は、でん粉を分解する<strong>唾液アミラーゼ</strong>（プチアリン）です。ショ糖を分解する<strong>スクラーゼ</strong>は小腸にあります。"},
+   {"verdict": "誤り", "note": "<strong>胆汁には消化酵素は含まれません</strong>。胆汁酸が脂肪を細かくする（乳化）ことで、膵液のリパーゼが働きやすくなります。"},
+   {"verdict": "正しい", "note": "胃液には<strong>塩酸</strong>と、たんぱく質分解酵素ペプシンのもとになる<strong>ペプシノーゲン</strong>が含まれます。ペプシノーゲンは塩酸でペプシンに変わります。これが正答です。"},
+   {"verdict": "誤り", "note": "膵液は三大栄養素すべての消化酵素を含みます。アミラーゼ（糖質）、トリプシン（たんぱく質）、そして脂肪を分解する<strong>リパーゼ</strong>も含まれます。"}
+  ],
+  "points": [
+   "唾液＝<strong>アミラーゼ</strong>／胃液＝<strong>塩酸・ペプシン</strong>",
+   "膵液＝アミラーゼ・トリプシン・<strong>リパーゼ</strong>（三大栄養素すべて）",
+   "胆汁＝<strong>酵素なし</strong>、脂肪を乳化するだけ"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-24",
+  "tag": "成長期の栄養",
+  "choices": [
+   {"verdict": "誤り", "note": "幼児期の間食は、1日の総エネルギーの<strong>10〜20％程度</strong>が目安とされます。30〜40％は多すぎで、食事が食べられなくなります。これが正答です。"},
+   {"verdict": "正しい", "note": "学童期は食習慣が固まる時期で、偏食や、<strong>個食・孤食・欠食</strong>などの習慣がつきやすいとされます。"},
+   {"verdict": "正しい", "note": "思春期は体が急に大きくなるため、一生のうちで<strong>最も多くのエネルギーと栄養素</strong>が必要です。食事摂取基準でも、推定エネルギー必要量が最も多いのは男子15〜17歳です。"},
+   {"verdict": "正しい", "note": "思春期の女子は成長に加え<strong>月経</strong>が始まるため、<strong>鉄</strong>が不足しやすく、鉄欠乏性貧血に注意が必要です。"}
+  ],
+  "points": [
+   "幼児の間食＝総エネルギーの<strong>10〜20％</strong>。3食で足りない分を補う「食事の一部」",
+   "思春期＝一生で最も多くのエネルギー・栄養素が必要",
+   "思春期女子＝<strong>鉄</strong>不足に注意"
+  ],
+  "update": "日本人の食事摂取基準は2025年版（2025年4月から使用）に改定されましたが、思春期（男子15〜17歳）の推定エネルギー必要量が最も多いことは変わらず、正解も変わりません。",
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR5-25",
+  "tag": "高血圧症",
+  "choices": [
+   {"verdict": "誤り", "note": "高血圧の約90％は、原因がはっきりしない<strong>本態性高血圧</strong>です。腎臓病やホルモンの病気などが原因の二次性高血圧は約10％です。"},
+   {"verdict": "誤り", "note": "高血圧の発症には、食塩のとりすぎなどの生活習慣に加え、<strong>遺伝的な要因</strong>も関わります。"},
+   {"verdict": "正しい", "note": "高血圧は血管に負担をかけ続けるため、<strong>動脈硬化の危険因子</strong>です。脳卒中や心臓病につながります。これが正答です。"},
+   {"verdict": "誤り", "note": "野菜・いも・海藻には余分なナトリウムを排出する<strong>カリウム</strong>や食物繊維が多いので、<strong>積極的にとる</strong>ことがすすめられます（腎臓病の人は医師の指示に従う）。"}
+  ],
+  "points": [
+   "高血圧の約90％＝<strong>本態性</strong>（原因不明）、約10％＝二次性",
+   "食事は<strong>減塩</strong>＋<strong>カリウム</strong>（野菜・いも・海藻）",
+   "高血圧は<strong>動脈硬化</strong>の危険因子"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-17",
+  "tag": "食事バランスガイド",
+  "choices": [
+   {"verdict": "誤り", "note": "食事バランスガイドは<strong>2005年（平成17年）</strong>に厚生労働省と農林水産省が策定したもので、当時の「日本人の食事摂取基準（<strong>2005年版</strong>）」などをもとにしています。2010年版ではありません。"},
+   {"verdict": "誤り", "note": "コマの上から<strong>主食・副菜・主菜</strong>・牛乳・乳製品と果物の順です。主菜と副菜の順番が入れ替わっています。"},
+   {"verdict": "誤り", "note": "水・お茶はコマの<strong>軸</strong>として描かれています。コマを回す<strong>ヒモ</strong>は「<strong>菓子・嗜好飲料</strong>」で、楽しく適度に、という意味です。"},
+   {"verdict": "正しい", "note": "料理例は、料理区分ごとに<strong>1つ（1SV＝サービング）</strong>分の量を具体的な料理で示しています。これが正答です。"}
+  ],
+  "points": [
+   "2005年、<strong>厚生労働省・農林水産省</strong>が策定",
+   "コマの上から<strong>主食→副菜→主菜→牛乳・乳製品／果物</strong>",
+   "軸＝<strong>水・お茶</strong>、ヒモ＝<strong>菓子・嗜好飲料</strong>、回転＝運動"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-18",
+  "tag": "糖質",
+  "choices": [
+   {"verdict": "誤り", "note": "体内の糖質（グリコーゲンや血液中のぶどう糖）は、体重の<strong>1％未満</strong>とごくわずかです。5％ではありません。"},
+   {"verdict": "誤り", "note": "糖質の主な働きは<strong>エネルギー源</strong>です。体の機能を調節するのは主にビタミン・ミネラルの働きです。"},
+   {"verdict": "正しい", "note": "筋肉にたくわえられた<strong>筋肉グリコーゲン</strong>は、その筋肉が動くときのエネルギー源として使われます。これが正答です。"},
+   {"verdict": "誤り", "note": "糖質をエネルギーに変えるときに必要なのは<strong>ビタミンB1</strong>です。B6は主にたんぱく質（アミノ酸）の代謝に関わります。"}
+  ],
+  "points": [
+   "糖質＝<strong>エネルギー源</strong>（1gあたり4kcal）",
+   "グリコーゲンは<strong>肝臓</strong>（血糖の維持）と<strong>筋肉</strong>（筋肉のエネルギー）に貯蔵",
+   "糖質の代謝＝<strong>ビタミンB1</strong>／たんぱく質の代謝＝ビタミンB6"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-19",
+  "tag": "脂質",
+  "choices": [
+   {"verdict": "誤り", "note": "<strong>レシチン</strong>はリンを含む<strong>リン脂質</strong>で、<strong>複合脂質</strong>の代表です。単純脂質の代表は中性脂肪（トリグリセリド）です。"},
+   {"verdict": "正しい", "note": "脂質は糖質より<strong>胃にとどまる時間が長い</strong>ため、腹もちがよくなります。これが正答です。"},
+   {"verdict": "誤り", "note": "コレステロールは主に<strong>肝臓で合成</strong>され、その量は食事からとる量より多いとされます。"},
+   {"verdict": "誤り", "note": "胆汁酸は肝臓で<strong>コレステロール</strong>を原料につくられます。中性脂肪からではありません。"}
+  ],
+  "points": [
+   "単純脂質＝中性脂肪／複合脂質＝<strong>リン脂質（レシチン）</strong>など／誘導脂質＝コレステロールなど",
+   "脂質は<strong>胃の停滞時間が長い</strong>（腹もちがよい）",
+   "コレステロール→<strong>胆汁酸</strong>・ホルモン・細胞膜の材料。体内合成が多い"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-20",
+  "tag": "摂食行動の調節",
+  "choices": [
+   {"verdict": "正しい", "note": "食欲をコントロールする<strong>摂食中枢</strong>と<strong>満腹中枢</strong>は、ともに<strong>間脳の視床下部</strong>にあります。これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>摂食中枢</strong>が刺激されると、食べたくなります（摂取を<strong>促す</strong>）。摂取を抑えるのは満腹中枢です。"},
+   {"verdict": "誤り", "note": "食べ物で<strong>胃壁が伸びる</strong>と満腹の信号が送られ、食欲は<strong>抑えられます</strong>。"},
+   {"verdict": "誤り", "note": "血糖値（血液中のグルコース濃度）が<strong>下がる</strong>と<strong>摂食中枢</strong>が刺激され、空腹を感じます。満腹中枢が刺激されるのは血糖値が上がったときです。"}
+  ],
+  "points": [
+   "摂食中枢・満腹中枢＝<strong>間脳の視床下部</strong>",
+   "血糖値↓→<strong>摂食中枢</strong>（おなかがすく）／血糖値↑→満腹中枢",
+   "胃壁の伸展→食欲を抑える"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-21",
+  "tag": "ホルモンの働き",
+  "choices": [
+   {"verdict": "正しい", "note": "膵臓から出る<strong>グルカゴン</strong>は、肝臓のグリコーゲンを分解して<strong>血糖値を上げます</strong>。これが正答です。"},
+   {"verdict": "誤り", "note": "副腎から出る<strong>アドレナリン</strong>は心拍数を増やし、<strong>血圧と血糖値を上げます</strong>。"},
+   {"verdict": "誤り", "note": "甲状腺ホルモンの<strong>サイロキシン</strong>は、代謝を活発にして<strong>基礎代謝を上げます</strong>。"},
+   {"verdict": "誤り", "note": "副腎皮質から出る<strong>コルチゾール</strong>は、<strong>血糖値を上げる</strong>働きがあります。血糖値を下げるホルモンは<strong>インスリン</strong>だけです。"}
+  ],
+  "points": [
+   "血糖値を下げる＝<strong>インスリン</strong>だけ",
+   "血糖値を上げる＝<strong>グルカゴン</strong>・アドレナリン・コルチゾールなど",
+   "サイロキシン（甲状腺）＝<strong>基礎代謝を上げる</strong>"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-22",
+  "tag": "基礎代謝",
+  "choices": [
+   {"verdict": "正しい", "note": "基礎代謝量は、呼吸や心臓の拍動など、<strong>生きていくために最低限必要なエネルギー消費量</strong>です。"},
+   {"verdict": "誤り", "note": "基礎代謝量は<strong>早朝空腹時</strong>に、快適な室温で、目覚めた状態で<strong>横になって安静</strong>にして測ります。食後や座った姿勢では測りません。これが正答です。"},
+   {"verdict": "正しい", "note": "基礎代謝量は<strong>体表面積</strong>にほぼ比例するとされます。体の大きい人ほど基礎代謝量は多くなります。"},
+   {"verdict": "正しい", "note": "体重1kgあたりの<strong>基礎代謝基準値</strong>は、男女とも<strong>1〜2歳</strong>で最も高く、年齢とともに下がります。"}
+  ],
+  "points": [
+   "測定条件＝<strong>早朝空腹時・仰臥位（寝た姿勢）・安静・覚醒</strong>・快適な室温",
+   "基礎代謝量は<strong>体表面積</strong>に比例。男性＞女性",
+   "基礎代謝基準値（kg体重あたり）は<strong>1〜2歳</strong>が最大"
+  ],
+  "update": "日本人の食事摂取基準は2025年版に改定されましたが、基礎代謝基準値が1〜2歳で最大である点は変わらず、正解も変わりません。",
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-23",
+  "tag": "ビタミンK",
+  "choices": [
+   {"verdict": "誤り", "note": "<strong>ビタミンA</strong>は目の働き（暗いところで見る力）や皮膚・粘膜の健康に関わります。欠乏すると<strong>夜盲症</strong>になります。"},
+   {"verdict": "誤り", "note": "<strong>ビタミンD</strong>はカルシウムの吸収を助け、骨を丈夫にします。欠乏すると<strong>くる病</strong>・骨軟化症になります。"},
+   {"verdict": "誤り", "note": "<strong>ビタミンE</strong>は体内で<strong>抗酸化作用</strong>をもち、細胞膜の酸化を防ぎます。"},
+   {"verdict": "正しい", "note": "<strong>ビタミンK</strong>は<strong>血液を固める</strong>（血液凝固）のに必要です。納豆や緑黄色野菜に多く、腸内細菌もつくります。これが正答です。"}
+  ],
+  "points": [
+   "A＝夜盲症／D＝くる病・骨軟化症／E＝抗酸化",
+   "<strong>K＝血液凝固</strong>（欠乏で出血しやすい。新生児のビタミンK欠乏に注意）",
+   "ビタミンKが多い食品＝<strong>納豆</strong>・緑黄色野菜"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-24",
+  "tag": "高齢期の身体的特徴",
+  "choices": [
+   {"verdict": "正しい", "note": "歯の欠損やあごの筋力の衰えで、<strong>咀しゃく力は低下</strong>します。"},
+   {"verdict": "正しい", "note": "高齢になると<strong>胃酸の分泌は減少</strong>し、消化・吸収の力が落ちます。"},
+   {"verdict": "誤り", "note": "高齢になると味を感じにくくなり、塩味の<strong>閾値は上がります</strong>（濃い味でないと感じない）。そのため味付けが濃くなりやすく、塩分のとりすぎに注意が必要です。これが正答です。"},
+   {"verdict": "正しい", "note": "筋肉量が減るなどして、<strong>基礎代謝量は低下</strong>します。"}
+  ],
+  "points": [
+   "高齢期は味覚が鈍る＝<strong>閾値が上がる</strong>→濃い味になりやすい",
+   "咀しゃく力・胃酸分泌・基礎代謝量はいずれも<strong>低下</strong>",
+   "閾値＝感じ取れる最低の濃さ。閾値が高い＝鈍い"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR6-25",
+  "tag": "痛風",
+  "choices": [
+   {"verdict": "誤り", "note": "痛風は圧倒的に<strong>男性に多い</strong>病気です。女性は女性ホルモンが尿酸の排出を助けるため、閉経前はまれです。"},
+   {"verdict": "誤り", "note": "痛風は血液中の<strong>尿酸</strong>が増えて起こります。尿酸のもとになる<strong>プリン体</strong>が多い食品（レバー、白子、干物など）は<strong>控えます</strong>。"},
+   {"verdict": "誤り", "note": "尿酸を尿から出すため、水分は<strong>十分にとります</strong>（1日の尿量2L以上が目安）。"},
+   {"verdict": "正しい", "note": "アルコールは尿酸を増やし、排出も妨げるので、<strong>多飲は避けます</strong>。特にビールはプリン体も含みます。これが正答です。"}
+  ],
+  "points": [
+   "痛風＝<strong>高尿酸血症</strong>が原因。<strong>男性</strong>に多い",
+   "<strong>プリン体</strong>の多い食品とアルコールを控える",
+   "水分は<strong>多めに</strong>とる"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-17",
+  "tag": "6つの基礎食品",
+  "choices": [
+   {"verdict": "誤り", "note": "6つの基礎食品は<strong>厚生省（現在の厚生労働省）</strong>が示した栄養教育用の分類です（昭和56年の通知で改訂）。文部科学省ではありません。"},
+   {"verdict": "正しい", "note": "各群から食品を組み合わせてとると、必要な栄養素がそろい、<strong>栄養バランスのよい食事</strong>になります。これが正答です。"},
+   {"verdict": "誤り", "note": "緑黄色野菜は<strong>第3群</strong>です。第4群は淡色野菜と果物です。"},
+   {"verdict": "誤り", "note": "炭水化物（穀類・いも類・砂糖）は<strong>第5群</strong>です。第1群は魚・肉・卵・大豆（たんぱく質）です。"}
+  ],
+  "points": [
+   "6つの基礎食品＝<strong>厚生省</strong>が示した分類",
+   "1群たんぱく質／2群カルシウム／<strong>3群緑黄色野菜</strong>／4群淡色野菜・果物",
+   "<strong>5群炭水化物</strong>／6群油脂"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-18",
+  "tag": "多糖類",
+  "choices": [
+   {"verdict": "誤り", "note": "<strong>セルロース</strong>は食物繊維の一種で、<strong>ヒトの消化酵素では分解できません</strong>。"},
+   {"verdict": "誤り", "note": "<strong>アミロース</strong>はぶどう糖が<strong>直鎖状</strong>につながったでん粉です。枝分かれしているのは<strong>アミロペクチン</strong>です。"},
+   {"verdict": "誤り", "note": "肝臓と筋肉にたくわえられる多糖類は<strong>グリコーゲン</strong>です。アミロペクチンは米やいもなど植物のでん粉の成分です。"},
+   {"verdict": "正しい", "note": "でん粉は消化酵素で分解され、最終的に<strong>ぶどう糖（グルコース）</strong>になって小腸から吸収されます。これが正答です。"}
+  ],
+  "points": [
+   "アミロース＝<strong>直鎖</strong>／アミロペクチン＝<strong>枝分かれ</strong>（もち米はほぼアミロペクチン）",
+   "動物の貯蔵多糖＝<strong>グリコーゲン</strong>（肝臓・筋肉）",
+   "セルロース＝食物繊維、ヒトは消化できない"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-19",
+  "tag": "脂質",
+  "choices": [
+   {"verdict": "誤り", "note": "不飽和脂肪酸の多い油脂（植物油・魚油）は常温で<strong>液体</strong>です。固体になるのは飽和脂肪酸の多い動物性脂肪です。これが正答です。"},
+   {"verdict": "正しい", "note": "<strong>リノール酸</strong>は体内でつくれないため食物からとる必要がある<strong>必須脂肪酸</strong>です。"},
+   {"verdict": "正しい", "note": "<strong>コレステロール</strong>は細胞膜や、性ホルモン・副腎皮質ホルモン、胆汁酸の材料になります。"},
+   {"verdict": "正しい", "note": "脂質は<strong>脂溶性ビタミン</strong>（A・D・E・K）を溶かし、その吸収を助けます。"}
+  ],
+  "points": [
+   "不飽和脂肪酸の多い油＝常温で<strong>液体</strong>",
+   "必須脂肪酸＝<strong>リノール酸・α-リノレン酸</strong>",
+   "コレステロール＝細胞膜・ホルモン・胆汁酸の材料"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-20",
+  "tag": "たんぱく質",
+  "choices": [
+   {"verdict": "誤り", "note": "たんぱく質のエネルギーは1gあたり<strong>4kcal</strong>です。9kcalは脂質です。"},
+   {"verdict": "正しい", "note": "たんぱく質は炭素・水素・酸素のほかに<strong>窒素</strong>を含みます（約16％）。これが糖質・脂質との大きな違いで、これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>ヘモグロビン</strong>はたんぱく質に色素（ヘム）が結びついた<strong>複合たんぱく質</strong>です。"},
+   {"verdict": "誤り", "note": "食品たんぱく質の栄養価は、<strong>不可欠アミノ酸（必須アミノ酸）</strong>の種類と量で決まります。可欠（非必須）アミノ酸ではありません。"}
+  ],
+  "points": [
+   "エネルギー：たんぱく質・糖質＝<strong>4kcal</strong>、脂質＝<strong>9kcal</strong>（1gあたり）",
+   "たんぱく質の特徴＝<strong>窒素</strong>を含む",
+   "ヘモグロビン＝<strong>複合たんぱく質</strong>"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-21",
+  "tag": "ビタミン",
+  "choices": [
+   {"verdict": "正しい", "note": "緑黄色野菜に多い<strong>β-カロテン</strong>は、体内で必要に応じて<strong>ビタミンA</strong>に変わります（プロビタミンA）。これが正答です。"},
+   {"verdict": "誤り", "note": "<strong>脚気</strong>は<strong>ビタミンB1</strong>の欠乏で起こります。ビタミンB2の欠乏では口角炎・口内炎などが起こります。"},
+   {"verdict": "誤り", "note": "カルシウムの腸管吸収を促進するのは<strong>ビタミンD</strong>です。ビタミンEは抗酸化作用をもちます。"},
+   {"verdict": "誤り", "note": "<strong>葉酸</strong>はビタミンB群の仲間で、<strong>水溶性ビタミン</strong>です。脂溶性ビタミンはA・D・E・Kの4つです。"}
+  ],
+  "points": [
+   "β-カロテン→体内で<strong>ビタミンA</strong>に",
+   "B1不足＝<strong>脚気</strong>／B2不足＝口角炎・口内炎",
+   "脂溶性＝<strong>A・D・E・K</strong>だけ。葉酸・B群・Cは水溶性"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-22",
+  "tag": "カルシウム",
+  "choices": [
+   {"verdict": "誤り", "note": "カルシウムは体内に多くある<strong>多量ミネラル</strong>です。微量ミネラルは鉄・亜鉛・ヨウ素などです。"},
+   {"verdict": "誤り", "note": "カルシウムの吸収率は<strong>牛乳・乳製品が最も高く</strong>（約40％）、小魚、野菜の順に低くなります。野菜はシュウ酸などが吸収をじゃまします。"},
+   {"verdict": "誤り", "note": "体内のカルシウムの<strong>約99％</strong>が骨と歯にあります。残りの約1％が血液や筋肉などにあります。"},
+   {"verdict": "正しい", "note": "血中カルシウム濃度が下がると<strong>副甲状腺ホルモン</strong>が出て、<strong>骨からカルシウムが溶け出し</strong>、血中濃度を保ちます。これが正答です。"}
+  ],
+  "points": [
+   "カルシウムの<strong>99％</strong>は骨と歯",
+   "吸収率は<strong>牛乳・乳製品＞小魚＞野菜</strong>",
+   "血中Ca↓→骨から溶け出す（不足が続くと<strong>骨粗しょう症</strong>）"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-23",
+  "tag": "消化と吸収",
+  "choices": [
+   {"verdict": "正しい", "note": "口の中では唾液に含まれる<strong>アミラーゼ</strong>が分泌され、でん粉の分解が始まります。これが正答です。"},
+   {"verdict": "誤り", "note": "胆汁が必要なのは<strong>脂肪</strong>の消化です（脂肪を乳化する）。たんぱく質は胃のペプシンや膵液のトリプシンで消化されます。"},
+   {"verdict": "誤り", "note": "胆汁は<strong>肝臓</strong>でつくられ、<strong>胆のう</strong>にためられてから十二指腸に出されます。腎臓は尿をつくる臓器です。"},
+   {"verdict": "誤り", "note": "栄養素の吸収は主に<strong>小腸</strong>で行われます。大腸では主に<strong>水分</strong>が吸収されます。"}
+  ],
+  "points": [
+   "胆汁＝<strong>肝臓</strong>でつくり、胆のうでためる。脂肪の消化を助ける",
+   "栄養素の吸収＝<strong>小腸</strong>／大腸＝水分の吸収",
+   "でん粉の消化は口（唾液アミラーゼ）から始まる"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-24",
+  "tag": "ライフステージの特徴",
+  "choices": [
+   {"verdict": "誤り", "note": "妊娠初期（妊娠を計画している時期から）は、胎児の<strong>神経管閉鎖障害</strong>のリスクを下げるために<strong>葉酸を積極的にとる</strong>ことがすすめられます。「控える」は逆で、これが正答です。"},
+   {"verdict": "正しい", "note": "幼児は胃が小さく3食だけでは栄養が足りないため、<strong>間食</strong>を食事の一部として補います。"},
+   {"verdict": "正しい", "note": "成長期は体が大きくなり血液量も増えるため、学童期・思春期の貧血は<strong>鉄欠乏性貧血</strong>が多いです。"},
+   {"verdict": "正しい", "note": "高齢者は<strong>のどの渇きを感じにくく</strong>、体の水分量も少ないため脱水を起こしやすく、こまめな水分補給が大切です。"}
+  ],
+  "points": [
+   "妊娠前〜初期＝<strong>葉酸</strong>をとる（神経管閉鎖障害の予防）",
+   "幼児の間食＝不足する栄養を補う<strong>食事の一部</strong>",
+   "高齢者＝口渇感が鈍い→<strong>脱水</strong>に注意"
+  ],
+  "update": "日本人の食事摂取基準2025年版でも、妊娠を計画している女性や妊娠初期の女性には、通常の食事に加えてサプリメントなどで葉酸（1日400μg）をとることがすすめられています。正解は変わりません。",
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ },
+ {
+  "id": "CR7-25",
+  "tag": "血糖値の調節",
+  "choices": [
+   {"verdict": "正しい", "note": "<strong>血糖値</strong>は血液中の<strong>ぶどう糖（グルコース）</strong>の濃度のことです。"},
+   {"verdict": "誤り", "note": "健康な人の血糖値は、食後<strong>30分〜1時間</strong>ほどで最高になり、<strong>約2時間</strong>で食前の値近くに戻ります。これが正答です。"},
+   {"verdict": "正しい", "note": "<strong>インスリン</strong>はぶどう糖を細胞に取り込ませ、<strong>血糖値を下げます</strong>。血糖値を下げるホルモンはインスリンだけです。"},
+   {"verdict": "正しい", "note": "インスリンは<strong>膵臓</strong>のランゲルハンス島の<strong>β細胞</strong>から分泌されます。"}
+  ],
+  "points": [
+   "食後の血糖値＝<strong>30分〜1時間</strong>で最高、約2時間で戻る",
+   "<strong>インスリン</strong>（膵臓β細胞）＝血糖値を下げる唯一のホルモン",
+   "グルカゴン（膵臓α細胞）＝血糖値を上げる"
+  ],
+  "update": null,
+  "invalidNote": null,
+  "flag": null,
+  "textIssue": null
+ }
+]
