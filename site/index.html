@@ -312,6 +312,20 @@
   .mk-legend i.a { border-color: var(--accent); background: var(--accent-soft); }
   .mk-legend i.f { border-color: var(--warn); background: var(--warn-soft); }
 
+  .mk-record { cursor: pointer; }
+  .mk-record-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .mk-filter { display: flex; gap: 6px; margin-bottom: 10px; }
+  .mk-filter .chip { flex: 1; }
+  .mk-q summary { list-style: none; cursor: pointer; }
+  .mk-q summary::-webkit-details-marker { display: none; }
+  .mk-q-head { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin-bottom: 6px; }
+  .mk-q-stem { font-size: 14px; }
+  .mk-q-ans { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+  .mk-q-ans b { color: var(--text); }
+  .mk-q-body { margin-top: 10px; }
+  .mk-q-body .choice { cursor: default; }
+  .btn-danger { color: var(--bad); }
+
   .empty-state { text-align: center; padding: 40px 20px; color: var(--text-muted); }
   .empty-state .big { margin-bottom: 14px; display: flex; justify-content: center; }
 
@@ -592,9 +606,9 @@
     } else {
       state.mocks.slice().reverse().slice(0, 3).forEach(m => {
         const passed = m.pass;
-        html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
+        html += `<div class="mk-record" data-mock="${m.finishedAt}" style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
           <div><div style="font-weight:600;">${esc(m.label)}</div><div class="muted">${new Date(m.finishedAt).toLocaleDateString("ja-JP")}</div></div>
-          <div style="text-align:right;"><div style="font-weight:800;">${m.score}/60</div><span class="pill ${passed ? 'pill-good' : 'pill-bad'}">${passed ? "合格ライン到達" : "要注意"}</span></div>
+          <div style="text-align:right;"><div style="font-weight:800;">${m.score}/60 <span class="muted">›</span></div><span class="pill ${passed ? 'pill-good' : 'pill-bad'}">${passed ? "合格ライン到達" : "要注意"}</span></div>
         </div>`;
       });
     }
@@ -615,6 +629,9 @@
     if (goReview) goReview.onclick = () => nav("review");
     const goWeak = document.getElementById("go-weak");
     if (goWeak) goWeak.onclick = () => nav("practice", { autoStart: { mode: "subject", subject: weak } });
+    app.querySelectorAll("[data-mock]").forEach(el => {
+      el.onclick = () => nav("mock", { mockId: Number(el.dataset.mock) });
+    });
     document.getElementById("backup-open").onclick = () => { backupOverlayOpen = true; renderHome(); };
     wireBackupOverlay();
   }
@@ -890,6 +907,10 @@
 
   function renderMock() {
     if (state.activeMock && !state.activeMock.finishedAt) return renderMockExam();
+    if (route.mockId != null) {
+      const m = state.mocks.find(x => x.finishedAt === route.mockId);
+      if (m) return renderMockResult(m);
+    }
     renderMockSetup();
   }
 
@@ -904,15 +925,20 @@
     html += `<div class="section-title">ランダム模試</div><div class="card"><button class="btn btn-primary" data-year="random">科目配分に従ったランダム60問</button></div>`;
 
     if (state.mocks.length > 0) {
-      html += `<div class="section-title">過去の模試結果</div>`;
+      html += `<div class="section-title">過去の模試結果（タップで見直し）</div>`;
       state.mocks.slice().reverse().forEach(m => {
-        html += `<div class="card" style="padding:12px 14px;display:flex;justify-content:space-between;align-items:center;">
-          <div><div style="font-weight:600;">${esc(m.label)}</div><div class="muted">${new Date(m.finishedAt).toLocaleString("ja-JP")}</div></div>
-          <div style="font-weight:800;">${m.score}/60</div>
+        const c = mockCounts(m);
+        html += `<div class="card mk-record" data-mock="${m.finishedAt}" style="padding:12px 14px;display:flex;justify-content:space-between;align-items:center;">
+          <div><div style="font-weight:600;">${esc(m.label)}</div><div class="muted">${new Date(m.finishedAt).toLocaleString("ja-JP")}</div>
+            <div class="mk-record-meta">間違い ${c.wrong}問・見直し ${c.flagged}問${c.unanswered ? `・未回答 ${c.unanswered}問` : ""}</div></div>
+          <div style="font-weight:800;">${m.score}/60 <span class="muted">›</span></div>
         </div>`;
       });
     }
     app.innerHTML = html;
+    app.querySelectorAll("[data-mock]").forEach(el => {
+      el.onclick = () => nav("mock", { mockId: Number(el.dataset.mock) });
+    });
     app.querySelectorAll("[data-year]").forEach(btn => {
       btn.onclick = () => {
         const kind = btn.dataset.year;
@@ -1063,8 +1089,40 @@
     state.mocks.push(m);
     state.activeMock = null;
     saveState();
-    route = { tab: "mock", resultMock: m };
+    route = { tab: "mock", mockId: m.finishedAt };
     renderMockResult(m);
+  }
+
+  function mockQState(m, id) {
+    const q = QBY_ID[id];
+    const picked = m.picks[id];
+    if (q.invalidated || picked === q.answer) return "correct";
+    return picked == null ? "unanswered" : "wrong";
+  }
+  function mockCounts(m) {
+    let wrong = 0, unanswered = 0, flagged = 0;
+    m.ids.forEach(id => {
+      const s = mockQState(m, id);
+      if (s !== "correct") wrong += 1;
+      if (s === "unanswered") unanswered += 1;
+      if (m.flags && m.flags[id]) flagged += 1;
+    });
+    return { wrong, unanswered, flagged };
+  }
+
+  // Removes a mock record. Unanswered questions were recorded as wrong answers
+  // when the mock was graded; undo those so they don't linger in the review queue.
+  function deleteMock(m) {
+    m.ids.forEach(id => {
+      if (m.picks[id] != null) return;
+      const a = state.answers[id];
+      if (!a || a.picked !== -1 || a.lastAt < m.finishedAt) return;
+      a.timesAnswered -= 1;
+      a.timesWrong = Math.max(0, a.timesWrong - 1);
+      if (a.timesAnswered <= 0) delete state.answers[id];
+    });
+    state.mocks = state.mocks.filter(x => x !== m);
+    saveState();
   }
 
   function renderMockResult(m) {
@@ -1091,18 +1149,80 @@
     if (m.weakSubjects.length) html += `<p class="muted">「${m.weakSubjects.join("」「")}」が6割未満です。この科目を優先して復習しましょう。</p>`;
     html += `</div>`;
 
-    if (m.wrongIds.length) {
-      html += `<button class="btn btn-primary" id="mk-review-wrong">間違えた${m.wrongIds.length}問を解き直す</button><div style="height:10px;"></div>`;
+    const flags = m.flags || {};
+    const wrongIds = m.ids.filter(id => mockQState(m, id) !== "correct");
+    const flaggedIds = m.ids.filter(id => flags[id]);
+    if (wrongIds.length) {
+      html += `<button class="btn btn-primary" id="mk-review-wrong">間違えた${wrongIds.length}問を解き直す</button><div style="height:10px;"></div>`;
     }
-    html += `<button class="btn" id="mk-back">模試メニューに戻る</button>`;
+    if (flaggedIds.length) {
+      html += `<button class="btn" id="mk-review-flagged">見直しした${flaggedIds.length}問を解き直す</button><div style="height:10px;"></div>`;
+    }
+
+    // per-question list
+    const filter = route.mkFilter || (wrongIds.length ? "wrong" : "all");
+    const shown = filter === "wrong" ? wrongIds : filter === "flagged" ? flaggedIds : m.ids;
+    html += `<div class="section-title">問題ごとの結果</div>`;
+    html += `<div class="mk-filter">
+      <button class="chip ${filter === "wrong" ? "selected" : ""}" data-filter="wrong">間違い ${wrongIds.length}</button>
+      <button class="chip ${filter === "flagged" ? "selected" : ""}" data-filter="flagged">見直し ${flaggedIds.length}</button>
+      <button class="chip ${filter === "all" ? "selected" : ""}" data-filter="all">すべて ${m.ids.length}</button>
+    </div>`;
+    if (shown.length === 0) {
+      html += `<div class="card"><p class="muted" style="margin:0;">該当する問題はありません。</p></div>`;
+    }
+    shown.forEach(id => {
+      const q = QBY_ID[id];
+      const n = m.ids.indexOf(id) + 1;
+      const st = mockQState(m, id);
+      const picked = m.picks[id];
+      const stPill = st === "correct" ? `<span class="pill pill-good">◯ 正解</span>`
+        : st === "wrong" ? `<span class="pill pill-bad">✕ 不正解</span>`
+        : `<span class="pill pill-bad">未回答</span>`;
+      const src = m.label === "ランダム模試" ? `<span class="pill">${YEAR_LABEL[q.year]} 問${q.no}</span>` : "";
+      html += `<details class="card mk-q" style="padding:12px 14px;"><summary>
+        <div class="mk-q-head"><span class="pill">問${n}</span><span class="pill pill-accent">${esc(q.subject)}</span>${src}${stPill}${flags[id] ? `<span class="pill pill-warn">見直し</span>` : ""}</div>
+        <div class="mk-q-stem">${esc(q.stem)}</div>
+        <div class="mk-q-ans">あなたの解答 <b>${picked == null ? "―" : picked}</b>　正解 <b>${q.answer}</b>　<span class="muted">› タップで解説</span></div>
+      </summary><div class="mk-q-body">`;
+      if (q.passage) html += `<div class="q-passage">${renderBlanks(q.passage)}</div>`;
+      if (q.optionHeader) html += `<div class="q-header-row">${q.optionHeader.map(h => `<span>${esc(h)}</span>`).join("")}</div>`;
+      q.choices.forEach((c, i) => {
+        const num = i + 1;
+        let cls = "choice", badge = num;
+        if (num === q.answer) { cls += " correct"; badge = "◯"; }
+        else if (num === picked) { cls += " wrong"; badge = "✕"; }
+        html += `<div class="${cls}"><span class="num">${badge}</span><span>${esc(c)}</span></div>`;
+        const note = q.choiceNotes ? q.choiceNotes[i] : "";
+        if (note) html += `<div class="choice-note ${num === q.answer ? "correct-note" : (num === picked ? "wrong-note" : "")}">${esc(note)}</div>`;
+      });
+      if (q.invalidated) html += `<p class="muted">※この問題は静岡県の発表により「全員正解」として扱われています。</p>`;
+      if (q.explanation) html += `<div class="explain-box"><div class="lbl">解説</div>${esc(q.explanation)}</div>`;
+      html += `<a class="btn btn-ghost kaisetsu-link" href="kaisetsu/${q.year}.html#q${q.no}">詳しい解説ページで見る ›</a>`;
+      html += `</div></details>`;
+    });
+
+    html += `<div style="height:10px;"></div><button class="btn" id="mk-back">模試メニューに戻る</button>`;
+    html += `<div style="height:24px;"></div><button class="btn btn-ghost btn-danger" id="mk-delete">この記録を削除</button>`;
     app.innerHTML = html;
 
-    const wrongBtn = document.getElementById("mk-review-wrong");
-    if (wrongBtn) wrongBtn.onclick = () => {
-      practiceSession = { queue: m.wrongIds.slice(), idx: 0 };
+    const startPractice = ids => {
+      practiceSession = { queue: ids.slice(), idx: 0 };
       nav("practice");
     };
-    document.getElementById("mk-back").onclick = () => { route = { tab: "mock" }; render(); };
+    const wrongBtn = document.getElementById("mk-review-wrong");
+    if (wrongBtn) wrongBtn.onclick = () => startPractice(wrongIds);
+    const flaggedBtn = document.getElementById("mk-review-flagged");
+    if (flaggedBtn) flaggedBtn.onclick = () => startPractice(flaggedIds);
+    app.querySelectorAll("[data-filter]").forEach(btn => {
+      btn.onclick = () => { route.mkFilter = btn.dataset.filter; render(); };
+    });
+    document.getElementById("mk-back").onclick = () => nav("mock");
+    document.getElementById("mk-delete").onclick = () => {
+      if (!confirm(`「${m.label}」（${new Date(m.finishedAt).toLocaleString("ja-JP")}）の記録を削除します。元に戻せません。よろしいですか？`)) return;
+      deleteMock(m);
+      nav("mock");
+    };
   }
 
   /* ============================================================
