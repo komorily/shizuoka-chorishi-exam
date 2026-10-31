@@ -5,12 +5,14 @@ site/index.html を生成する。
 実行: python3 data/build_site.py
 """
 import base64
+import hashlib
 import json
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent.parent
 TEMPLATE = BASE / "site" / "index.template.html"
 OUT = BASE / "site" / "index.html"
+VERSION_OUT = BASE / "site" / "version.txt"
 QUESTIONS = BASE / "data" / "questions.json"
 TORANOMAKI = BASE / "data" / "toranomaki.json"
 IMAGES_DIR = BASE / "images"
@@ -60,7 +62,11 @@ def main():
         .replace("__TORANOMAKI_JSON__", t_json)
         .replace("__IMAGES_JSON__", i_json)
     )
+    # 中身から版番号を作る。ページは version.txt と比べて、違えば読み込み直す
+    version = hashlib.sha256(out.encode("utf-8")).hexdigest()[:12]
+    out = out.replace("__BUILD_VERSION__", version)
     OUT.write_text(out, encoding="utf-8")
+    VERSION_OUT.write_text(version + "\n", encoding="utf-8")
     print(f"wrote {OUT} ({len(out)} chars, {len(questions)} questions, {len(toranomaki)} toranomaki chapters, {len(images)} images)")
 
 

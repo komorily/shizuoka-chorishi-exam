@@ -136,6 +136,21 @@
   nav#tabbar button .ic svg { width: 22px; height: 22px; display: block; }
   nav#tabbar button.active { color: var(--accent); }
   nav#tabbar button.active .ic { background: var(--accent-soft); }
+  #update-bar {
+    position: fixed; left: 50%; bottom: calc(14px + var(--safe-b) + var(--nav-h) + 10px); z-index: 11;
+    transform: translateX(-50%);
+    width: calc(100% - 28px); max-width: 560px; box-sizing: border-box;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 8px 8px 8px 16px; border-radius: 14px;
+    background: var(--accent); color: var(--accent-text);
+    box-shadow: 0 6px 18px rgba(20,18,12,.18);
+    font-size: 14px; font-weight: 600;
+  }
+  #update-bar button {
+    border: none; border-radius: 10px; padding: 8px 14px;
+    background: var(--accent-text); color: var(--accent);
+    font-size: 14px; font-weight: 700; cursor: pointer;
+  }
   .icon-btn svg { width: 19px; height: 19px; }
   .mk-flagchip svg { width: 15px; height: 15px; vertical-align: -2px; }
   .mk-list-btn svg { width: 15px; height: 15px; vertical-align: -2px; }
@@ -1304,5 +1319,42 @@
     el.innerHTML = ICONS[el.dataset.icon] || "";
   });
   render();
+
+  /* ---------------- update check ----------------
+     ホーム画面のアイコンから開くと、前に開いたページが再開されるだけで読み込み直されない。
+     戻ってきたときに version.txt を見て、新しい版があれば読み込み直す。 */
+  const BUILD_VERSION = "39df7d641bb1";
+  let updateChecking = false;
+  function showUpdateBar() {
+    if (document.getElementById("update-bar")) return;
+    const bar = document.createElement("div");
+    bar.id = "update-bar";
+    bar.innerHTML = '<span>新しい版があります</span><button type="button">更新する</button>';
+    bar.querySelector("button").onclick = () => location.reload();
+    document.body.appendChild(bar);
+  }
+  async function checkForUpdate() {
+    if (updateChecking) return;
+    updateChecking = true;
+    try {
+      const res = await fetch("version.txt?t=" + Date.now(), { cache: "no-store" });
+      if (!res.ok) return;
+      const latest = (await res.text()).trim();
+      if (!latest || latest === BUILD_VERSION) return;
+      // 一問一答の途中は出題の並びが消えるので、自動では読み込み直さない
+      // 同じ版への自動読み込みは1回まで（読み込み直しが繰り返されないように）
+      let tried = null;
+      try { tried = sessionStorage.getItem("chorishi-reload-to"); } catch (e) { /* ignore */ }
+      if ((route.tab === "practice" && practiceSession) || tried === latest) { showUpdateBar(); return; }
+      try { sessionStorage.setItem("chorishi-reload-to", latest); } catch (e) { /* ignore */ }
+      location.reload();
+    } catch (e) { /* offline etc. */ }
+    finally { updateChecking = false; }
+  }
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") checkForUpdate();
+  });
+  window.addEventListener("pageshow", e => { if (e.persisted) checkForUpdate(); });
+  checkForUpdate();
 })();
 </script>
