@@ -574,6 +574,18 @@
       <div class="stat-chip"><b>${rq.length}</b><span>復習待ち</span></div>
     </div>`;
 
+    const am = state.activeMock;
+    if (am && !am.finishedAt) {
+      const amAnswered = am.ids.filter(id => am.picks[id] != null).length;
+      html += `<div class="section-title">途中の模試</div><div class="card">
+        <p>${esc(am.label)}：${amAnswered} / ${am.ids.length} 問解答済み・残り ${Math.ceil(mockRemainMs(am) / 60000)} 分</p>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="mk-resume">続きから</button>
+          <button class="btn btn-ghost" id="mk-discard">やめる</button>
+        </div>
+      </div>`;
+    }
+
     html += `<div class="section-title">次にやるべきこと</div>`;
     html += `<div class="card">`;
     if (ov.answered === 0) {
@@ -644,6 +656,13 @@
     if (goReview) goReview.onclick = () => nav("review");
     const goWeak = document.getElementById("go-weak");
     if (goWeak) goWeak.onclick = () => nav("practice", { autoStart: { mode: "subject", subject: weak } });
+    const resumeBtn = document.getElementById("mk-resume");
+    if (resumeBtn) resumeBtn.onclick = () => nav("mock");
+    const discardBtn = document.getElementById("mk-discard");
+    if (discardBtn) discardBtn.onclick = () => {
+      if (!confirm("途中の模試をやめます。解答は記録されません。よろしいですか？")) return;
+      state.activeMock = null; saveState(); renderHome();
+    };
     app.querySelectorAll("[data-mock]").forEach(el => {
       el.onclick = () => nav("mock", { mockId: Number(el.dataset.mock) });
     });
@@ -961,7 +980,7 @@
         state.activeMock = {
           label: kind === "random" ? "ランダム模試" : YEAR_LABEL[kind] + " セット",
           ids, picks: {}, flags: {}, startedAt: Date.now(),
-          endsAt: Date.now() + MOCK_DURATION_SEC * 1000,
+          remainMs: MOCK_DURATION_SEC * 1000,
           cur: 0
         };
         saveState();
@@ -1046,21 +1065,42 @@
     if (nextBtn) nextBtn.onclick = () => { m.cur += 1; saveState(); render(); };
     const submitBtn = document.getElementById("mk-submit");
     if (submitBtn) submitBtn.onclick = () => { mockOverlayOpen = false; finishMock(); };
+    // 中断：途中経過は残したままホームへ。続きはホームか模試タブから
     document.getElementById("mk-pause").onclick = () => {
       mockOverlayOpen = false;
-      state.activeMock = null; saveState();
+      saveState();
       nav("home");
     };
 
     startMockTimer();
   }
 
+  // 残り時間は模試の画面を開いているあいだだけ減らす（翌日に続きから解けるように）
+  function mockRemainMs(m) {
+    if (m.remainMs == null) m.remainMs = Math.max(0, (m.endsAt || 0) - Date.now()); // 旧形式（終了時刻）からの移行
+    return m.remainMs;
+  }
+
+  let mockLastTick = 0;
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") mockLastTick = Date.now();
+    else if (state.activeMock) saveState();
+  });
+
   function startMockTimer() {
     clearInterval(mockTimerHandle);
+    mockLastTick = Date.now();
     function tick() {
       const m = state.activeMock;
-      if (!m || m.finishedAt) { clearInterval(mockTimerHandle); return; }
-      const remain = Math.max(0, Math.round((m.endsAt - Date.now()) / 1000));
+      if (!m || m.finishedAt || route.tab !== "mock") { clearInterval(mockTimerHandle); return; }
+      const now = Date.now();
+      if (document.visibilityState === "visible") {
+        // スマホが裏で止まっていた分は数えない
+        m.remainMs = Math.max(0, mockRemainMs(m) - Math.min(now - mockLastTick, 2000));
+        saveState();
+      }
+      mockLastTick = now;
+      const remain = Math.round(mockRemainMs(m) / 1000);
       const el = document.getElementById("mk-timer");
       if (el) {
         const mm = String(Math.floor(remain / 60)).padStart(2, "0");
@@ -1341,11 +1381,12 @@
       if (!res.ok) return;
       const latest = (await res.text()).trim();
       if (!latest || latest === BUILD_VERSION) return;
-      // 一問一答の途中は出題の並びが消えるので、自動では読み込み直さない
+      // 一問一答・模試の途中は画面が変わってしまうので、自動では読み込み直さない
       // 同じ版への自動読み込みは1回まで（読み込み直しが繰り返されないように）
       let tried = null;
       try { tried = sessionStorage.getItem("chorishi-reload-to"); } catch (e) { /* ignore */ }
-      if ((route.tab === "practice" && practiceSession) || tried === latest) { showUpdateBar(); return; }
+      const busy = (route.tab === "practice" && practiceSession) || (route.tab === "mock" && state.activeMock);
+      if (busy || tried === latest) { showUpdateBar(); return; }
       try { sessionStorage.setItem("chorishi-reload-to", latest); } catch (e) { /* ignore */ }
       location.reload();
     } catch (e) { /* offline etc. */ }
